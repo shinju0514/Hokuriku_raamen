@@ -1,24 +1,29 @@
-# README
+# <h3><b>北陸ラーメンレビュー</b></h3>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+地域密着型を目的として北陸三県のラーメンをユーザーがレビューして、評価できるサイトにする。
+検索機能やランキング機能を充実させて、ラーメンを手軽に食べに行きたくなるようなサイトにしたい。
 
-Things you may want to cover:
+### テーマを選んだ理由
+ラーメンが好きでレビューできるサイトを作ろうと思っていたが既にあったのですが、自分が住んでいる地域密着型でのラーメンのレビューサイトはなかったので作りたいと思いました。
 
-* Ruby version
+### ターゲットユーザ
+ラーメンが好きな人はもちろん、あまり食べに行かない人でも北陸のラーメンを食べてもらいたいので基本北陸の人メインをターゲットにしています。
 
-* System dependencies
+### 主な利用シーン
+単純にラーメンが食べたくなった時やラーメンを食べに行った後に美味しさを誰かと共有したい時。
 
-* Configuration
+## 設計書
+<...>
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+・個人で店舗に行きラーメンの画像を撮影。
+・ラーメンの画像が少ない場合はフリー素材を使用。
