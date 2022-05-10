@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   scope module: 'user' do
     devise_for :users,skip: [:passwords], controllers: {registrations: "user/registrations",sessions: 'user/sessions'}
     root :to => 'homes#top'
+    get "homes/about" => "homes#about", as: "about"
     resources :users, only: [:show, :edit, :update, :unsubscribe]
     resources :posts, only: [:index, :show, :edit, :update, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to =>'homes#top'
 
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
     resources :shops, only: [:index, :show, :edit, :update, :new, :create, :destory]
   end
