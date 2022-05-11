@@ -4,10 +4,11 @@ class User::PostsController < ApplicationController
   end
 
   def show
-
+    @post = Post.find(params[:id])
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
@@ -19,6 +20,7 @@ class User::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     @post.save
     redirect_to posts_path
   end
@@ -29,6 +31,6 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:menu, :body, :rate)
+    params.require(:post).permit(:menu, :body, :rate, :post_image)
   end
 end

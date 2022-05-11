@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2022_05_11_014114) do
   create_table "posts", force: :cascade do |t|
     t.string "menu", null: false
     t.text "body", null: false
-    t.float "rate", null: false
+    t.float "rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -28,6 +28,9 @@ class Admin::ShopsController < ApplicationController
   end
 
   def destroy
+    @shop = Shop.find(params[:id])
+    @shop.destroy
+    redirect_to admin_shops_path
   end
 
   private
