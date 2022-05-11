@@ -1,15 +1,28 @@
 Rails.application.routes.draw do
-  # ユーザー用
-  scope module: 'user' do
-    devise_for :users,skip: [:passwords], controllers: {registrations: "user/registrations",sessions: 'user/sessions'}
+
+# 管理者用
+  devise_for :admin, skip:[:registrations, :passwords], controllers:{
+    sessions: "admin/sessions"
+  }
+
+  namespace :admin do
+    root :to =>'homes#top'
+    get "homes/about"=>'homes#about'
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :edit, :update, :destroy]
+    resources :shops, only: [:index, :show, :edit, :update, :new, :create, :destory]
+  end
+
+# ユーザー用
+  scope module: :user do
     root :to => 'homes#top'
     get "homes/about" => "homes#about", as: "about"
+    devise_for :users,skip: [:passwords], controllers: {registrations: "user/registrations",sessions: 'user/sessions'}
     resources :users, only: [:show, :edit, :update, :unsubscribe]
     resources :posts, only: [:index, :show, :edit, :update, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
        resource :favorites, only: [:create, :destroy]
     end
-
     resources :shops, only: [:index, :show, :edit, :update, :new, :create]
     resources :areas, only: [:index, :create, :destroy]
     resources :searches, only: [:search_area, :search_tag, :search_post, :search_shop] do
@@ -19,18 +32,4 @@ Rails.application.routes.draw do
         get :search_shop, on: :collection
     end
   end
-
-  # 管理者用
-  devise_for :admin,skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
-
-  namespace :admin do
-    root :to =>'homes#top'
-
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :posts, only: [:index, :show, :edit, :update, :destroy]
-    resources :shops, only: [:index, :show, :edit, :update, :new, :create, :destory]
-  end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
