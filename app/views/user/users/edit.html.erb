@@ -1,2 +1,32 @@
-<h1>User::Users#edit</h1>
-<p>Find me in app/views/user/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h5 class="user_show">
+        <%= @user.user_name %>さんの編集ページ
+      </h5>
+      <%= form_with model:@user,url:user_path(@user.id) do |f| %>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th><b>ニックネーム</b></th>
+            <td><%= f.text_field :user_name, class: "user_name_field form_control-lg",size: "50x10" %></td>
+          </tr>
+          <tr>
+            <th><b>自己紹介文</b></th>
+            <td><%= f.text_area :introduction, class: "user_introduction_field form_control",size: "50x10" %></td>
+          </tr>
+          <tr>
+            <th><b>プロフィール画像</b></th>
+            <td><%= f.file_field :user_image, accept: 'image/*' %></td>
+          </tr>
+        </thead>
+      </table>
+        <div class="row">
+          <div class="mx-auto">
+            <%= f.submit "更新する" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
