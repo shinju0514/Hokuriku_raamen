@@ -1,2 +1,29 @@
-<h1>User::Shops#index</h1>
-<p>Find me in app/views/user/shops/index.html.erb</p>
+<div class="container">
+  <div class="row" style = "margin-top: 50px">
+    <div class="col-10">
+      <h4 class="shop_index">店舗一覧</h4>
+      <% @shops.each do |shop| %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td><%= link_to shop_path(shop.id) do %>
+            <%= shop.shop_name %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td><%= image_tag shop.shop_image %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= shop.bussiness_hour %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= shop.address %></td>
+          </tr>
+        </thead>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

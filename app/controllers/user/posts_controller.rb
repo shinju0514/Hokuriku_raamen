@@ -1,5 +1,6 @@
 class User::PostsController < ApplicationController
   def index
+    @posts = Post.page(params[:page]).per(6)
   end
 
   def show
@@ -18,12 +19,8 @@ class User::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.save
-      flash[:notice] = "投稿しました"
-      redirect_to post_path(@post.id)
-    else
-      render :new
-    end
+    @post.save
+    redirect_to posts_path
   end
 
   def destroy
@@ -32,6 +29,6 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:menu, :post_image, :body)
+    params.require(:post).permit(:menu, :body, :rate)
   end
 end
