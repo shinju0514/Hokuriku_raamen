@@ -59,12 +59,16 @@ ActiveRecord::Schema.define(version: 2022_05_11_014114) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "comment", null: false
+    t.string "comment"
+    t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -75,11 +79,16 @@ ActiveRecord::Schema.define(version: 2022_05_11_014114) do
   end
 
   create_table "post_tags", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "area_id"
+    t.integer "shop_id"
     t.string "menu", null: false
     t.text "body", null: false
     t.float "rate"

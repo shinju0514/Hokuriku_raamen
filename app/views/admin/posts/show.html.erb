@@ -1,2 +1,52 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <div class="row" style="margin-top: 50px">
+    <div class="col-8">
+      <h4 class="shop_name">店名</h4>
+      <h5 class="mx-auto">画像</h5>
+      <%= image_tag @post.post_image,width: '80%', height: '60%' %>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <td><%= @post.menu %></td>
+          </tr>
+          <tr>
+            <th>本文</th>
+            <td><%= @post.body %></td>
+          </tr>
+        </thead>
+        <tbody>
+        <div class="rate col-5">
+          <tr>
+            <th>評価</th>
+            <th>いいね</th>
+          </tr>
+        </div>
+          <tr>
+            <td><%= @post.rate %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>タグ</th>
+            <th>コメント</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <h4 class="post_user">投稿ユーザー</h4>
+      <div class="user_name">
+        さん
+      </div>
+      <h5 class="user_image">ユーザー画像</h5>
+    </div>
+  </div>
+  <div class="row mx-auto">
+    <div class="edit_botton">
+      <%= link_to "編集する", edit_post_path(@post.id) %>
+    </div>
+    <div class="delete-button">
+      <%= link_to "削除する", post_path(@post.id), methdo: :delete, data: {confirm: "削除しますか？"} %>
+    </div>
+  </div>
+</div>

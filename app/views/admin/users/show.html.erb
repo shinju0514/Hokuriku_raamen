@@ -24,7 +24,7 @@
           </tr>
           <tr>
             <th><b>プロフィール画像</b></th>
-            <td><%= @user.user_image %></td>
+            <td><%= image_tag @user.get_profile_image(150,150) %></td>
           </tr>
         </thead>
       </table>
