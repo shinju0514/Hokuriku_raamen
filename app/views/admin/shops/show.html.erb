@@ -1,2 +1,36 @@
-<h1>Admin::Shops#show</h1>
-<p>Find me in app/views/admin/shops/show.html.erb</p>
+<div class="container">
+  <div class="row" style = "margin-top: 50px">
+    <div class="col-6">
+      <h4 class="shop_index">店舗詳細</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td><%= link_to shop_path(@shop.id) do %>
+            <%= @shop.shop_name %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td><%= image_tag @shop.shop_image %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= @shop.bussiness_hour %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= @shop.address %></td>
+          </tr>
+          <tr>
+            <td><%= @shop.shop_status %></td>
+          </tr>
+        </thead>
+      </table>
+      <div class="edit_button">
+        <%= link_to "編集する",edit_admin_shop_path(@shop.id) %>
+      </div>
+      <div class="delete_button">
+        <%= link_to "削除する", admin_shop_path(@shop.id), method: :delete, data: {confirm: "削除しますか？"} %>
+      </div>
+    </div>
+  </div>
+</div>

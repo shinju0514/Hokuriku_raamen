@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     get "homes/about"=>'homes#about'
     resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
-    resources :shops, only: [:index, :show, :edit, :update, :new, :create, :destory]
+    resources :shops, only: [:index, :show, :edit, :update, :new, :create, :destroy]
+    resources :areas, only: [:index, :create, :destroy]
   end
 
 # ユーザー用
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
        resource :favorites, only: [:create, :destroy]
     end
     resources :shops, only: [:index, :show, :edit, :update, :new, :create]
-    resources :areas, only: [:index, :create, :destroy]
     resources :searches, only: [:search_area, :search_tag, :search_post, :search_shop] do
         get :search_area, on: :collection
         get :search_tag, on: :collection

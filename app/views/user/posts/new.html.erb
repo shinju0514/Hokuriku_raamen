@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row" style="margin-top: 50px">
+    <div class="col-12 mx-auto">
+      <h4 class="post_new">レビュー投稿</h4>
+      <%= form_with model:@post do |f| %>
+      <div class="form_group col-8">
+        <%= f.label :menu, "タイトル" %>
+        <%= f.text_field :menu, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-8">
+        <%= f.label :post_image, "投稿画像" %></br>
+        <%= f.file_field :post_image, accept: 'image/*' %>
+      </div>
+
+      <div class="form_group col-8">
+        <%= f.label :body, "本文" %>
+        <%= f.text_field :body, size: "40x10", class: "form-control" %>
+      </div>
+
+      <div class="button_field">
+        <%= f.submit "新規投稿" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
