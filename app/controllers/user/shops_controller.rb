@@ -30,6 +30,18 @@ class User::ShopsController < ApplicationController
 
   private
 
+  def open_closed
+    @shop = Shop.find_by(params[:id])
+    @shop.open_closed! unless @shop.open_closed?
+    redirect_to edit_ship_path(@shop.id)
+  end
+
+  def nonopen_closed
+    @shop = Shop.find_by(params[:id])
+    @shop.nonopen_closed! unless @shop.nonopen_closed?
+    redirect_to edit_ship_path(@shop.id)
+  end
+
   def shop_params
     params.require(:shop).permit(:shop_name, :shop_image, :bussiness_hour, :address, :shop_status)
   end
