@@ -26,6 +26,10 @@
             <th><b>プロフィール画像</b></th>
             <td><%= image_tag @user.get_profile_image(150,150) %></td>
           </tr>
+          <tr>
+            <th><b>ユーザーステータス</b></th>
+            <td><%= @user.user_status %></td>
+          </tr>
         </thead>
       </table>
         <div class="row">

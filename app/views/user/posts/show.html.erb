@@ -63,11 +63,14 @@
     </div>
   </div>
   <div class="row" style="margin-left :100px">
+    <!--他人の編集ページを表示させないようにする。-->
+    <% if @user.id == current_user.id %>
     <div class="edit_botton mr-5">
       <%= link_to "編集する", edit_post_path(@post.id) %>
     </div>
     <div class="delete-button">
       <%= link_to "削除する", post_path(@post.id), method: :delete, data: {confirm: "削除しますか？"} %>
     </div>
+    <% end %>
   </div>
 </div>

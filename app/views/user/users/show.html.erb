@@ -39,12 +39,14 @@
     </div>
   </div>
   <div class="row">
+    <% if @user.id == current_user.id %>
     <div class="col-2">
       <%= link_to "編集する", edit_user_path(@user.id) %>
     </div>
     <div class="col-2">
       退会する
     </div>
+    <% end %>
   </div>
   <div class="row" style="margin-top: 50px">
     <div class="col-6">

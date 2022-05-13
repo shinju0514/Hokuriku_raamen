@@ -27,6 +27,15 @@
             <th><b>プロフィール画像</b></th>
             <td><%= f.file_field :profile_image, accept: 'image/*' %></td>
           </tr>
+          <tr>
+            <th>ユーザーステータス</th>
+            <td>
+              <%= f.label :user_status, "有効" %>
+              <%= f.radio_button :user_status, "有効" %>
+              <%= f.label :user_status, "退会" %>
+              <%= f.radio_button :user_status, "退会" %>
+            </td>
+          </tr>
         </thead>
       </table>
         <div class="row">

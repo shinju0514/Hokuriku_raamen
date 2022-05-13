@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  enum user_status: { 有効: false, 退会: true }
+
   # バリデーション
   validates :email, :encrypted_password, :user_name, presence: true
 
