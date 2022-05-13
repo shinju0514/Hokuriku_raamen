@@ -24,7 +24,7 @@ class Admin::ShopsController < ApplicationController
   def create
     @shop = Shop.new(shop_params)
     @shop.save
-    redirect_to admin_shop_path(@shop.id)
+    redirect_to admin_shops_path
   end
 
   def destroy

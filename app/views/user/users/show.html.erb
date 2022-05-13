@@ -25,7 +25,7 @@
       <table class="table table-borderless">
         <tr>
           <th><b>プロフィール画像</b></th>
-          <td><%= @user.user_image %></td>
+          <td><%= image_tag @user.get_profile_image(150,150) %></td>
         </tr>
         <tr>
           <th><b>投稿数</b></th>

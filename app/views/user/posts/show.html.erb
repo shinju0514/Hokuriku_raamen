@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row" style="margin-top: 50px">
+    <div class="col-8">
+      <h4 class="shop_name">店名</h4>
+      <%= image_tag @post.post_image,width: '80%', height: '60%'%>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <td><%= @post.menu %></td>
+          </tr>
+          <tr>
+            <th>本文</th>
+            <td><%= @post.body %></td>
+          </tr>
+        </thead>
+        <tbody>
+        <div class="rate col-5">
+          <tr>
+            <th>評価</th>
+            <th>いいね</th>
+          </tr>
+        </div>
+          <tr>
+            <td><%= @post.rate %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>タグ</th>
+            <th>コメント</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <h3 class="post_user"><b>投稿ユーザー</b></h3>
+      <div class="user_name">
+        <h4>
+        <%= @post.user.user_name %>
+        </h4>
+      </div>
+    <div class="user_image">
+      <%= image_tag @post.user.get_profile_image(150,150) %>
+    </div>
+  </div>
+  <div class="row" style="margin-left :100px">
+    <div class="edit_botton mr-5">
+      <%= link_to "編集する", edit_post_path(@post.id) %>
+    </div>
+    <div class="delete-button">
+      <%= link_to "削除する", post_path(@post.id), methdo: :delete, data: {confirm: "削除しますか？"} %>
+    </div>
+  </div>
+</div>
