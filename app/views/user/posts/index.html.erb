@@ -18,7 +18,8 @@
             <th><%= link_to post_path(post.id) do %>
                 <%= post.menu %></th>
                 <% end %>
-            <th><%= post.body %></th>
+            <th><%= post.shop.shop_name %></th>
+            <th><%= post.area.prefecture %></th>
           </tr>
         </tbody>
         <% end %>

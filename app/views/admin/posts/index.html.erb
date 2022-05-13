@@ -15,7 +15,9 @@
           <% @posts.each do |post| %>
           <tr>
             <th><%= post.user.user_name %></th>
-            <th><%= post.body %></th>
+            <th><%= link_to admin_post_path(post.id) do %>
+                <%= post.menu %></th>
+                <% end %>
             <th><%= post.shop.shop_name %></th>
             <th><%= post.area.prefecture %></th>
           </tr>

@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row" style="margin-top: 50px">
     <div class="col-8">
-      <h4 class="shop_name">店名</h4>
+      <h4 class="shop_name">
+      店名 :<%= @post.shop.shop_name %>
+      </h4>
       <%= image_tag @post.post_image,width: '80%', height: '60%'%>
       <table class="table table-borderless">
         <thead>
@@ -24,6 +26,7 @@
           <tr>
             <td><%= @post.rate %></td>
             <td></td>
+            <td><%= @post.area.prefecture %></td>
           </tr>
           <tr>
             <th>タグ</th>

@@ -1,9 +1,10 @@
 class Post < ApplicationRecord
   belongs_to :user
+  belongs_to :shop
+  belongs_to :area
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :shops, dependent: :destroy
   validates :menu, presence:true
   validates :body, presence:true
 

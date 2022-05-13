@@ -17,23 +17,16 @@
         <%= f.label :body, "本文" %>
         <%= f.text_field :body, size: "40x10", class: "form-control" %>
       </div>
-      
-      <!-- 評価 -->
-      <div class="form-group row" id="star">
-        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-        <%= f.hidden_field :rate, id: :review_star %>
+
+      <div class="form_group">
+        <%= f.label :shop_id, "店舗選択" %></br>
+        <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
       </div>
-      
-      <script>
-      $('#star').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        scoreName: 'post[rate]',
-        half: true,
-      });
-      </script>  
+
+      <div class="form_group">
+        <%= f.label :area_id, "エリア選択" %></br>
+        <%= f.collection_select :area_id, @areas, :id, :prefecture %>
+      </div>
 
       <div class="button_field">
         <%= f.submit "新規投稿" %>

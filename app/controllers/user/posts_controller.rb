@@ -21,6 +21,8 @@ class User::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @shops = Shop.all
+    @areas = Area.all
   end
 
   def create
@@ -39,6 +41,6 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:menu, :body, :rate, :post_image)
+    params.require(:post).permit(:menu, :body, :rate, :post_image, :shop_id, :area_id)
   end
 end
