@@ -24,8 +24,18 @@
           </tr>
         </div>
           <tr>
-            <td><%= @post.rate %></td>
-            <td></td>
+            <td><div id="star-rate-<%= @post.id %>"></div>
+                <script>
+                $('#star-rate-<%= @post.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn :  '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= @post.rate %>,
+                });
+                </script></td>
             <td><%= @post.area.prefecture %></td>
           </tr>
           <tr>

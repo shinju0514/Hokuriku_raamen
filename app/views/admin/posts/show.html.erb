@@ -24,8 +24,18 @@
           </tr>
         </div>
           <tr>
-            <td><%= @post.rate %></td>
-            <td></td>
+            <td><div id="star-rate-<%= @post.id %>"></div>
+                <script>
+                $('#star-rate-<%= @post.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn :  '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= @post.rate %>,
+                });
+                </script></td>
             <td><%= @post.area.prefecture %></td>
           </tr>
           <tr>
@@ -48,7 +58,7 @@
   </div>
   <div class="row" style="margin-left :100px">
     <div class="edit_botton mr-5">
-      <%= link_to "編集する", edit_post_path(@post.id) %>
+      <%= link_to "編集する", edit_admin_post_path(@post.id) %>
     </div>
     <div class="delete-button">
       <%= link_to "削除する", post_path(@post.id), methdo: :delete, data: {confirm: "削除しますか？"} %>
