@@ -5,6 +5,7 @@ class User::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @posts = @shop.posts
   end
 
   def edit
@@ -30,6 +31,6 @@ class User::ShopsController < ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:shop_name, :shop_image, :bussiness_hour, :address)
+    params.require(:shop).permit(:shop_name, :shop_image, :bussiness_hour, :address, :shop_status)
   end
 end

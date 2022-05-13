@@ -3,10 +3,14 @@ class User::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).per(6)
+    # newのバリデーションを返す際indexに戻ろうとするためnew画面へ移行させる。
+    redirect_to new_post_path
   end
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
+    @shop = @post.shop
   end
 
   def edit
@@ -28,8 +32,13 @@ class User::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      @shops = Shop.all
+      @areas = Area.all
+      render :new
+    end
   end
 
   def destroy

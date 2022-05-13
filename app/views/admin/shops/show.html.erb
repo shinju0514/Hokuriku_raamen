@@ -32,5 +32,24 @@
         <%= link_to "削除する", admin_shop_path(@shop.id), method: :delete, data: {confirm: "削除しますか？"} %>
       </div>
     </div>
+    <div class="row">
+      <div>
+      <% @posts.each do |post| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th>タイトル</th>
+            <td><%= link_to admin_post_path(post.id) do %>
+                <%= post.menu %>
+                <% end %></td>
+          </tr>
+          <tr>
+            <td><%= image_tag post.post_image,size: "300x200" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+      </div>
+    </div>
   </div>
 </div>

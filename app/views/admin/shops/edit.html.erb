@@ -2,7 +2,7 @@
   <div class="row mx-auto" style = "margin-top: 50px">
     <div class="col-10">
       <h4 class="shop_index">店舗編集</h4>
-      <%= form_with model:@shop do |f| %>
+      <%= form_with model:@shop,url:admin_shop_path(@shop.id) do |f| %>
       <div class="row form_group col-4">
         <%= f.label :shop_name, "店舗名" %>
         <%= f.text_field :shop_name, class: "form-control" %>

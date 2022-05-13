@@ -10,7 +10,7 @@
             <% end %>
           </tr>
           <tr>
-            <td><%= image_tag @shop.shop_image,width: '80%', height: '60%' %></td>
+            <td><%= image_tag @shop.shop_image,size: "300x200" %></td>
           </tr>
           <tr>
             <th>営業時間</th>
@@ -30,8 +30,22 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
-      ここにお店に紐づいている投稿記事を表示
+      <div>
+      <% @posts.each do |post| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th>タイトル</th>
+            <td><%= link_to post_path(post.id) do %>
+                <%= post.menu %>
+                <% end %></td>
+          </tr>
+          <tr>
+            <td><%= image_tag post.post_image,size: "300x200" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
       </div>
     </div>
   </div>

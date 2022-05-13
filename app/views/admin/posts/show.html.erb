@@ -1,9 +1,13 @@
 <div class="container">
   <div class="row" style="margin-top: 50px">
     <div class="col-8">
-      <h4 class="shop_name">
-      店名 :<%= @post.shop.shop_name %>
-      </h4>
+      <div class="shop_name">
+        <h4>店名 :
+          <%= link_to admin_shop_path(@shop.id) do %>
+          <%= @post.shop.shop_name %>
+          <% end %>
+        </h4>
+      </div>
       <%= image_tag @post.post_image,width: '80%', height: '60%'%>
       <table class="table table-borderless">
         <thead>
@@ -49,7 +53,9 @@
       <h3 class="post_user"><b>投稿ユーザー</b></h3>
       <div class="user_name">
         <h4>
+        <%= link_to user_path(@user.id) do %>
         <%= @post.user.user_name %>
+        <% end %>
         </h4>
       </div>
     <div class="user_image">
@@ -61,7 +67,7 @@
       <%= link_to "編集する", edit_admin_post_path(@post.id) %>
     </div>
     <div class="delete-button">
-      <%= link_to "削除する", post_path(@post.id), methdo: :delete, data: {confirm: "削除しますか？"} %>
+      <%= link_to "削除する", admin_post_path(@post.id), method: :delete, data: {confirm: "削除しますか？"} %>
     </div>
   </div>
 </div>

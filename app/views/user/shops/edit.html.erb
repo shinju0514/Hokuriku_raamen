@@ -23,6 +23,14 @@
         <%= f.text_area :address, class: "form-control" %>
       </div>
 
+      <div class="form_button col-8">
+        <%= f.label :shop_status, "開店ステータス" %>
+        <%= f.radio_button :shop_status, :"開店" %>
+        <%= f.label :shop_name, :"開店" %>
+        <%= f.radio_button :shop_status, :"閉店" %>
+        <%= f.label :shop_name, :"閉店" %>
+      </div>
+
       <div class="row form_button col-6 mt-4">
         <%= f.submit "更新する" %>
       </div>

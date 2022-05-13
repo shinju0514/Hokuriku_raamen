@@ -5,6 +5,8 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
+    @shop = @post.shop
   end
 
   def edit
