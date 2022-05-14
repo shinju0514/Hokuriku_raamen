@@ -9,6 +9,7 @@ class User::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     @shop = @post.shop
+    @post_comment = PostComment.new
   end
 
   def edit

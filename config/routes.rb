@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'favorites/create'
+  get 'favorites/destroy'
 # 管理者用
   devise_for :admin, skip:[:registrations, :passwords], controllers:{
     sessions: "admin/sessions"
@@ -22,7 +24,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :unsubscribe]
     resources :posts, only: [:index, :show, :edit, :update, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
-       resource :favorites, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :shops, only: [:index, :show, :edit, :update, :new, :create]
     resources :searches, only: [:search_area, :search_tag, :search_post, :search_shop] do
