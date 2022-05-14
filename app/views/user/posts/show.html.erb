@@ -40,7 +40,8 @@
         </div>
           <tr>
             <th>いいね</th>
-            <td><%= render 'user/favorites/favorite', post: @post %></td>
+            <td id="favorite_buttons_<%= @post.id %>">
+              <%= render 'user/favorites/favorite', post: @post %></td>
           </tr>
           <tr>
             <th>エリア</th>
@@ -72,25 +73,14 @@
     <div class="user_image">
       <%= image_tag @post.user.get_profile_image(150,150) %>
     </div>
-    <div class="post_comment">
-      <p>コメント件数:<%= @post.post_comments.count %></p>
-      <% @post.post_comments.each do |post_comment| %>
-        <p><%= image_tag post_comment.user.get_profile_image(80,80) %></p>
-      <div class="user_post_comment col-8">
-        <p><%= post_comment.comment %></p>
+    <div id="post_<%= @post.id %>">
+      <p class="comment-count">コメント件数:<%= @post.post_comments.count %></p>
+      <div id="comment">
+        <%= render 'user/post_comments/comment', post: @post %>
       </div>
-        <%= post_comment.user.user_name %>
-        <%= post_comment.created_at.strftime("%Y-%m-%d %H:%M") %>
-        <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_post_comment_path(post_comment.post,post_comment), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="comment_send">
-      <%= form_with model: [@post,@post_comment] do |f| %>
-        <%= f.text_area :comment, size: "50x5", placeholder: "コメント欄" %></br>
-        <%= f.submit "コメントを送信" %>
-      <% end %>
+      <div class="comment_send">
+        <%= render 'user/post_comments/form',post: @post, post_comment: @post_comment %>
+      </div>
     </div>
   </div>
 </div>
