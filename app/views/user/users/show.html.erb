@@ -39,14 +39,35 @@
     </div>
   </div>
   <div class="row">
+    <% if @user.id == current_user.id %>
     <div class="col-2">
       <%= link_to "編集する", edit_user_path(@user.id) %>
     </div>
     <div class="col-2">
       退会する
     </div>
-    <div class="col-2">
-      <%= link_to "投稿一覧", posts_path %>
+    <% end %>
+  </div>
+  <div class="row" style="margin-top: 50px">
+    <div class="col-6">
+    <h4 style="margin-left :150px"><b>投稿一覧</b></h4>
+    <% @posts.each do |post| %>
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>メニュー</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><%= link_to post_path(post.id) do %>
+              <%= post.menu %></th>
+              <% end %>
+          <th><%= image_tag post.post_image,size: "300x200" %></th>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
     </div>
   </div>
 </div>

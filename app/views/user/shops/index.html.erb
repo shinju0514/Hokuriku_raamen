@@ -11,7 +11,7 @@
             <% end %>
           </tr>
           <tr>
-            <td><%= image_tag shop.shop_image,width: '50%', height: '50%' %></td>
+            <td><%= image_tag shop.get_shop_image(300,200) %></td>
           </tr>
           <tr>
             <th>営業時間</th>

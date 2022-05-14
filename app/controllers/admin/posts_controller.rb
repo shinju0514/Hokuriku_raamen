@@ -5,6 +5,8 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
+    @shop = @post.shop
   end
 
   def edit
@@ -13,8 +15,11 @@ class Admin::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to admin_post_path(@post.id)
+    if @post.update(post_params)
+      redirect_to admin_post_path(@post.id),notice: "レビューを更新しました。"
+    else
+      render :edit
+    end
   end
 
   def destroy

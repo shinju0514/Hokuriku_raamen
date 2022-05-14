@@ -10,6 +10,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  enum user_status: { 有効: false, 退会: true }
+
+  # バリデーション
+  validates :email, :encrypted_password, :user_name, presence: true
+
+  # プロフィール画像の設定
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpeg')

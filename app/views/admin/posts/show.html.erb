@@ -1,9 +1,14 @@
 <div class="container">
   <div class="row" style="margin-top: 50px">
     <div class="col-8">
-      <h4 class="shop_name">店名</h4>
-      <h5 class="mx-auto">画像</h5>
-      <%= image_tag @post.post_image,width: '80%', height: '60%' %>
+      <div class="shop_name">
+        <h4>店名 :
+          <%= link_to admin_shop_path(@shop.id) do %>
+          <%= @post.shop.shop_name %>
+          <% end %>
+        </h4>
+      </div>
+      <%= image_tag @post.post_image,width: '80%', height: '60%'%>
       <table class="table table-borderless">
         <thead>
           <tr>
@@ -23,8 +28,19 @@
           </tr>
         </div>
           <tr>
-            <td><%= @post.rate %></td>
-            <td></td>
+            <td><div id="star-rate-<%= @post.id %>"></div>
+                <script>
+                $('#star-rate-<%= @post.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn :  '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= @post.rate %>,
+                });
+                </script></td>
+            <td><%= @post.area.prefecture %></td>
           </tr>
           <tr>
             <th>タグ</th>
@@ -34,19 +50,24 @@
       </table>
     </div>
     <div class="col-4">
-      <h4 class="post_user">投稿ユーザー</h4>
+      <h3 class="post_user"><b>投稿ユーザー</b></h3>
       <div class="user_name">
-        さん
+        <h4>
+        <%= link_to user_path(@user.id) do %>
+        <%= @post.user.user_name %>
+        <% end %>
+        </h4>
       </div>
-      <h5 class="user_image">ユーザー画像</h5>
+    <div class="user_image">
+      <%= image_tag @post.user.get_profile_image(150,150) %>
     </div>
   </div>
-  <div class="row mx-auto">
-    <div class="edit_botton">
-      <%= link_to "編集する", edit_post_path(@post.id) %>
+  <div class="row" style="margin-left :100px">
+    <div class="edit_botton mr-5">
+      <%= link_to "編集する", edit_admin_post_path(@post.id) %>
     </div>
     <div class="delete-button">
-      <%= link_to "削除する", post_path(@post.id), methdo: :delete, data: {confirm: "削除しますか？"} %>
+      <%= link_to "削除する", admin_post_path(@post.id), method: :delete, data: {confirm: "削除しますか？"} %>
     </div>
   </div>
 </div>

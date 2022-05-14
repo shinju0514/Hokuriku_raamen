@@ -5,6 +5,7 @@ class Admin::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @posts = @shop.posts
   end
 
   def edit
@@ -14,7 +15,7 @@ class Admin::ShopsController < ApplicationController
   def update
     @shop = Shop.find(params[:id])
     @shop.update(shop_params)
-    redirect_to admin_shop_path(@shop)
+    redirect_to admin_shop_path(@shop.id)
   end
 
   def new

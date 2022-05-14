@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+      menu: メニュー
+      body: 本文
+      rate: 評価
