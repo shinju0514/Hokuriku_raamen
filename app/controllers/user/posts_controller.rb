@@ -3,6 +3,8 @@ class User::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).per(6)
+    @search = Post.ransack(params[:q])
+    @results = @search.result
   end
 
   def show
@@ -56,7 +58,16 @@ class User::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def search
+    @search = Post.ransack(params[:q])
+    @results = @search.result
+  end
+
   private
+
+  def set_q
+    @q = Post.ransack(params[:q])
+  end
 
   def post_params
     params.require(:post).permit(:menu, :body, :rate, :post_image, :shop_id, :area_id)

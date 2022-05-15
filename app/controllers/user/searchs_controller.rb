@@ -1,13 +1,8 @@
 class User::SearchsController < ApplicationController
-  def search_area
-  end
 
-  def search_tag
-  end
-
-  def search_post
-  end
-
-  def search_shop
+  def search
+    @posts = Post.all
+    @search = Post.ransack(params[:q])
+    @results = @search.result
   end
 end

@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row" style="margin-top :30px">
+    <div class="col-12 mx-auto">
+      <h1>レビュー検索 全:<%= @results.count %>件</h1>
+      <%= search_form_for @search, url:search_posts_path do |f| %>
+      <div class="search-group">
+        <div class="menu-gruop col-4">
+          <%= f.label :menu_cont, 'レビュータイトル' %><br>
+          <%= f.search_field :menu_cont ,class: "form-control" %><br>
+        </div>
+        <div class="body-group col-6">
+          <%= f.label :body_cont, "本文" %><br>
+          <%= f.search_field :body_cont ,class: "form-control" %>
+        </div>
+        <div class="rate-group col-6">
+          <%= f.label :rate,"5段階評価" %><br>
+          <%= f.radio_button :rate_gt, 0 %>0〜
+          <%= f.radio_button :rate_gt, 1 %>1〜
+          <%= f.radio_button :rate_gt, 2 %>2〜
+          <%= f.radio_button :rate_gt, 3 %>3〜
+          <%= f.radio_button :rate_gt, 4 %>4〜
+          <%= f.radio_button :rate_eq, 5 %>5
+        </div>
+        <%= f.submit '検索' %>
+      </div>
+    </div>
+      <% end %>
+      <div class="row">
+        <% @results.each do |result| %>
+          <table class="table table-hover">
+        <thead>
+          <tr>
+            <th><%= link_to post_path(result.id) do %>
+                <%= result.menu %>
+                <% end %></th>
+          </tr>
+          <tr>
+            <td><%= image_tag result.post_get_image(300,200) %></td>
+          </tr>
+          <tr>
+            <th>店舗名</th>
+            <td><%= result.shop.shop_name %></td>
+          </tr>
+          <tr>
+            <th>エリア</th>
+            <td><%= result.area.prefecture %></td>
+          </tr>
+          <tr>
+            <th>評価</th>
+            <td>
+              <div id="star-rate-<%= result.id %>"></div>
+                <script>
+                $('#star-rate-<%= result.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn :  '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= result.rate %>,
+                });
+                </script>
+            </td>
+          </tr>
+        </thead>
+      </table>
+        <% end %>
+      </div>
+  </div>
+</div>
