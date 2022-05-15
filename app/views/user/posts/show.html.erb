@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row" style="margin-top: 50px">
-    <div class="col-8">
+    <div class="col-7">
       <div class="shop_name">
         <h4>店名 :
         <%= link_to shop_path(@shop.id) do %>
@@ -8,7 +8,7 @@
         <% end %>
         </h4>
       </div>
-      <%= image_tag @post.post_image,width: '80%', height: '60%'%>
+      <%= image_tag @post.post_image,size:"400x300" %>
       <table class="table table-borderless">
         <thead>
           <tr>
@@ -24,10 +24,6 @@
         <div class="rate col-5">
           <tr>
             <th>評価</th>
-            <th>いいね</th>
-          </tr>
-        </div>
-          <tr>
             <td><div id="star-rate-<%= @post.id %>"></div>
                 <script>
                 $('#star-rate-<%= @post.id %>').raty({
@@ -40,16 +36,32 @@
                   score: <%= @post.rate %>,
                 });
                 </script></td>
-            <td><%= @post.area.prefecture %></td>
+          </tr>
+        </div>
+          <tr>
+            <th>いいね</th>
+            <td id="favorite_buttons_<%= @post.id %>">
+              <%= render 'user/favorites/favorite', post: @post %></td>
           </tr>
           <tr>
-            <th>タグ</th>
-            <th>コメント</th>
+            <th>エリア</th>
+            <td><%= @post.area.prefecture %></td>
           </tr>
         </tbody>
       </table>
+      <div class="row" style="margin-left :100px">
+        <!--他人の編集ページを表示させないようにする。-->
+        <% if @user.id == current_user.id %>
+        <div class="edit_botton mr-5">
+          <%= link_to "編集する", edit_post_path(@post.id) %>
+        </div>
+        <div class="delete-button">
+          <%= link_to "削除する", post_path(@post.id), method: :delete, data: {confirm: "削除しますか？"} %>
+        </div>
+        <% end %>
+      </div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
       <h3 class="post_user"><b>投稿ユーザー</b></h3>
       <div class="user_name">
         <h4>
@@ -61,16 +73,14 @@
     <div class="user_image">
       <%= image_tag @post.user.get_profile_image(150,150) %>
     </div>
-  </div>
-  <div class="row" style="margin-left :100px">
-    <!--他人の編集ページを表示させないようにする。-->
-    <% if @user.id == current_user.id %>
-    <div class="edit_botton mr-5">
-      <%= link_to "編集する", edit_post_path(@post.id) %>
+    <div id="post_<%= @post.id %>">
+      <p class="comment-count">コメント件数:<%= @post.post_comments.count %></p>
+      <div id="comment">
+        <%= render 'user/post_comments/comment', post: @post %>
+      </div>
+      <div class="comment_send">
+        <%= render 'user/post_comments/form',post: @post, post_comment: @post_comment %>
+      </div>
     </div>
-    <div class="delete-button">
-      <%= link_to "削除する", post_path(@post.id), method: :delete, data: {confirm: "削除しますか？"} %>
-    </div>
-    <% end %>
   </div>
 </div>

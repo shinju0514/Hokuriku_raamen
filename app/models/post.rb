@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   belongs_to :area
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   # バリデーション
   validates :menu, :body, :rate, presence: true
@@ -19,4 +19,9 @@ class Post < ApplicationRecord
     post_image.variant(resize_to_limit: [width, height]).processed
   end
 
+# ユーザーいいねをしているかを判定するメソッド
+  def favorited_by?(user)
+    # exists?メソッドでuser_idが存在しているかを判定している。
+    favorites.exists?(user_id: user.id)
+  end
 end

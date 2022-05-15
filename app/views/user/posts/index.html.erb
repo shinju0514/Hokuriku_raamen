@@ -1,27 +1,30 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <h5 class="post_index">レビュー一覧</h5>
+  <div class="row" style = "margin-top: 50px">
+    <div class="col-10">
+      <h4 class="post_index">レビュー一覧</h4>
+      <% @posts.each do |post| %>
       <table class="table table-hover">
-        <thead class="thead-dark">
+        <thead>
           <tr>
-            <th>投稿者名</th>
-            <th>タイトル</th>
-            <th>店舗</th>
-            <th>エリア</th>
-            <th>評価</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @posts.each do |post| %>
-          <tr>
-            <td><%= post.user.user_name %></td>
             <th><%= link_to post_path(post.id) do %>
-                <%= post.menu %></th>
-                <% end %>
-            <th><%= post.shop.shop_name %></th>
-            <th><%= post.area.prefecture %></th>
-            <th><div id="star-rate-<%= post.id %>"></div>
+                <%= post.menu %>
+                <% end %></th>
+          </tr>
+          <tr>
+            <td><%= image_tag post.post_get_image(300,200) %></td>
+          </tr>
+          <tr>
+            <th>店舗名</th>
+            <td><%= post.shop.shop_name %></td>
+          </tr>
+          <tr>
+            <th>エリア</th>
+            <td><%= post.area.prefecture %></td>
+          </tr>
+          <tr>
+            <th>評価</th>
+            <td>
+              <div id="star-rate-<%= post.id %>"></div>
                 <script>
                 $('#star-rate-<%= post.id %>').raty({
                   size: 20,
@@ -32,11 +35,12 @@
                   readOnly: true,
                   score: <%= post.rate %>,
                 });
-                </script></th>
+                </script>
+            </td>
           </tr>
-        </tbody>
-        <% end %>
+        </thead>
       </table>
+      <% end %>
       <%= paginate @posts %>
     </div>
   </div>
