@@ -1,8 +1,7 @@
 class User::SearchsController < ApplicationController
 
   def search
-    @posts = Post.all
     @search = Post.ransack(params[:q])
-    @results = @search.result
+    @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result
   end
 end

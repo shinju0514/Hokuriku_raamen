@@ -15,20 +15,33 @@
         <div class="rate-group col-6">
           <%= f.label :rate,"5段階評価" %><br>
           <%= f.radio_button :rate_gt, 0 %>0〜
-          <%= f.radio_button :rate_gt, 1 %>1〜
-          <%= f.radio_button :rate_gt, 2 %>2〜
-          <%= f.radio_button :rate_gt, 3 %>3〜
-          <%= f.radio_button :rate_gt, 4 %>4〜
-          <%= f.radio_button :rate_eq, 5 %>5
+          <%= f.radio_button :rate_gt, 1 %> 1〜
+          <%= f.radio_button :rate_gt, 2 %> 2〜
+          <%= f.radio_button :rate_gt, 3 %> 3〜
+          <%= f.radio_button :rate_gt, 4 %> 4〜
+          <%= f.radio_button :rate_eq, 5 %> 5
         </div>
         <%= f.submit '検索' %>
+        <%= form_tag search_posts_path, method: :get, class: 'boards__searchForm' do %>
+            <%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :tag_name, params[:tag_id]),
+            {
+              prompt: 'タグで絞り込み検索',
+              onchange: 'submit(this.form);'
+            }%>
+        <% end %>
       </div>
     </div>
       <% end %>
       <div class="row">
-        <% @results.each do |result| %>
-          <table class="table table-hover">
+        <table class="table table-borderless">
         <thead>
+          <tr>
+            <th><%= sort_link(@search, :menu, "新着順", created_at: :DESC) %> |
+                <%= sort_link(@search, :rate, "評価順", rate: :ASC) %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @results.each do |result| %>
           <tr>
             <th><%= link_to post_path(result.id) do %>
                 <%= result.menu %>
@@ -62,9 +75,9 @@
                 </script>
             </td>
           </tr>
-        </thead>
-      </table>
-        <% end %>
+          <% end %>
+        </tbody>
+        </table>
       </div>
   </div>
 </div>
