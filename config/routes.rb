@@ -29,7 +29,12 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
-    resources :shops, only: [:index, :show, :edit, :update, :new, :create]
+    get 'search' => 'searchs#search', as: 'search'
+    resources :shops, only: [:index, :show, :edit, :update, :new, :create] do
+      collection do
+        get 'search'
+      end
+    end
     resources :searches, only: [:search_area, :search_tag, :search_post, :search_shop] do
         get :search_areas, on: :collection
         get :search_tags, on: :collection

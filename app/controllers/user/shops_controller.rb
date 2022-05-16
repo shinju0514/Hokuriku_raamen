@@ -1,4 +1,5 @@
 class User::ShopsController < ApplicationController
+
   def index
     @shops = Shop.page(params[:page]).per(6)
   end
@@ -28,7 +29,16 @@ class User::ShopsController < ApplicationController
     redirect_to shops_path
   end
 
+  def search
+    @search_shop = Shop.ransack(params[:q])
+    @result_shops = @search_shop.result
+  end
+
   private
+
+  def set_q
+    @q = Shop.ransack(params[:q])
+  end
 
   def open_closed
     @shop = Shop.find_by(params[:id])

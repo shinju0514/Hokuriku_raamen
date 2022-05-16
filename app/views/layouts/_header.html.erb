@@ -7,12 +7,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <div class="search_form mx-auto">
-          <%= search_form_for @search,url:search_posts_path do |f| %>
-          <%= f.label :menu_cont, 'レビュー検索' %>
-          <%= f.search_field :menu_cont %>
-          <%= f.submit '検索' %>
-        <% end %>
+          <div class="search_form mx-auto">
+            <%= search_form_for @search,url:search_posts_path do |f| %>
+            <%= f.label :menu_cont, 'レビュー検索' %>
+            <%= f.search_field :menu_cont %>
+            <%= f.submit '検索' %>
+          <% end %>
         </div>
         <% if admin_signed_in? %>
           <li>
