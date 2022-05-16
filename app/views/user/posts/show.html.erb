@@ -47,6 +47,14 @@
             <th>エリア</th>
             <td><%= @post.area.prefecture %></td>
           </tr>
+          <tr>
+            <th>タグ</th>
+            <td class="tags_name">
+              <% @post.tags.each do |tag| %>
+                <%= tag.tag_name %>
+              <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
       <div class="row" style="margin-left :100px">

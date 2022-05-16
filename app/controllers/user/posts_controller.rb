@@ -2,7 +2,10 @@ class User::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @posts = Post.page(params[:page]).per(6)
+    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+    @search = Post.ransack(params[:q])
+    @results = @search.result
+    @tags = Tag.all
   end
 
   def show
@@ -36,6 +39,7 @@ class User::PostsController < ApplicationController
     @post = Post.new
     @shops = Shop.all
     @areas = Area.all
+    @tags = Tag.all
   end
 
   def create
@@ -56,9 +60,19 @@ class User::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def search
+    @search = Post.ransack(params[:q])
+
+    @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result
+  end
+
   private
 
+  def set_q
+    @q = Post.ransack(params[:q])
+  end
+
   def post_params
-    params.require(:post).permit(:menu, :body, :rate, :post_image, :shop_id, :area_id)
+    params.require(:post).permit(:menu, :body, :rate, :post_image, :shop_id, :area_id, tag_ids:[])
   end
 end

@@ -25,13 +25,16 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :edit, :update, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
+        collection do
+        get 'search'
+      end
     end
     resources :shops, only: [:index, :show, :edit, :update, :new, :create]
     resources :searches, only: [:search_area, :search_tag, :search_post, :search_shop] do
-        get :search_area, on: :collection
-        get :search_tag, on: :collection
-        get :search_post, on: :collection
-        get :search_shop, on: :collection
+        get :search_areas, on: :collection
+        get :search_tags, on: :collection
+        get :search_posts, on: :collection
+        get :search_shops, on: :collection
     end
   end
 end

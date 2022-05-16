@@ -1,13 +1,7 @@
 class User::SearchsController < ApplicationController
-  def search_area
-  end
 
-  def search_tag
-  end
-
-  def search_post
-  end
-
-  def search_shop
+  def search
+    @search = Post.ransack(params[:q])
+    @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result
   end
 end

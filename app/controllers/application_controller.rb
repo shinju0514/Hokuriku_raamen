@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :search
+
+  def search
+    @search = Post.ransack(params[:q])
+    @results = @search.result
+  end
 
    private
 
