@@ -1,49 +1,65 @@
-<h4 class="post_index">レビュー一覧</h4>
-      <% posts.each do |post| %>
-      <table class="table table-hover">
+<h2 class="post-index mb-3">レビュー一覧</h2>
+  <% posts.each do |post| %>
+  <div class="post_index">
+    <div class="index_details">
+      <div class="post_title">
+        <h5>タイトル:
+          <%= link_to post_path(post.id) do %>
+          <%= post.menu %></h5>
+          <% end %>
+      </div>
+      <div class="post_index_image">
+        <%= image_tag post.post_get_image(300,200) %>
+      </div>
+      <table class="table table-borderless">
         <thead>
           <tr>
-            <th><%= link_to post_path(post.id) do %>
-                <%= post.menu %>
-                <% end %></th>
-          </tr>
-          <tr>
-            <td><%= image_tag post.post_get_image(300,200) %></td>
-          </tr>
-          <tr>
-            <th>店舗名</th>
+            <th>店名</th>
             <td><%= post.shop.shop_name %></td>
           </tr>
           <tr>
-            <th>エリア</th>
-            <td><%= post.area.prefecture %></td>
-          </tr>
-          <tr>
-            <th>評価</th>
-            <td>
-              <div id="star-rate-<%= post.id %>"></div>
-                <script>
-                $('#star').empty();
-                $('#star-rate-<%= post.id %>').raty({
-                  size: 20,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn :  '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  half: true,
-                  readOnly: true,
-                  score: <%= post.rate %>,
-                });
-                </script>
-            </td>
+            <th>本文</th>
+            <td><%= post.body %></td>
           </tr>
         </thead>
+        <tbody>
+          <div class="rate col-5">
+            <tr>
+              <th>評価</th>
+              <td><div id="star-rate-<%= post.id %>"></div>
+                  <script>
+                  $('#star-rate-<%= post.id %>').raty({
+                    size: 20,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn :  '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= post.rate %>,
+                  });
+                  </script></td>
+            </tr>
+          </div>
+            <tr>
+              <th style=white-space: nowrap>いいね</th>
+              <td id="favorite_buttons_<%= post.id %>">
+                <%= render 'user/favorites/favorite', post: post %></td>
+            </tr>
+            <tr>
+              <th>エリア</th>
+              <td><%= post.area.prefecture %></td>
+            </tr>
+            <tr>
+              <th>タグ</th>
+              <td class="tags_name">
+                <% post.tags.each do |tag| %>
+                  <%= tag.tag_name %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
       </table>
-      <% end %>
-      </div>
-      <%= form_tag posts_path, method: :get, class: 'boards__searchForm' do %>
-            <%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :tag_name, params[:tag_id]),
-                     {
-                       prompt: 'タグで絞り込み検索',
-                       onchange: 'submit(this.form);'
-                     }%>
-      <% end %>
+    </div>
+  </div>
+  <% end %>
+

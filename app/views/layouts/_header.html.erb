@@ -1,19 +1,9 @@
 <header class="Header">
-  <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color:#99FFFF;" >
+  <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color:#000000;" >
     <div class="container">
-      <a class="navbar-brand" href="/"><span>Hokuriku_men</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand d-grid mx-auto" href="/"><%= image_tag('logo.png', size: "200x100") %></a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <div class="search_form mx-auto">
-            <%= search_form_for @search,url:search_posts_path do |f| %>
-            <%= f.label :menu_cont, 'レビュー検索' %>
-            <%= f.search_field :menu_cont %>
-            <%= f.submit '検索' %>
-          <% end %>
-        </div>
         <% if admin_signed_in? %>
           <li>
             <%= link_to "ユーザー一覧", admin_users_path %>
@@ -29,33 +19,32 @@
           </li>
         <% end %>
         <% if user_signed_in? %>
+        <h5 class="header_name mr-5"><%= current_user.user_name %>さんようこそ</h5>
           <li>
-            <%= link_to "マイページ", user_path(current_user) %>
+            <%= link_to user_path(current_user) do %>
+            <button type="button" class="btn btn-info mr-4">マイページ</button>
+            <% end %>
           </li>
           <li>
-            <%= link_to "投稿一覧", posts_path %>
-          </li>
-          <li>
-            <%= link_to "店舗一覧", shops_path %>
-          </li>
-          <li>
-            <%= link_to "ログアウト", destroy_user_session_path %>
+            <%= link_to destroy_user_session_path do %>
+            <button type="button" class="btn btn-light">ログアウト</button>
+            <% end %>
           </li>
         <% else %>
           <li>
-            <%= link_to "このサイトについて", about_path %>
+            <%= link_to about_path do %>
+            <button type="button" class="btn btn-info mr-4">このサイトについて</button>
+            <% end %>
           </li>
           <li>
-            <%= link_to "投稿一覧", posts_path %>
+            <%= link_to new_user_session_path do %>
+            <button type="button" class="btn btn-warning mr-4">ログイン</button>
+            <% end %>
           </li>
           <li>
-            <%= link_to "店舗一覧", shops_path %>
-          </li>
-          <li>
-            <%= link_to "ログイン", new_user_session_path %>
-          </li>
-          <li>
-            <%= link_to "新規登録", new_user_registration_path %>
+            <%= link_to new_user_registration_path do %>
+            <button type="button" class="btn btn-success mr-4">新規登録</button>
+            <% end %>
           </li>
         <% end %>
         </ul>

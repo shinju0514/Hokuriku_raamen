@@ -1,13 +1,22 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@200&family=Zen+Antique+Soft&display=swap');
+
+body {
+  background-color:#f5f5dc;
+  font-family: 'Murecho', sans-serif;
+}
 
 .post_show {
   border: 10px solid #6091d3;;
   border-radius: 20px;
 }
 
-@charset "utf-8";
-body {
-  background-color:#f5f5dc;
+.post_index {
+  border: 5px solid #6091d3;;
+  border-radius: 20px;
+  text-align : center;
+  margin-bottom: 20px;
+  padding-top: 20px;
 }
 
 .post_image {
@@ -18,3 +27,14 @@ body {
 .delete-button {
   margin-right : 100px;
 }
+
+.post_search {
+  color: #ffffff;
+}
+
+.header_name {
+  color: #ffffff;
+}
+
+// googleフォント　font-family: 'Murecho', sans-serif;
+//                 font-family: 'Zen Antique Soft', serif;
