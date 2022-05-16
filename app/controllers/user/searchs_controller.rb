@@ -15,13 +15,8 @@ class User::SearchsController < ApplicationController
     @records = search_for(@model, @content, @method)
   end
 
-  def search_shop
-    @search = Shop.ransack(params[:q])
-    @results = @search.result
-  end
-
-
   private
+  
   def search_for(model, content, method)
     # 選択したモデルがpostだったら
     if model == 'post'

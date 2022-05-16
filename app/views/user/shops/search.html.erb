@@ -8,6 +8,10 @@
           <%= f.label :shop_name_cont, '店舗名' %><br>
           <%= f.search_field :shop_name_cont ,class: "form-control" %><br>
         </div>
+        <div class="area-group col-4">
+          <%= f.label :area_prefecture_cont, "エリア" %><br>
+          <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
+        </div>
       </div>
       <div class="search-button">
         <%=f.submit "検索" %>
@@ -33,6 +37,10 @@
           <tr>
             <th>住所</th>
             <td><%= result.address %></td>
+          </tr>
+          <tr>
+            <th>エリア</th>
+            <td><%= result.area.prefecture %></td>
           </tr>
           <% end %>
         </tbody>

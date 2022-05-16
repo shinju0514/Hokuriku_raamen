@@ -1,1 +1,20 @@
 @import '~bootstrap/scss/bootstrap';
+
+.post_show {
+  border: 10px solid #6091d3;;
+  border-radius: 20px;
+}
+
+@charset "utf-8";
+body {
+  background-color:#f5f5dc;
+}
+
+.post_image {
+  text-align : center;
+  border-radius: 50px;
+}
+
+.delete-button {
+  margin-right : 100px;
+}

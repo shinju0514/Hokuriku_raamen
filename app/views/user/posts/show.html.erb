@@ -1,19 +1,21 @@
 <div class="container">
   <div class="row" style="margin-top: 50px">
-    <div class="col-7">
-      <div class="shop_name">
-        <h4>店名 :
-        <%= link_to shop_path(@shop.id) do %>
-        <%= @post.shop.shop_name %>
-        <% end %>
+    <div class="post_show col-6 mx-auto" style="margin-right: 50px">
+      <div class="shop_name mt-3">
+        <h4>タイトル :
+        <%= @post.menu %>
         </h4>
       </div>
-      <%= image_tag @post.post_image,size:"400x300" %>
+      <div class="post_image">
+        <%= image_tag @post.post_image,size:"400x300" %>
+      </div>
       <table class="table table-borderless">
         <thead>
           <tr>
-            <th>タイトル</th>
-            <td><%= @post.menu %></td>
+            <th>店名</th>
+            <td><%= link_to shop_path(@shop.id) do %>
+                <%= @post.shop.shop_name %>
+                <% end %></td>
           </tr>
           <tr>
             <th>本文</th>
@@ -39,7 +41,7 @@
           </tr>
         </div>
           <tr>
-            <th>いいね</th>
+            <th style=white-space: nowrap>いいね</th>
             <td id="favorite_buttons_<%= @post.id %>">
               <%= render 'user/favorites/favorite', post: @post %></td>
           </tr>
@@ -57,14 +59,18 @@
           </tr>
         </tbody>
       </table>
-      <div class="row" style="margin-left :100px">
+      <div class="row mx-auto.d-block">
         <!--他人の編集ページを表示させないようにする。-->
         <% if @user.id == current_user.id %>
-        <div class="edit_botton mr-5">
-          <%= link_to "編集する", edit_post_path(@post.id) %>
+        <div class="edit_botton d-block mx-auto mb-5">
+          <%= link_to edit_post_path(@post.id) do %>
+            <button type="button" class="btn btn-outline-primary">編集する</button>
+          <% end %>
         </div>
-        <div class="delete-button">
-          <%= link_to "削除する", post_path(@post.id), method: :delete, data: {confirm: "削除しますか？"} %>
+        <div class="delete-button d-block mx-auto mb-5">
+          <%= link_to post_path(@post.id), method: :delete, data: {confirm: "削除しますか？"} do %>
+            <button type="button" class="btn btn-outline-danger">削除する</button>
+          <% end %>
         </div>
         <% end %>
       </div>

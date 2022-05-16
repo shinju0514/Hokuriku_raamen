@@ -6,19 +6,23 @@
       <div class="search-group">
         <div class="menu-gruop col-4">
           <%= f.label :menu_cont, 'レビュータイトル' %><br>
-          <%= f.search_field :menu_cont ,class: "form-control" %><br>
+          <%= f.search_field :menu_cont , placeholder: "らーめん", class: "form-control" %><br>
         </div>
         <div class="body-group col-6">
-          <%= f.label :body_cont, "本文" %><br>
-          <%= f.search_field :body_cont ,class: "form-control" %>
+          <%= f.label :"本文" %><br>
+          <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
+        </div>
+        <div class="area-group col-3">
+          <%= f.label :area_prefecture_cont, "エリア" %><br>
+          <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
         </div>
         <div class="rate-group col-6">
           <%= f.label :rate,"5段階評価" %><br>
-          <%= f.radio_button :rate_gt, 0 %>0〜
-          <%= f.radio_button :rate_gt, 1 %> 1〜
-          <%= f.radio_button :rate_gt, 2 %> 2〜
-          <%= f.radio_button :rate_gt, 3 %> 3〜
-          <%= f.radio_button :rate_gt, 4 %> 4〜
+          <%= f.radio_button :rate_gteq, 0 %>0〜
+          <%= f.radio_button :rate_gteq, 1 %> 1〜
+          <%= f.radio_button :rate_gteq, 2 %> 2〜
+          <%= f.radio_button :rate_gteq, 3 %> 3〜
+          <%= f.radio_button :rate_gteq, 4 %> 4〜
           <%= f.radio_button :rate_eq, 5 %> 5
         </div>
         <%= f.submit '検索' %>

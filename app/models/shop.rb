@@ -2,6 +2,7 @@ class Shop < ApplicationRecord
 
   has_one_attached :shop_image
   has_many :posts, dependent: :destroy
+  belongs_to :area
 
   # バリデーション
   validates :shop_name, :address, :bussiness_hour, presence: true
