@@ -32,15 +32,28 @@ body {
   color: #ffffff;
 }
 
+.shop_show {
+  border: 10px solid #6091d3;;
+  border-radius: 20px;
+}
+
+
 .shop_index {
   border: 5px solid #6091d3;;
   border-radius: 20px;
-  text-align : center;
   margin-bottom: 20px;
   padding-top: 20px;
+  text-align : center;
 }
 
-.shops_show {
+.shop_show_image {
+  text-align : center;
+  border-radius: 50px;
+}
+
+.my_post {
+  border: 5px solid #6091d3;;
+  border-radius: 20px;
   text-align : center;
 }
 

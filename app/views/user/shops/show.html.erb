@@ -1,17 +1,12 @@
 <div class="container">
   <div class="row" style = "margin-top: 50px">
-    <div class="col-6">
-      <h4 class="shop_index">店舗詳細</h4>
-      <table class="table table-striped">
+    <div class="shop_show col-5">
+      <h4 class="shop mt-3">店舗 : <%= @shop.shop_name %></h4>
+      <div class="shop_show_image">
+        <%= image_tag @shop.shop_image,size: "300x200" %>
+      </div>
+      <table class="table table-borderless">
         <thead>
-          <tr>
-            <td><%= link_to shop_path(@shop.id) do %>
-            <%= @shop.shop_name %></td>
-            <% end %>
-          </tr>
-          <tr>
-            <td><%= image_tag @shop.shop_image,size: "300x200" %></td>
-          </tr>
           <tr>
             <th>営業時間</th>
             <td><%= @shop.bussiness_hour %></td>
@@ -25,32 +20,53 @@
             <td><%= @shop.area.prefecture %></td>
           </tr>
           <tr>
+            <th></th>
             <td><%= @shop.shop_status %></td>
           </tr>
         </thead>
       </table>
-      <div class="edit_buttom">
-        <%= link_to "編集する",edit_shop_path(@shop.id) %>
+      <div class="row mx-auto">
+        <div class="edit_botton d-block mx-auto mb-5">
+          <%= link_to edit_shop_path(@shop.id) do %>
+            <button type="button" class="btn btn-outline-primary">編集する</button>
+          <% end %>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div>
+    <div class="col-2">
+    </div>
+    <div class="col-4">
+      <h4>店舗の投稿一覧</h4>
       <% @posts.each do |post| %>
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <th>タイトル</th>
-            <td><%= link_to post_path(post.id) do %>
-                <%= post.menu %>
-                <% end %></td>
-          </tr>
-          <tr>
-            <td><%= image_tag post.post_image,size: "300x200" %></td>
-          </tr>
-        </tbody>
-      </table>
-      <% end %>
+      <div class="my_post mb-5 pt-3 pb-3">
+        <div class="mypost_title"><h4>
+            <%= link_to post_path(post.id) do %>
+            <%= post.menu %></h4>
+            <% end %>
+        </div>
+        <div class="mypost_image">
+          <%= image_tag post.post_get_image(200,150) %>
+        </div>
+        <div class="rate_star">
+          <div id="star-rate-<%= post.id %>"></div>
+          <script>
+          $('#star-rate-<%= post.id %>').empty();
+          $('#star-rate-<%= post.id %>').raty({
+            size: 20,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn :  '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= post.rate %>,
+          });
+          </script>
+        </div>
+        <div class="area_mypost">
+          <%= post.area.prefecture %>
+        </div>
       </div>
+      <% end %>
     </div>
   </div>
 </div>

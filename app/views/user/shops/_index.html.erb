@@ -1,18 +1,16 @@
-<h4 class="shop">店舗一覧</h4>
+<h2 class="shop">店舗一覧</h2>
   <% shops.each do |shop| %>
   <div class="shop_index">
-    <div class="shop_title">
       <h5>店名:
           <%= link_to shop_path(shop.id) do %>
           <%= shop.shop_name %></h5>
           <% end %>
-    </div>
     <div class="shops_show">
       <table class="table table-borderless">
         <thead>
           </tr>
           <tr>
-            <td><%= image_tag shop.get_shop_image(300,200) %></td>
+            <td class="shop_image"><%= image_tag shop.get_shop_image(300,200) %></td>
           </tr>
           <tr>
             <th>営業時間</th>
@@ -29,5 +27,5 @@
         </thead>
       </table>
     </div>
-  <% end %>
   </div>
+  <% end %>
