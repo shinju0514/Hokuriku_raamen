@@ -1,0 +1,37 @@
+  <h4>検索欄</h4>
+    <div class="content_top">
+      <h5>レビュー検索欄</h5><br>
+      <%= search_form_for @search, url:search_posts_path do |f| %>
+      <div class="search-group">
+        <div class="menu-gruop">
+          <%= f.label :menu_cont, 'レビュータイトル' %><br>
+          <%= f.search_field :menu_cont , placeholder: "らーめん", class: "form-control" %><br>
+        </div>
+        <div class="body-group">
+          <%= f.label :"本文" %><br>
+          <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
+        </div>
+        <div class="area-group">
+          <%= f.label :area_prefecture_cont, "エリア" %><br>
+          <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
+        </div>
+        <div class="rate-group">
+          <%= f.label :rate,"5段階評価" %><br>
+          <%= f.radio_button :rate_gteq, 0 %>🌟0〜
+          <%= f.radio_button :rate_gteq, 1 %>🌟 1〜
+          <%= f.radio_button :rate_gteq, 2 %>🌟 2〜<br>
+          <%= f.radio_button :rate_gteq, 3 %>🌟 3〜
+          <%= f.radio_button :rate_gteq, 4 %>🌟 4〜
+          <%= f.radio_button :rate_eq, 5 %>🌟 5
+        </div>
+        <%= f.submit '検索',class: "button_post" %>
+        <%= form_tag search_posts_path, method: :get, class: 'boards__searchForm' do %>
+            <%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :tag_name, params[:tag_id]),
+            {
+              prompt: 'タグで絞り込み検索',
+              onchange: 'submit(this.form);'
+            }%>
+        <% end %>
+      </div>
+    </div>
+    <% end %>

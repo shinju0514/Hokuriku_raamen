@@ -1,5 +1,5 @@
 class User::PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!
 
   def index
     @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all

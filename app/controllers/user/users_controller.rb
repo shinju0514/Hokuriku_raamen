@@ -28,6 +28,10 @@ class User::UsersController < ApplicationController
 
   private
 
+  def remember_me
+    true
+  end
+
   def user_params
     params.require(:user).permit(:user_name, :introduction, :profile_image)
   end

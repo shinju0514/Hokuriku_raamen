@@ -8,12 +8,12 @@
 
         <div class="field">
           <%= f.label :ユーザーネーム %><br />
-          <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
+          <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name",class: "form-control" %>
         </div>
 
         <div class="field">
           <%= f.label :メールアドレス %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control" %>
         </div>
 
         <div class="field">
@@ -21,20 +21,18 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> 桁以上)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, autocomplete: "new-password",class: "form-control" %>
         </div>
 
         <div class="field">
           <%= f.label :パスワード確認用 %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control"%>
         </div>
 
         <div class="actions" style="margin-top: 20px">
-          <%= f.submit "Sign up" %>
+          <%= f.submit "新規登録", class: "btn btn-success" %>
         </div>
       <% end %>
-
-      <%= render "user/shared/links" %>
     </div>
   </div>
 </div>
