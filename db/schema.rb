@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2022_05_14_072106) do
   end
 
   create_table "shops", force: :cascade do |t|
+    t.integer "area_id"
     t.string "shop_name", null: false
     t.string "address", null: false
     t.string "bussiness_hour", null: false

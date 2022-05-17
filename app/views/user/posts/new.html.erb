@@ -31,7 +31,7 @@
 
       <div class="form_group" style="margin-right :20px">
         <%= f.label :tag_ids,"タグ" %><br>
-        <%= f.collection_check_boxes :tag_ids, @tags, :id, :tag_name %>
+        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name %>
       </div>
 
       <div class="form-group row" id="star"><!--id="star"でセレクタを指定している-->
@@ -42,7 +42,7 @@
       <div class="rate-group mx-auto">
         <script>
         $('#star').raty({ //#starは11行目で指定したクラス名を入れ、.ratyはjqueryで使用できる星評価機能のプラグインを使っています。
-          size     : 30,
+          size     : 20,
           starOff:  '<%= asset_path('star-off.png') %>',//asset_pathでassets/imagesに入っているファイルを指定しています。
           starOn : '<%= asset_path('star-on.png') %>',
           starHalf: '<%= asset_path('star-half.png') %>',

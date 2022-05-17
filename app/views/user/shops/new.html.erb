@@ -23,6 +23,11 @@
         <%= f.text_field :address, class: "form-control" %>
       </div>
 
+      <div class="form_group col-6">
+        <%= f.label :area_id,"エリア選択" %></br>
+        <%= f.collection_select :area_id, @areas, :id, :prefecture %>
+      </div>
+
       <div class="button_field">
         <%= f.submit "新規投稿" %>
       </div>

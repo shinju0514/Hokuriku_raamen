@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row" style="margin-top :30px">
+    <div class="col-12 mx-auto">
+      <h1>レビュー検索 全:<%= @result_shops.count %>件</h1>
+      <%= search_form_for @search_shop, url:search_shops_path do |f| %>
+      <div class="search-group">
+        <div class="menu-gruop col-4">
+          <%= f.label :shop_name_cont, '店舗名' %><br>
+          <%= f.search_field :shop_name_cont ,class: "form-control" %><br>
+        </div>
+        <div class="area-group col-4">
+          <%= f.label :area_prefecture_cont, "エリア" %><br>
+          <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
+        </div>
+      </div>
+      <div class="search-button">
+        <%=f.submit "検索" %>
+      </div>
+    </div>
+      <% end %>
+      <div class="row">
+        <table class="table table-borderless">
+        <tbody>
+          <% @result_shops.each do |result| %>
+          <tr>
+            <th><%= link_to shop_path(result.id) do %>
+                <%= result.shop_name %>
+                <% end %></th>
+          </tr>
+          <tr>
+            <td><%= image_tag result.get_shop_image(300,200) %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= result.bussiness_hour %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= result.address %></td>
+          </tr>
+          <tr>
+            <th>エリア</th>
+            <td><%= result.area.prefecture %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        </table>
+      </div>
+  </div>
+</div>

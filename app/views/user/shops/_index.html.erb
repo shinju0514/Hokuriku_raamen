@@ -1,0 +1,27 @@
+<h4 class="shop_index">店舗一覧</h4>
+  <% shops.each do |shop| %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td><%= link_to shop_path(shop.id) do %>
+        <%= shop.shop_name %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td><%= image_tag shop.get_shop_image(300,200) %></td>
+      </tr>
+      <tr>
+        <th>営業時間</th>
+        <td><%= shop.bussiness_hour %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= shop.address %></td>
+      </tr>
+      <tr>
+        <th>エリア</th>
+        <td><%= shop.area.prefecture %></td>
+      </tr>
+    </thead>
+  </table>
+  <% end %>

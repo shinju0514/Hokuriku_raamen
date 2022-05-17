@@ -14,4 +14,14 @@ class User::AreasController < ApplicationController
     @area.destroy
     redirect_to areas_path
   end
+
+  def search
+    @areas = Area.all
+    @search_area = Area.ransack(params[:q])
+    @result_areas = @search_area.result
+  end
+
+  def set_q
+    @q = Area.ransack(params[:q])
+  end
 end
