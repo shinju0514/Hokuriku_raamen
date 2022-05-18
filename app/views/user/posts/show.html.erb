@@ -60,7 +60,7 @@
           </tr>
         </tbody>
       </table>
-      <%= render 'user/posts/map_show',post: @post %>
+      <%= render 'user/posts/map_show', post: @post %>
       <div class="row mx-auto.d-block">
         <!--他人の編集ページを表示させないようにする。-->
         <% if @user.id == current_user.id %>

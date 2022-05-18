@@ -1,6 +1,6 @@
 <h2>Google Map</h2>
 
-<input id="address" type="textbox" value="金沢駅">
+<input id="address" type="textbox">
 <input type="button" value="検索する" onclick="codeAddress()">
 <!-- 下の1行を追加 -->
 <div id="display"></div>
@@ -24,16 +24,30 @@ function initMap(){
       geocoder = new google.maps.Geocoder()
 
       map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 36.57849231757152, lng:136.64787099262296},
-          zoom: 9,
+          center: {lat: parseFloat("<%= @post.latitude %>"), lng: parseFloat("<%= @post.longitude %>")},
+          zoom: 12,
       });
           var contentString = "<%= post.address %>";
-
           var marker = new google.maps.Marker({
-              position:{lat: parseFloat("<%= post.latitude %>"), lng: parseFloat("<%= post.longitude %>")},
+              position:{lat: parseFloat("<%= @post.latitude %>"), lng: parseFloat("<%= @post.longitude %>")},
               map: map,
               title: contentString
           });
+}
+
+function markerEvent(i){
+		var map;
+		var marker = [];
+		var data = [];
+		var windows = [];
+		var currentInfoWindow = null;
+		marker[i].addListener('click', function() { // マーカーをクリックしたとき
+		if (currentInfoWindow) {
+		currentInfoWindow.close();
+		}
+		windows[i].open(map, marker[i]); // 吹き出しの表示
+		currentInfoWindow = windows[i];
+		});
 }
 
 function codeAddress(){
@@ -53,8 +67,5 @@ function codeAddress(){
     }
   });
 }
-
-
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
