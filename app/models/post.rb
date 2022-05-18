@@ -8,14 +8,19 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
 
   # バリデーション
-  validates :menu, :body, :rate, :post_image, presence: true
+  validates :menu, :body, :rate, presence: true
+
+  # Google map api
+  geocoded_by :address
+  after_validation :geocode
 
   has_one_attached :post_image
+
 
   def post_get_image(width, height)
     unless post_image.attached?
     file_path = Rails.root.join('app/assets/images/no_image.png')
-    post_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    post_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg/HEIC')
     end
     post_image.variant(resize_to_limit: [width, height]).processed
   end

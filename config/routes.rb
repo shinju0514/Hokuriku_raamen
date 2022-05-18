@@ -28,6 +28,9 @@ Rails.application.routes.draw do
         collection do
         get 'search'
       end
+      collection do
+        get 'map'
+      end
     end
     get 'maps/index'
     resources :maps, only: [:index]

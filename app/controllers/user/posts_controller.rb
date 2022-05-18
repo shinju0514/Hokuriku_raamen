@@ -60,6 +60,10 @@ class User::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def map
+    @maps = Post.all
+  end
+
   def search
     @search = Post.ransack(params[:q])
     @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result
@@ -72,6 +76,6 @@ class User::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:menu, :body, :rate, :post_image, :shop_id, :area_id, tag_ids:[])
+    params.require(:post).permit(:menu, :body, :rate, :post_image, :shop_id, :area_id, :address, :latitude, :longitude, tag_ids:[])
   end
 end

@@ -97,6 +97,9 @@ ActiveRecord::Schema.define(version: 2022_05_14_072106) do
     t.integer "user_id"
     t.integer "area_id"
     t.integer "shop_id"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
     t.string "menu", null: false
     t.text "body", null: false
     t.float "rate"

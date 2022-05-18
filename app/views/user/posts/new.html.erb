@@ -20,6 +20,11 @@
       </div>
 
       <div class="form_group">
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+
+      <div class="form_group">
         <%= f.label :shop_id, "店舗選択" %></br>
         <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
       </div>
