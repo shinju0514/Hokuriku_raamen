@@ -1,24 +1,24 @@
 <div class="container">
-  <div class="row mx-auto" style = "margin-top: 50px">
-    <div class="col-10">
-      <h4 class="shop_index">店舗編集</h4>
+  <div class="row" style = "margin-top: 50px">
+    <div class="col-8 mx-auto">
+      <h4 class="shop_edit">店舗編集</h4>
       <%= form_with model:@shop do |f| %>
-      <div class="row form_group col-4">
+      <div class="form_group col-6">
         <%= f.label :shop_name, "店舗名" %>
         <%= f.text_field :shop_name, class: "form-control" %>
       </div>
 
-      <div class="form_group">
+      <div class="form_group col-6">
         <%= f.label :shop_image, "店舗画像" %></br>
         <%= f.file_field :shop_image, accept: 'image/*' %>
       </div>
 
-      <div class="row form_group col-6">
+      <div class="form_group col-8">
         <%= f.label :bussiness_hour, "営業時間" %>
         <%= f.text_field :bussiness_hour, class: "form-control" %>
       </div>
 
-      <div class="row form_group col-6">
+      <div class="form_group col-10">
         <%= f.label :address, "住所" %>
         <%= f.text_area :address, class: "form-control" %>
       </div>
@@ -31,8 +31,8 @@
         <%= f.label :shop_name, :"閉店" %>
       </div>
 
-      <div class="row form_button col-6 mt-4">
-        <%= f.submit "更新する" %>
+      <div class="d-grid gap-2 col-6 mx-auto mt-4">
+        <%= f.submit "更新する", class: "btn btn-outline-secondary btn-lg" %>
       </div>
       <% end %>
     </div>

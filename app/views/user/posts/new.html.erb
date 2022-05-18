@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row" style="margin-top: 50px">
-    <div class="col-12 mx-auto">
+    <div class="col-7 mx-auto">
       <h4 class="post_new">レビュー投稿</h4>
       <%= form_with model:@post do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
-      <div class="form_group col-5">
+      <div class="form_group">
         <%= f.label :menu, "タイトル" %>
         <%= f.text_field :menu, class: "form-control" %>
       </div>
@@ -14,7 +14,7 @@
         <%= f.file_field :post_image, accept: 'image/*' %>
       </div>
 
-      <div class="form_group col-7">
+      <div class="form_group">
         <%= f.label :body, "本文" %>
         <%= f.text_area :body, class: "form-control", size: "60x10" %>
       </div>
@@ -39,7 +39,7 @@
         <%= f.hidden_field :rate, id: :review_star %>
       </div>
       <!-- 評価javascript -->
-      <div class="rate-group mx-auto">
+      <div class="rate-group">
         <script>
         $('#star').raty({ //#starは11行目で指定したクラス名を入れ、.ratyはjqueryで使用できる星評価機能のプラグインを使っています。
           size     : 20,
@@ -51,9 +51,10 @@
         });
         </script>
       </div>
-
-      <div class="button_field">
-        <%= f.submit "新規投稿" %>
+      <div class="row">
+        <div class="button_field mx-auto">
+          <%= f.submit "新規投稿",class: "btn btn-outline-secondary btn-lg" %>
+        </div>
       </div>
       <% end %>
     </div>

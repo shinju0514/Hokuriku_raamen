@@ -1,27 +1,31 @@
-<h4 class="shop_index">店舗一覧</h4>
+<h2 class="shop">店舗一覧</h2>
   <% shops.each do |shop| %>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <td><%= link_to shop_path(shop.id) do %>
-        <%= shop.shop_name %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <td><%= image_tag shop.get_shop_image(300,200) %></td>
-      </tr>
-      <tr>
-        <th>営業時間</th>
-        <td><%= shop.bussiness_hour %></td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td><%= shop.address %></td>
-      </tr>
-      <tr>
-        <th>エリア</th>
-        <td><%= shop.area.prefecture %></td>
-      </tr>
-    </thead>
-  </table>
+  <div class="shop_index">
+      <h5>店名:
+          <%= link_to shop_path(shop.id) do %>
+          <%= shop.shop_name %></h5>
+          <% end %>
+    <div class="shops_show">
+      <table class="table table-borderless">
+        <thead>
+          </tr>
+          <tr>
+            <td class="shop_image"><%= image_tag shop.get_shop_image(300,200) %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= shop.bussiness_hour %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= shop.address %></td>
+          </tr>
+          <tr>
+            <th>エリア</th>
+            <td><%= shop.area.prefecture %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
   <% end %>

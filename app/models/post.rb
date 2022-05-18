@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
 
   # バリデーション
-  validates :menu, :body, :rate, presence: true
+  validates :menu, :body, :rate, :post_image, presence: true
 
   has_one_attached :post_image
 

@@ -1,15 +1,36 @@
 <div class="container">
   <div class="row" style="margin-top: 20px">
     <div class="col-8">
+      <div class="image_top">
       <%= image_tag "tonkotsu_negi.jpeg",size: "650x400" %>
+      </div>
+      <div class="mt-4">
+      <span>
+        <%= link_to posts_path,class: "btn btn-info" do %>
+          <i class="fas fa-star"></i>投稿一覧
+        <% end %>
+      </span>
+      <span class="ml-3">
+        <%= link_to shops_path,class: "btn btn-primary" do %>
+          <i class="fas fa-store-alt"></i>店舗一覧
+        <% end %>
+      </span>
+      <span class="ml-3">
+        <%= link_to areas_path,class: "btn btn-secondary" do %>
+          <i class="fas fa-map-marker-alt"></i>エリア一覧
+        <% end %>
+      </span>
+      <span class="ml-3">
+        <%= link_to new_post_path,class: "btn btn-success" do %>
+          <i class="fas fa-plus-circle"></i>投稿する!
+        <% end %>
+      </span>
+        <h4 class="mt-4">レビュー新着！　New!!</h4>
+      </div>
     </div>
-    <div class=="col-4">
-      <h4>検索欄　エリア検索欄</h4>
-    </div>
-  </div>
-  <div class="row" style="margin-top: 30px">
-    <div class="col-8">
-      <h4>レビュー新着！　New!!</h4>
+    <div class="search_index col-4 mb-4">
+      <%= render 'user/homes/search_post' %>
+      <%= render 'user/homes/search_shop' %>
     </div>
   </div>
 </div>

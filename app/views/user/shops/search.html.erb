@@ -13,20 +13,20 @@
           <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
         </div>
       </div>
-      <div class="search-button">
-        <%=f.submit "検索" %>
+      <div class="search-button mt-3 ml-3">
+        <%=f.submit "検索", class: "button_shop" %>
       </div>
     </div>
       <% end %>
       <div class="row">
         <table class="table table-borderless">
-        <tbody>
           <% @result_shops.each do |result| %>
-          <tr>
-            <th><%= link_to shop_path(result.id) do %>
-                <%= result.shop_name %>
-                <% end %></th>
-          </tr>
+          <div class="shop_name">
+            <%= link_to shop_path(result.id) do %>
+            <%= result.shop_name %>
+            <% end %>
+          </div>
+          <tbody>
           <tr>
             <td><%= image_tag result.get_shop_image(300,200) %></td>
           </tr>
