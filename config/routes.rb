@@ -29,6 +29,8 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
+    get 'maps/index'
+    resources :maps, only: [:index]
     resources :shops, only: [:index, :show, :edit, :update, :new, :create] do
       collection do
         get 'search'
