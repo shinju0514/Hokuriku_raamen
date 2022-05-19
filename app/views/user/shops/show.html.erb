@@ -3,7 +3,7 @@
     <div class="shop_show col-5">
       <h4 class="shop mt-3">店舗 : <%= @shop.shop_name %></h4>
       <div class="shop_show_image">
-        <%= image_tag @shop.shop_image,size: "300x200" %>
+        <%= image_tag @shop.get_shop_image(300,200) %>
       </div>
       <table class="table table-borderless">
         <thead>
@@ -22,6 +22,10 @@
           <tr>
             <th></th>
             <td><%= @shop.shop_status %></td>
+          </tr>
+          <tr>
+            <th>投稿数</th>
+            <td><%= @posts.count %>件</td>
           </tr>
         </thead>
       </table>

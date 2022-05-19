@@ -1,7 +1,8 @@
 class User::UsersController < ApplicationController
+  before_action :ensure_guest_user, only: [:edit]
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(6)
   end
 
   def edit
@@ -27,6 +28,13 @@ class User::UsersController < ApplicationController
   end
 
   private
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
+  end
 
   def remember_me
     true

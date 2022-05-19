@@ -17,7 +17,7 @@
       </span>
       <span class="ml-3">
         <%= link_to map_posts_path,class: "btn btn-secondary" do %>
-          <i class="fas fa-map-marker-alt"></i>マップから記事を見る
+          <i class="fas fa-map-marker-alt"></i>マップから探す
         <% end %>
       </span>
       <span class="ml-3">
@@ -26,6 +26,7 @@
         <% end %>
       </span>
         <h4 class="mt-4">レビュー新着！　New!!</h4>
+        <%= render 'user/posts/map_index',maps: @maps %>
       </div>
     </div>
     <div class="search_index col-4 mb-4">

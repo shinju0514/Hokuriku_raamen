@@ -11,8 +11,10 @@
             <td><%= @user.user_name %></td>
           </tr>
           <tr>
+          <% if current_user.id == @user.id %>
             <th><b>メールアドレス</b></th>
             <td><%= @user.email %></td>
+          <% end %>
           </tr>
           <tr>
             <th><b>自己紹介文</b></th>
@@ -36,6 +38,8 @@
   </div>
   <div class="row">
     <% if @user.id == current_user.id %>
+    <!--ゲストユーザーでは編集画面と退会画面を表示させないようにする。-->
+    <% if @user.user_name != "guestuser" %>
     <div class="edit_botton mb-5 col-3">
       <%= link_to edit_user_path(@user.id) do %>
       <button type="button" class="btn btn-outline-primary">プロフィール編集</button>
@@ -47,10 +51,11 @@
       <% end %>
     </div>
     <% end %>
+    <% end %>
   </div>
     <div class="row" style="margin-top: 50px">
       <div class="col-6">
-        <h4 style="margin-left :150px"><b>自分が投稿した投稿一覧</b></h4>
+        <h4 style="margin-left :150px"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
       <% @posts.each do |post| %>
         <div class="post_index">
           <div class="index_details">
@@ -98,6 +103,7 @@
             </div>
           </div>
         <% end %>
+        <%= paginate @posts %>
       </div>
     </div>
 </div>
