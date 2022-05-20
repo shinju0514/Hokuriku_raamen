@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     root :to => 'homes#top'
     get "homes/about" => "homes#about", as: "about"
     devise_for :users,skip: [:passwords], controllers: {registrations: "user/registrations",sessions: 'user/sessions'}
-    resources :users, only: [:show, :edit, :update, :unsubscribe]
+    resources :users, only: [:show, :edit, :update] do
+      patch :defection, on: :collection
+    end
     resources :posts, only: [:index, :show, :edit, :update, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]

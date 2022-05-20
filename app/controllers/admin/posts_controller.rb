@@ -1,6 +1,12 @@
 class Admin::PostsController < ApplicationController
   def index
-    @posts = Post.order("created_at DESC").page(params[:page]).per(10)
+    if params[(:created_at)||(:rate)]
+      @posts = Post.latest.page(params[:page]).per(10)
+    elsif
+      @posts = Post.rated.page(params[:page]).per(10)
+    else
+      @posts = Post.page(params[:page]).per(10)
+    end
   end
 
   def show
@@ -16,7 +22,7 @@ class Admin::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to admin_post_path(@post.id),notice: "レビューを更新しました。"
+      redirect_to admin_post_path(@post.id),flash: {success: "レビューを更新しました"}
     else
       render :edit
     end
@@ -25,7 +31,7 @@ class Admin::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to admin_posts_path
+    redirect_to admin_posts_path,flash: {danger: "レビューを削除しました"}
   end
 
   def post_params

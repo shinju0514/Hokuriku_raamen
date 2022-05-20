@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="row" style = "margin-top: 50px">
-    <div class="col-5">
-      <div class="shops_index">
-      <%= render 'user/shops/index', shops: @shops %>
-      </div>
-    </div>
+  <h2 class="shop">店舗一覧</h2>
+  <div class="sort_index">
+    <h4>
+    <%= link_to "新着順",shops_path(created_at: "true") %>
+    </h4>
   </div>
+  <div class="row" style = "margin-top: 50px">
+    <%= render 'user/shops/index', shops: @shops %>
+  </div>
+  <%= paginate @shops %>
 </div>

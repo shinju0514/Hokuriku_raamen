@@ -2,7 +2,13 @@ class User::PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.page(params[:page]).per(6)
+    if params[(:created_at)||(:rate)]
+      @posts = Post.latest.page(params[:page]).per(6)
+    elsif
+      @posts = Post.rated.page(params[:page]).per(6)
+    else
+      @posts = Post.page(params[:page]).per(6)
+    end
   end
 
   def show
@@ -25,7 +31,7 @@ class User::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post.id),notice: "レビューを更新しました。"
+      redirect_to post_path(@post.id),flash: {success: "レビューを更新しました"}
     else
       @user = @post.user
       render :edit
@@ -43,7 +49,7 @@ class User::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_path,notice: "レビューを投稿しました。"
+      redirect_to posts_path,flash: {success: "レビューを投稿しました"}
     else
       @shops = Shop.all
       @areas = Area.all
@@ -63,7 +69,13 @@ class User::PostsController < ApplicationController
 
   def search
     @search = Post.ransack(params[:q])
-    @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result.page(params[:page]).per(6)
+    if params[(:created_at)||(:rate)]
+      @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result.latest.page(params[:page]).per(6)
+    elsif
+      @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result.rated.page(params[:page]).per(6)
+    else
+      @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result.page(params[:page]).per(6)
+    end
   end
 
   private

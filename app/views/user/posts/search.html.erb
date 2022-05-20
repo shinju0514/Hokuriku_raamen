@@ -39,6 +39,12 @@
       <% end %>
     </div>
   </div>
+    <div class="sort_index">
+      <h4>
+      <%= link_to "新着順",search_posts_path(created_at: "true") %>
+      <%= link_to "評価順",search_posts_path(rate: "true") %>
+      </h4>
+    </div>
   <div class="row">
   <% @results.each do |result| %>
     <div class="post_index_search">
@@ -50,7 +56,7 @@
             <% end %>
         </div>
         <div class="post_index_image">
-          <%= image_tag result.post_get_image(300,200) %>
+          <%= image_tag result.post_get_image(300,200),size: "300x200" %>
         </div>
           <table class="table table-borderless">
           <thead>
@@ -60,7 +66,7 @@
             </tr>
             <tr>
               <th>本文</th>
-              <td><%= result.body %></td>
+              <td class="post_body"><%= result.body %></td>
             </tr>
           </thead>
           <tbody>

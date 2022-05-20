@@ -46,7 +46,7 @@
       <% end %>
     </div>
     <div class="delete-button mb-5 ml-3">
-      <%= link_to user_path(@user.id), method: :delete, data: {confirm: "本当に退会しますか？"} do %>
+      <%= link_to defection_users_path, method: :patch, data: {confirm: "本当に退会しますか？"} do %>
       <button type="button" class="btn btn-outline-danger">退会する</button>
       <% end %>
     </div>
@@ -54,6 +54,12 @@
     <% end %>
   </div>
     <div class="row" style="margin-top: 50px">
+      <div class="sort_index">
+        <h4>
+        <%= link_to "新着順",user_path(created_at: "true") %>
+        <%= link_to "評価順",user_path(rate: "true") %>
+        </h4>
+      </div>
       <div class="col-6">
         <h4 style="margin-left :150px"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
       <% @posts.each do |post| %>

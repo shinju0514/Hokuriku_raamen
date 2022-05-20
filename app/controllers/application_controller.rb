@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :search_post
   before_action :authenticate_user!, except: [:about, :top]
+  add_flash_types :success, :info, :warning, :danger
 
   def search_post
     @search = Post.ransack(params[:q])

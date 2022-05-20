@@ -8,6 +8,9 @@ class Shop < ApplicationRecord
   validates :shop_name, :address, :bussiness_hour, presence: true
   enum shop_status: { 閉店: true, 開店: false }
 
+  # スコープ
+  scope :latest, -> {order("created_at DESC")}
+
   def get_shop_image(width, height)
     unless shop_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpeg')

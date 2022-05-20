@@ -1,6 +1,10 @@
 class Admin::ShopsController < ApplicationController
   def index
-    @shops = Shop.page(params[:page]).per(10)
+    if params[(:created_at)]
+      @shops = Shop.latest.page(params[:page]).per(10)
+    else
+      @shops = Shop.page(params[:page]).per(10)
+    end
   end
 
   def show
@@ -14,8 +18,11 @@ class Admin::ShopsController < ApplicationController
 
   def update
     @shop = Shop.find(params[:id])
-    @shop.update(shop_params)
-    redirect_to admin_shop_path(@shop.id)
+    if @shop.update(shop_params)
+      redirect_to admin_shop_path(@shop.id),flash: {success: "店舗情報を更新しました" }
+    else
+      render :edit
+    end
   end
 
   def new
@@ -25,14 +32,18 @@ class Admin::ShopsController < ApplicationController
 
   def create
     @shop = Shop.new(shop_params)
-    @shop.save
-    redirect_to admin_shops_path
+    if @shop.save
+      redirect_to admin_shops_path
+    else
+      @areas = Area.all
+      render :new
+    end
   end
 
   def destroy
     @shop = Shop.find(params[:id])
     @shop.destroy
-    redirect_to admin_shops_path
+    redirect_to admin_shops_path,flash: {danger: "店舗情報を削除しました" }
   end
 
   private
