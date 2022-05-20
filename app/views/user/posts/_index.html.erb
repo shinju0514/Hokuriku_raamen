@@ -9,7 +9,7 @@
           <% end %>
       </div>
       <div class="post_index_image">
-        <%= image_tag post.post_image,size: "300x200" %>
+        <%= image_tag post.post_get_image(300,200) %>
       </div>
       <table class="table table-borderless">
         <thead>
@@ -63,4 +63,5 @@
     </div>
   </div>
   <% end %>
+  <%= paginate posts %>
 

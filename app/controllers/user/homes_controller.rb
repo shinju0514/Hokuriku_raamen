@@ -6,6 +6,7 @@ class User::HomesController < ApplicationController
     @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result
     @search_shop = Shop.ransack(params[:q])
     @result_shops = @search_shop.result
+    @maps = Post.all
   end
 
   def about

@@ -20,6 +20,7 @@ class Admin::ShopsController < ApplicationController
 
   def new
     @shop = Shop.new
+    @areas = Area.all
   end
 
   def create
@@ -37,6 +38,6 @@ class Admin::ShopsController < ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:shop_name, :address, :bussiness_hour, :shop_image)
+    params.require(:shop).permit(:shop_name, :address, :bussiness_hour, :shop_image,:shop_status, :area_id)
   end
 end

@@ -60,7 +60,6 @@
           </tr>
         </tbody>
       </table>
-      <%= render 'user/posts/map_show',post: @post %>
       <div class="row mx-auto.d-block">
         <!--他人の編集ページを表示させないようにする。-->
         <% if @user.id == current_user.id %>
@@ -77,14 +76,19 @@
         <% end %>
       </div>
     </div>
-    <div class="col-5">
-        <h3 class="post_user"><b>投稿ユーザー</b></h3>
-        <div class="user_name">
-          <h4>
-          <%= link_to user_path(@user.id) do %>
-          <%= @post.user.user_name %>
-          <% end %>
-          </h4>
+    <div class="google_map col-5 pr-4">
+      <%= render 'user/posts/map_show', post: @post %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 ml-5 mt-4">
+      <h3 class="post_user"><b>投稿ユーザー</b></h3>
+      <div class="user_name">
+        <h4>
+        <%= link_to user_path(@user.id) do %>
+        <%= @post.user.user_name %>
+        <% end %>
+        </h4>
         </div>
       <div class="user_image">
         <%= image_tag @post.user.get_profile_image(150,150) %>

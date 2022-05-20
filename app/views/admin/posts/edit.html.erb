@@ -1,25 +1,30 @@
 <div class="container">
   <div class="row" style="margin-top: 50px">
-    <div class="col-10 mx-auto">
-      <h4 class="edit_post">投稿編集</h4>
+    <div class="col-8 mx-auto">
+      <h4 class="POST_edit">投稿編集</h4>
       <%= form_with model:@post do |f| %>
-      <div class="form_group col-6">
+      <div class="form_group col-9">
         <%= f.label :menu, "タイトル"%>
         <%= f.text_field :menu, class: "form-control" %>
       </div>
 
-      <div class="form_group">
+      <div class="form_group col-9">
         <%= f.label :post_image, "投稿画像" %></br>
         <%= f.file_field :post_image, accept: 'image/*' %>
       </div>
 
-      <div class="form_group col-8">
+      <div class="form_group col-9">
         <%= f.label :body, "本文" %>
         <%= f.text_area :body, class: "form-control", size: "60x10" %>
       </div>
 
-      <div class="update_botton" style="margin-top: 30px">
-        <%= f.submit "更新する" %>
+      <div class="form_group col-9">
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto mt-4">
+        <%= f.submit "更新する", class: "btn btn-outline-secondary btn-lg" %>
       </div>
       <% end %>
     </div>

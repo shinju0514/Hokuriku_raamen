@@ -32,7 +32,7 @@ class User::ShopsController < ApplicationController
 
   def search
     @search_shop = Shop.ransack(params[:q])
-    @result_shops = @search_shop.result
+    @result_shops = @search_shop.result.page(params[:page]).per(6)
   end
 
   private

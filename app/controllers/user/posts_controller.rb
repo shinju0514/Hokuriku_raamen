@@ -2,10 +2,7 @@ class User::PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
-    @search = Post.ransack(params[:q])
-    @results = @search.result
-    @tags = Tag.all
+    @posts = Post.page(params[:page]).per(6)
   end
 
   def show
@@ -66,7 +63,7 @@ class User::PostsController < ApplicationController
 
   def search
     @search = Post.ransack(params[:q])
-    @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result
+    @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result.page(params[:page]).per(6)
   end
 
   private

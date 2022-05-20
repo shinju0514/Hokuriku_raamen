@@ -1,48 +1,46 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 mx-auto">
-      <h5 class="user_show">
+    <div class="col-8 mx-auto">
+      <h4 class="user_show mt-4">
         <%= @user.user_name %>さんの編集ページ
-      </h5>
+      </h4>
       <%= form_with model:@user,url:admin_user_path(@user.id) do |f| %>
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th><b>会員ID</b></th>
-            <td><%= @user.id %></td>
-          </tr>
-          <tr>
-            <th><b>ニックネーム</b></th>
-            <td><%= f.text_field :user_name, class: "user_name_field form_control-lg" %></td>
-          </tr>
-          <tr>
-            <th><b>メールアドレス</b></th>
-            <td><%= f.email_field :email, class: "user_email_field form_control-lg" %></td>
-          </tr>
-          <tr>
-            <th><b>自己紹介文</b></th>
-            <td><%= f.text_area :introduction, class: "user_introduction_field form_control-lg" %></td>
-          </tr>
-          <tr>
-            <th><b>プロフィール画像</b></th>
-            <td><%= f.file_field :profile_image, accept: 'image/*' %></td>
-          </tr>
-          <tr>
-            <th>ユーザーステータス</th>
-            <td>
-              <%= f.label :user_status, "有効" %>
-              <%= f.radio_button :user_status, "有効" %>
-              <%= f.label :user_status, "退会" %>
-              <%= f.radio_button :user_status, "退会" %>
-            </td>
-          </tr>
-        </thead>
-      </table>
-        <div class="row">
-          <div class="mx-auto">
-            <%= f.submit "更新する" %>
-          </div>
-        </div>
+      <div class="form_group col-9">
+        <%= f.label :id, "会員ID" %>
+        <%= @user.id %>
+      </div>
+
+      <div class="form_group col-9">
+        <%= f.label :user_name, "ユーザーネーム" %>
+        <%= f.text_field :user_name, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-9">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-9">
+        <%= f.label :introduction, "自己紹介" %>
+        <%= f.text_area :introduction, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-9">
+        <%= f.label :profile_image, "プロフィール画像" %></br>
+        <%= f.file_field :profile_image, accept: 'image/*' %>
+      </div>
+
+      <div class="form_group col-9"></br>
+        <%= f.label :"退会ステータス" ,class:"mr-5" %>
+        <%= f.label :user_status, "有効" %>
+        <%= f.radio_button :user_status, "有効" %>
+        <%= f.label :user_status, "退会" %>
+        <%= f.radio_button :user_status, "退会" %>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto mt-4">
+        <%= f.submit "更新する", class: "btn btn-outline-secondary btn-lg" %>
+      </div>
       <% end %>
     </div>
   </div>

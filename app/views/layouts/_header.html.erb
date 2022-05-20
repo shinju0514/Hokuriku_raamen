@@ -27,7 +27,12 @@
           </li>
           <li>
             <%= link_to destroy_user_session_path do %>
-            <button type="button" class="btn btn-danger">ログアウト</button>
+            <button type="button" class="btn btn-danger mr-4">ログアウト</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_post_path do %>
+            <button type="button" class="btn btn-success">投稿する!</button>
             <% end %>
           </li>
         <% else %>
