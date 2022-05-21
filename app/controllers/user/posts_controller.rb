@@ -19,6 +19,7 @@ class User::PostsController < ApplicationController
   end
 
   def edit
+    @shops = Shop.all
     @post = Post.find(params[:id])
     @user = @post.user
     if @user.id == current_user.id
@@ -64,7 +65,7 @@ class User::PostsController < ApplicationController
   end
 
   def map
-    @maps = Post.all
+    @maps = Post.page(params[:page]).per(6)
   end
 
   def search
@@ -85,6 +86,6 @@ class User::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:menu, :body, :rate, :post_image, :shop_id, :area_id, :address, :latitude, :longitude, tag_ids:[])
+    params.require(:post).permit(:menu, :body, :rate, :post_image, :area_id,:shop_id, :address, :latitude, :longitude, tag_ids:[])
   end
 end

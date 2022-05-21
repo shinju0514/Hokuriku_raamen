@@ -1,0 +1,32 @@
+    <div class="search_shop">
+      <% result_shops.each do |result| %>
+      <div class="shop_index">
+        <div class="post_title">
+          <h5>店名:
+              <%= link_to shop_path(result.id) do %>
+              <%= result.shop_name %></h5>
+              <% end %>
+        </div>
+        <table class="table table-borderless">
+          <thead>
+            </tr>
+            <tr>
+              <td class="shop_image"><%= image_tag result.get_shop_image(300,200),size: "300x200" %></td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td><%= result.bussiness_hour %></td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td><%= result.address %></td>
+            </tr>
+            <tr>
+              <th>エリア</th>
+              <td><%= result.area.prefecture %></td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <% end %>
+    </div>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" style="margin-top :30px">
     <div class="col-12 mx-auto">
-    <h1>レビュー検索 全:<%= @result_shops.count %>件</h1>
+    <h1>レビュー検索 全:<%= @result_shops.total_count %>件</h1>
     <%= search_form_for @search_shop, url:search_shops_path do |f| %>
       <div class="search-group">
         <div class="menu-gruop col-4">
@@ -19,44 +19,13 @@
     </div>
   </div>
     <% end %>
-    <div class="sort_index">
+    <div class="sort_index mt-5 mb-3">
       <h4>
       <%= link_to "新着順",search_shops_path(created_at: "true") %>
       </h4>
     </div>
   <div class="row">
-    <div class="search_shop col-4">
-      <% @result_shops.each do |result| %>
-      <div class="shop_index mx-auto">
-        <div class="post_title">
-          <h5>店名:
-              <%= link_to shop_path(shop.id) do %>
-              <%= result.shop_name %></h5>
-              <% end %>
-        </div>
-        <table class="table table-borderless">
-          <thead>
-            </tr>
-            <tr>
-              <td class="shop_image"><%= image_tag shop.get_shop_image(300,200),size: "300x200" %></td>
-            </tr>
-            <tr>
-              <th>営業時間</th>
-              <td><%= result.bussiness_hour %></td>
-            </tr>
-            <tr>
-              <th>住所</th>
-              <td><%= result.address %></td>
-            </tr>
-            <tr>
-              <th>エリア</th>
-              <td><%= result.area.prefecture %></td>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      <% end %>
-    </div>
+    <%= render 'user/shops/shop_search',result_shops: @result_shops %>
   </div>
   <%= paginate @result_shops %>
 </div>

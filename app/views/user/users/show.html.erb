@@ -53,15 +53,15 @@
     <% end %>
     <% end %>
   </div>
+    <div class="sort_index">
+      <h4>
+      <%= link_to "新着順",user_path(created_at: "true") %>
+      <%= link_to "評価順",user_path(rate: "true") %>
+      </h4>
+    </div>
     <div class="row" style="margin-top: 50px">
-      <div class="sort_index">
-        <h4>
-        <%= link_to "新着順",user_path(created_at: "true") %>
-        <%= link_to "評価順",user_path(rate: "true") %>
-        </h4>
-      </div>
-      <div class="col-6">
-        <h4 style="margin-left :150px"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
+      <h4 style="col-4"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
+      <div class="index_mypage">
       <% @posts.each do |post| %>
         <div class="post_index">
           <div class="index_details">
@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                   <th>本文</th>
-                  <td><%= post.body %></td>
+                  <td class="post_body"><%= post.body %></td>
                 </tr>
               </thead>
               <tbody>

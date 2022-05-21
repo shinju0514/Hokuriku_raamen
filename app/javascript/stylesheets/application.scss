@@ -14,7 +14,6 @@ body {
 .post_index {
   border: 5px solid #6091d3;;
   border-radius: 20px;
-  text-align : center;
   margin-bottom: 20px;
   padding-top: 20px;
   background-color: #FFFFFF;
@@ -23,10 +22,19 @@ body {
 .shop_index {
   border: 5px solid #6091d3;;
   border-radius: 20px;
-  text-align : center;
   margin-bottom: 20px;
   padding-top: 20px;
   background-color: #FFFFFF;
+  text-align: center;
+}
+
+.index_icon {
+  display:block;
+  display:flex;
+  justify-content: right;
+}
+
+.search_shop {
   justify-content: center;
   align-items: center;
 }
@@ -48,6 +56,11 @@ body {
   background-color: #FFFFFF;
 }
 
+.index_mypage {
+  display:flex;
+  flex-direction: row;
+}
+
 .post_index {
   border: 5px solid #6091d3;;
   border-radius: 20px;
@@ -56,6 +69,11 @@ body {
   margin-right : 10px;
   padding-top: 20px;
   background-color: #FFFFFF;
+}
+
+.top_post {
+  display:flex;
+  flex-direction: row;
 }
 
 .post_image {

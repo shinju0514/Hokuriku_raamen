@@ -1,9 +1,23 @@
 ja:
   activerecord:
     models:
-      post: 投稿
+      post: レビュー
     attributes:
       post:
-      menu: メニュー
-      body: 本文
-      rate: 評価
+        menu: タイトル
+        body: 本文
+        rate: 星評価
+        address: 住所
+      shop:
+        shop_name: 店舗名
+        address: 住所
+        bussiness_hour: 営業時間
+      user:
+        email: メール
+        encrypted_password: パスワード
+        password: パスワード
+        user_name: ユーザーネーム
+      post_comment:
+        comment: コメント
+      area:
+        prefecture: 県名

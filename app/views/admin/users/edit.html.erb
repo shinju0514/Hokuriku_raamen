@@ -5,7 +5,7 @@
         <%= @user.user_name %>さんの編集ページ
       </h4>
       <%= form_with model:@user,url:admin_user_path(@user.id) do |f| %>
-      <%= render '/user/shared/flash_message' %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <div class="form_group col-9">
         <%= f.label :id, "会員ID" %>
         <%= @user.id %>
