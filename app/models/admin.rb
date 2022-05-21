@@ -5,5 +5,5 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # バリデーション
-  validates :email, :encrypted_password, presence: true
+  validates :email,presence: true
 end

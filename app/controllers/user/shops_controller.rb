@@ -1,7 +1,11 @@
 class User::ShopsController < ApplicationController
 
   def index
-    @shops = Shop.page(params[:page]).per(6)
+    if params[(:created_at)]
+      @shops = Shop.latest.where(shop_status: false).page(params[:page]).per(6)
+    else
+      @shops = Shop.where(shop_status: false).page(params[:page]).per(6)
+    end
   end
 
   def show
@@ -15,8 +19,11 @@ class User::ShopsController < ApplicationController
 
   def update
     @shop = Shop.find(params[:id])
-    @shop.update(shop_params)
-    redirect_to shop_path(@shop.id)
+    if @shop.update(shop_params)
+    redirect_to shop_path(@shop.id),flash: {success: "店舗情報を更新しました"}
+    else
+      render :edit
+    end
   end
 
   def new
@@ -26,13 +33,21 @@ class User::ShopsController < ApplicationController
 
   def create
     @shop = Shop.new(shop_params)
-    @shop.save
-    redirect_to shops_path
+    if @shop.save
+    redirect_to shops_path,flash: {success: "店舗を新規作成しました"}
+    else
+      @areas = Area.all
+      render :new
+    end
   end
 
   def search
     @search_shop = Shop.ransack(params[:q])
-    @result_shops = @search_shop.result.page(params[:page]).per(6)
+    if params[(:created_at)]
+      @result_shops = @search_shop.result.latest..where(shop_status: false).page(params[:page]).per(6)
+    else
+      @result_shops = @search_shop.result.where(shop_status: false).page(params[:page]).per(6)
+    end
   end
 
   private

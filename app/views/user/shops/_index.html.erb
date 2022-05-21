@@ -1,16 +1,16 @@
-<h2 class="shop">店舗一覧</h2>
-  <% shops.each do |shop| %>
-  <div class="shop_index">
+<% shops.each do |shop| %>
+  <div class="shop_index mx-auto">
+    <div class="post_title">
       <h5>店名:
           <%= link_to shop_path(shop.id) do %>
           <%= shop.shop_name %></h5>
           <% end %>
-    <div class="shops_show">
+    </div>
       <table class="table table-borderless">
         <thead>
           </tr>
           <tr>
-            <td class="shop_image"><%= image_tag shop.get_shop_image(300,200) %></td>
+            <td class="shop_image"><%= image_tag shop.get_shop_image(300,200),size: "300x200" %></td>
           </tr>
           <tr>
             <th>営業時間</th>
@@ -26,7 +26,5 @@
           </tr>
         </thead>
       </table>
-    </div>
   </div>
   <% end %>
-<%= paginate shops %>

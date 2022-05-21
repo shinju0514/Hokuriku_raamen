@@ -2,7 +2,8 @@
   <div class="row" style = "margin-top: 50px">
     <div class="col-8 mx-auto">
       <h4 class="shop_edit">店舗編集</h4>
-      <%= form_with model:@shop do |f| %>
+      <%= form_with model:@shop,url:admin_shop_path do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <div class="form_group col-6">
         <%= f.label :shop_name, "店舗名" %>
         <%= f.text_field :shop_name, class: "form-control" %>

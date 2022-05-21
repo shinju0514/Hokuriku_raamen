@@ -7,8 +7,12 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :tags, through: :post_tags
 
+  # スコープ
+  scope :latest, -> {order("created_at DESC")}
+  scope :rated, -> {order("rate DESC")}
+
   # バリデーション
-  validates :menu, :body, :rate, presence: true
+  validates :menu, :body, :rate, :address, presence: true
 
   # Google map api
   geocoded_by :address

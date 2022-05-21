@@ -36,7 +36,8 @@
 
       <div class="form_group" style="margin-right :20px">
         <%= f.label :tag_ids,"タグ" %><br>
-        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name %>
+        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name, {
+              prompt:'タグで絞り込み検索'}%>
       </div>
 
       <div class="form-group row" id="star"><!--id="star"でセレクタを指定している-->

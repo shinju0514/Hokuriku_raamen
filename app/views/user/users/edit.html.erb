@@ -5,6 +5,7 @@
         <%= @user.user_name %>さんの編集ページ
       </h4>
       <%= form_with model:@user,url:user_path(@user.id) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
 
       <div class="form_group col-9">
         <%= f.label :user_name, "ユーザーネーム" %>
