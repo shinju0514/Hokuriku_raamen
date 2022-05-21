@@ -49,7 +49,7 @@
       <% @posts.each do |post| %>
       <div class="my_post mb-5 pt-3 pb-3">
         <div class="mypost_title"><h4>
-            <%= link_to post_path(post.id) do %>
+            <%= link_to admin_post_path(post.id) do %>
             <%= post.menu %></h4>
             <% end %>
         </div>

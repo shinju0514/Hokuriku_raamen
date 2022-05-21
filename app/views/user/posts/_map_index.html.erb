@@ -15,29 +15,42 @@
 </style>
 
 <script>
+var infoWindow;
 let map
 let geocoder
 // 下の1行を追加
 const display = document.getElementById('display')
-
 function initMap(){
       geocoder = new google.maps.Geocoder()
       map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 36.57849231757152, lng:136.64787099262296},
           zoom: 8,
       });
-
       <% maps.each do |m| %>
-
           var contentString = "<%= m.address %>";
-
-          var marker = new google.maps.Marker({
-              position:{lat: parseFloat("<%= m.latitude %>"), lng: parseFloat("<%= m.longitude %>")},
+          function markerObj(latitude, longitude, contentString) {
+            return new google.maps.Marker({
+              position:{lat: parseFloat(latitude), lng: parseFloat(longitude)},
               map: map,
               title: contentString
-          });
+            });
+          }
 
+          function infoWindow(menu, address, latitude, longitude, contentString) {
+            return new google.maps.InfoWindow({ // 吹き出しの追加
+                  content: "<div class='sample'>" + menu + "," + address + "</div>" // 吹き出しに表示する内容
+            })// 吹き出しの表示
+          }
+          var marker = markerObj(<%= m.latitude %>, <%= m.longitude %>, contentString)
+          var info =  infoWindow("<%= m.menu %>", "<%= m.address %>", "<%= m.latitude %>", "<%= m.longitude %>", contentString)
+          setEvent(marker,info)
       <% end %>
+}
+
+function setEvent(marker,info){
+  marker.addListener('click', function() { // マーカーをクリックしたとき
+          info.open(map,marker); // 吹き出しの表示
+  });
 }
 
 function codeAddress(){

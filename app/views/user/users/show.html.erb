@@ -59,7 +59,7 @@
       <%= link_to "評価順",user_path(rate: "true") %>
       </h4>
     </div>
-    <div class="row" style="margin-top: 50px">
+    <div class="post_wrapper" style="margin-top: 50px">
       <h4 style="col-4"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
       <div class="index_mypage">
       <% @posts.each do |post| %>
