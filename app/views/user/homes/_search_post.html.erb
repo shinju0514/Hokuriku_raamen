@@ -25,13 +25,6 @@
           <%= f.radio_button :rate_eq, 5 %>🌟 5
         </div>
         <%= f.submit '検索',class: "button_post" %>
-        <%= form_tag search_posts_path, method: :get, class: 'boards__searchForm' do %>
-            <%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :tag_name, params[:tag_id]),
-            {
-              prompt: 'タグで絞り込み検索',
-              onchange: 'submit(this.form);'
-            }%>
         <% end %>
       </div>
     </div>
-    <% end %>

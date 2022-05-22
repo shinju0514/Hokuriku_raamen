@@ -71,11 +71,11 @@ class User::PostsController < ApplicationController
   def search
     @search = Post.ransack(params[:q])
     if params[(:created_at)||(:rate)]
-      @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result.latest.page(params[:page]).per(6)
+      @results = @search.result.latest.page(params[:page]).per(6)
     elsif
-      @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result.rated.page(params[:page]).per(6)
+      @results = @search.result.rated.page(params[:page]).per(6)
     else
-      @results = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : @search.result.page(params[:page]).per(6)
+      @results = @search.result.page(params[:page]).per(6)
     end
   end
 
