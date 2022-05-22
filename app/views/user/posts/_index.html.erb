@@ -1,0 +1,64 @@
+<% posts.each do |post| %>
+    <div class="post_index">
+      <div class="index_details">
+        <div class="post_title">
+          <h5>タイトル:
+            <%= link_to post_path(post.id) do %>
+            <%= post.menu %></h5>
+            <% end %>
+        </div>
+        <div>
+          <%= image_tag post.post_get_image(300,200),class: "post_search_image" %>
+        </div>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>店名</th>
+              <td><%= post.shop.shop_name %></td>
+            </tr>
+            <tr>
+              <th>本文</th>
+              <td class="post_body"><%= post.body %></td>
+            </tr>
+          </thead>
+          <tbody>
+            <div class="rate col-5">
+              <tr>
+                <th>評価</th>
+                <td><div id="star-rate-<%= post.id %>"></div>
+                    <script>
+                    $('#star-rate-<%= post.id %>').empty();
+                    $('#star-rate-<%= post.id %>').raty({
+                      size: 20,
+                      starOff:  '<%= asset_path('star-off.png') %>',
+                      starOn :  '<%= asset_path('star-on.png') %>',
+                      starHalf: '<%= asset_path('star-half.png') %>',
+                      half: true,
+                      readOnly: true,
+                      score: <%= post.rate %>,
+                    });
+                    </script></td>
+              </tr>
+            </div>
+              <tr>
+                <th style=white-space: nowrap>いいね</th>
+                <td id="favorite_buttons_<%= post.id %>">
+                  <%= render 'user/favorites/favorite', post: post %></td>
+              </tr>
+              <tr>
+                <th>エリア</th>
+                <td><%= post.area.prefecture %></td>
+              </tr>
+              <tr>
+                <th>タグ</th>
+                <td class="tags_name">
+                  <% post.tags.each do |tag| %>
+                    <%= tag.tag_name %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <% end %>

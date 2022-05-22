@@ -3,14 +3,21 @@
   <head>
     <title>HokurikuRaamen</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://kit.fontawesome.com/df6fe39b13.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <main>
+      <%= render '/user/shared/flash_message' %>
+      <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

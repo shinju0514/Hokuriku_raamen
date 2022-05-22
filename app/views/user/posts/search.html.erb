@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row" style="margin-top :30px">
+    <div class="col-12 mx-auto">
+      <h1>レビュー検索 全:<%= @results.total_count %>件</h1>
+      <%= search_form_for @search, url:search_posts_path do |f| %>
+      <div class="search-group">
+        <div class="menu-gruop col-4">
+          <%= f.label :menu_cont, 'レビュータイトル' %><br>
+          <%= f.search_field :menu_cont , placeholder: "らーめん", class: "form-control" %><br>
+        </div>
+        <div class="body-group col-6">
+          <%= f.label :"本文" %><br>
+          <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
+        </div>
+        <div class="area-group col-3">
+          <%= f.label :area_prefecture_cont, "エリア" %><br>
+          <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
+        </div>
+        <div class="rate-group col-6">
+          <%= f.label :rate,"5段階評価" %><br>
+          <%= f.radio_button :rate_gteq, 0 %>🌟0〜
+          <%= f.radio_button :rate_gteq, 1 %>🌟 1〜
+          <%= f.radio_button :rate_gteq, 2 %>🌟 2〜
+          <%= f.radio_button :rate_gteq, 3 %>🌟 3〜
+          <%= f.radio_button :rate_gteq, 4 %>🌟 4〜
+          <%= f.radio_button :rate_eq, 5 %>🌟 5
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+    <div class="sort_index">
+      <h4>
+      <%= link_to "新着順",search_posts_path(created_at: "true") %>
+      <%= link_to "評価順",search_posts_path(rate: "true") %>
+      </h4>
+    </div>
+  <div class="row">
+  <% @results.each do |result| %>
+    <div class="post_index_search">
+      <div class="index_details">
+        <div class="post_title">
+          <h5>タイトル:
+            <%= link_to post_path(result.id) do %>
+            <%= result.menu %></h5>
+            <% end %>
+        </div>
+        <div>
+          <%= image_tag result.post_get_image(300,200),class:"post_index_image" %>
+        </div>
+          <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>店名</th>
+              <td><%= result.shop.shop_name %></td>
+            </tr>
+            <tr>
+              <th>本文</th>
+              <td class="post_body"><%= result.body %></td>
+            </tr>
+          </thead>
+          <tbody>
+            <div class="rate col-5">
+              <tr>
+                <th>評価</th>
+                <td><div id="star-rate-<%= result.id %>"></div>
+                    <script>
+                    $('#star-rate-<%= result.id %>').empty();
+                    $('#star-rate-<%= result.id %>').raty({
+                      size: 20,
+                      starOff:  '<%= asset_path('star-off.png') %>',
+                      starOn :  '<%= asset_path('star-on.png') %>',
+                      starHalf: '<%= asset_path('star-half.png') %>',
+                      half: true,
+                      readOnly: true,
+                      score: <%= result.rate %>,
+                     });
+                    </script></td>
+              </tr>
+              <tr>
+                <th>タグ</th>
+                <td><% result.tags.each do |tag| %>
+                    <%= tag.tag_name %>
+                    <% end %></td>
+              </tr>
+            </div>
+          </tbody>
+          </table>
+        </div>
+      </div>
+  <% end %>
+  </div>
+  <%= paginate @results %>
+</div>

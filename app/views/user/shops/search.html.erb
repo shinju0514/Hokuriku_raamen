@@ -1,0 +1,29 @@
+<div class="container">
+  <div>
+    <h1>店舗検索 全:<%= @result_shops.total_count %>件</h1>
+    <%= search_form_for @search_shop, url:search_shops_path do |f| %>
+    <div class="search-group">
+      <div class="menu-gruop col-4">
+        <%= f.label :shop_name_cont, '店舗名' %><br>
+        <%= f.search_field :shop_name_cont ,class: "form-control" %><br>
+      </div>
+      <div class="area-group col-4">
+        <%= f.label :area_prefecture_cont, "エリア" %><br>
+        <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
+      </div>
+    </div>
+    <div class="search-button mt-3 ml-3">
+      <%=f.submit "検索", class: "button_shop" %>
+    </div>
+  </div>
+    <% end %>
+  <div class="sort_index mt-5 mb-3">
+    <h4>
+    <%= link_to "新着順",search_shops_path(created_at: "true") %>
+    </h4>
+  </div>
+  <div class="post_wrapper">
+    <%= render 'user/shops/shop_search',result_shops: @result_shops %>
+  </div>
+  <%= paginate @result_shops %>
+</div>

@@ -1,2 +1,47 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <h4 class="user_show mt-4">
+        <%= @user.user_name %>さんの編集ページ
+      </h4>
+      <%= form_with model:@user,url:admin_user_path(@user.id) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form_group col-9">
+        <%= f.label :id, "会員ID" %>
+        <%= @user.id %>
+      </div>
+      <div class="form_group col-9">
+        <%= f.label :user_name, "ユーザーネーム" %>
+        <%= f.text_field :user_name, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-9">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-9">
+        <%= f.label :introduction, "自己紹介" %>
+        <%= f.text_area :introduction, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-9">
+        <%= f.label :profile_image, "プロフィール画像" %></br>
+        <%= f.file_field :profile_image, accept: 'image/*' %>
+      </div>
+
+      <div class="form_group col-9"></br>
+        <%= f.label :"退会ステータス" ,class:"mr-5" %>
+        <%= f.label :user_status, "有効" %>
+        <%= f.radio_button :user_status, "有効" %>
+        <%= f.label :user_status, "退会" %>
+        <%= f.radio_button :user_status, "退会" %>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto mt-4">
+        <%= f.submit "更新する", class: "btn btn-outline-secondary btn-lg" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

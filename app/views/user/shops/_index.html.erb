@@ -1,0 +1,30 @@
+<% shops.each do |shop| %>
+  <div class="shop_index mx-auto">
+    <div class="post_title">
+      <h5>店名:
+          <%= link_to shop_path(shop.id) do %>
+          <%= shop.shop_name %></h5>
+          <% end %>
+    </div>
+      <table class="table table-borderless">
+        <thead>
+          </tr>
+          <tr>
+            <td colspan="2"><%= image_tag shop.get_shop_image(300,200),class:"shop_image" %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= shop.bussiness_hour %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= shop.address %></td>
+          </tr>
+          <tr>
+            <th>エリア</th>
+            <td><%= shop.area.prefecture %></td>
+          </tr>
+        </thead>
+      </table>
+  </div>
+  <% end %>

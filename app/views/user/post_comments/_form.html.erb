@@ -1,0 +1,6 @@
+<div class="comment_send">
+  <%= form_with model: [post,post_comment],local: false do |f| %>
+    <%= f.text_area :comment, size: "50x5", placeholder: "コメント欄" %></br>
+    <%= f.submit "コメントを送信" %>
+  <% end %>
+</div>

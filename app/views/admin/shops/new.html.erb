@@ -1,2 +1,38 @@
-<h1>Admin::Shops#new</h1>
-<p>Find me in app/views/admin/shops/new.html.erb</p>
+<div class="container">
+  <div class="row" style="margin-top: 50px">
+    <div class="col-8 mx-auto">
+      <h4 class="shop_new">店舗新規登録</h4>
+      <%= form_with model:@shop,url:admin_shops_path do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form_group col-6">
+        <%= f.label :shop_name, "店舗名" %>
+        <%= f.text_field :shop_name, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-6">
+        <%= f.label :shop_image, "店舗画像" %></br>
+        <%= f.file_field :shop_image, accept: 'image/*' %>
+      </div>
+
+      <div class="form_group col-6">
+        <%= f.label :bussiness_hour, "営業時間" %>
+        <%= f.text_field :bussiness_hour, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-9">
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-6">
+        <%= f.label :area_id,"エリア選択" %></br>
+        <%= f.collection_select :area_id, @areas, :id, :prefecture %>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto mt-4">
+        <%= f.submit "新規投稿", class: "btn btn-outline-secondary btn-lg" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

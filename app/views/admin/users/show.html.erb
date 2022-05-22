@@ -1,2 +1,97 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row" style="margin-top :50px">
+    <div class="col-5">
+      <h3 class="user_show">
+        <%= @user.user_name %>さんのページ
+      </h3>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th><b>ニックネーム</b></th>
+            <td><%= @user.user_name %></td>
+          </tr>
+          <tr>
+            <th><b>メールアドレス</b></th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th><b>自己紹介文</b></th>
+            <td><%= @user.introduction %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="col-7" style="margin-top: 40px">
+      <table class="table table-borderless">
+        <tr>
+          <th><b>プロフィール画像</b></th>
+          <td><%= image_tag @user.get_profile_image(150,150) %></td>
+        </tr>
+        <tr>
+          <th><b>投稿数</b></th>
+          <td><%= @posts.count %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="edit_botton mb-5 "style="margin-left :100px">
+      <%= link_to edit_admin_user_path(@user.id) do %>
+      <button type="button" class="btn btn-outline-primary">プロフィール編集</button>
+      <% end %>
+    </div>
+  </div>
+    <div class="row" style="margin-top: 50px">
+      <div class="col-6">
+        <h4 style="margin-left :150px"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
+      <% @posts.each do |post| %>
+        <div class="post_index">
+          <div class="index_details">
+            <div class="post_title">
+              <h5>タイトル:
+                <%= link_to post_path(post.id) do %>
+                <%= post.menu %></h5>
+                <% end %>
+            </div>
+            <div class="post_index_image">
+              <%= image_tag post.post_get_image(300,200) %>
+            </div>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th>店名</th>
+                  <td><%= post.shop.shop_name %></td>
+                </tr>
+                <tr>
+                  <th>本文</th>
+                  <td><%= post.body %></td>
+                </tr>
+              </thead>
+              <tbody>
+                <div class="rate col-5">
+                  <tr>
+                    <th>評価</th>
+                    <td><div id="star-rate-<%= post.id %>"></div>
+                        <script>
+                        $('#star-rate-<%= post.id %>').empty();
+                        $('#star-rate-<%= post.id %>').raty({
+                          size: 20,
+                          starOff:  '<%= asset_path('star-off.png') %>',
+                          starOn :  '<%= asset_path('star-on.png') %>',
+                          starHalf: '<%= asset_path('star-half.png') %>',
+                          half: true,
+                          readOnly: true,
+                          score: <%= post.rate %>,
+                        });
+                        </script></td>
+                  </tr>
+                </div>
+              </tbody>
+              </table>
+            </div>
+          </div>
+      <% end %>
+      <%= paginate @posts %>
+      </div>
+    </div>
+</div>

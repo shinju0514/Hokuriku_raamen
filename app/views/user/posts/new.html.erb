@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row" style="margin-top: 50px">
+    <div class="col-7 mx-auto">
+      <h4 class="post_new">レビュー投稿</h4>
+      <%= form_with model:@post do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form_group">
+        <%= f.label :menu, "タイトル" %>
+        <%= f.text_field :menu, class: "form-control" %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :post_image, "投稿画像" %></br>
+        <%= f.file_field :post_image, accept: 'image/*' %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :body, "本文" %>
+        <%= f.text_area :body, class: "form-control", size: "60x10" %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :shop_id, "店舗選択" %></br>
+        <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
+      </div>
+
+      <div class="form_group">
+        <%= f.label :area_id, "エリア選択" %></br>
+        <%= f.collection_select :area_id, @areas, :id, :prefecture %>
+      </div>
+
+      <div class="form_group" style="margin-right :20px">
+        <%= f.label :tag_ids,"タグ" %><br>
+        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name, {
+              prompt:'タグで絞り込み検索'}%>
+      </div>
+
+      <div class="form-group row" id="star"><!--id="star"でセレクタを指定している-->
+        <%= f.label :rate,'評価:', class:'col-md-3 col-form-label' %>
+        <%= f.hidden_field :rate, id: :review_star %>
+      </div>
+      <!-- 評価javascript -->
+      <div class="rate-group">
+        <script>
+        $('#star').raty({ //#starは11行目で指定したクラス名を入れ、.ratyはjqueryで使用できる星評価機能のプラグインを使っています。
+          size     : 20,
+          starOff:  '<%= asset_path('star-off.png') %>',//asset_pathでassets/imagesに入っているファイルを指定しています。
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'post[rate]',//rateカラムに値を保存しています。
+          half: true,//★の半分の入力を行なっています。(0.5間隔の値になる)
+        });
+        </script>
+      </div>
+      <div class="row">
+        <div class="button_field mx-auto">
+          <%= f.submit "新規投稿",class: "btn btn-outline-secondary btn-lg" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

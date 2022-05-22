@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_10_102020) do
+ActiveRecord::Schema.define(version: 2022_05_14_072106) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,33 +59,59 @@ ActiveRecord::Schema.define(version: 2022_05_10_102020) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "comment", null: false
+    t.string "comment"
+    t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "homes", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "post_tags", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "area_id"
+    t.integer "shop_id"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
     t.string "menu", null: false
     t.text "body", null: false
-    t.float "rate", null: false
+    t.float "rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "shops", force: :cascade do |t|
+    t.integer "area_id"
     t.string "shop_name", null: false
     t.string "address", null: false
-    t.integer "bussiness_hour", null: false
+    t.string "bussiness_hour", null: false
     t.boolean "shop_status", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -103,9 +129,9 @@ ActiveRecord::Schema.define(version: 2022_05_10_102020) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "user_name", null: false
+    t.string "user_name"
     t.text "introduction"
-    t.boolean "user_status", default: false, null: false
+    t.boolean "user_status", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

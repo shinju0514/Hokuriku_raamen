@@ -1,1 +1,38 @@
-aboutページ
+<div class="container">
+  <div class="row" style="margin-top: 60px">
+    <div class="mx-auto mt-10">
+      <h1>~ Hokuriku麺へようこそ！ ~</h1>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-6">
+      <%= image_tag "IMG_0642.jpg",size: '500x600' %>
+    </div>
+    <div class="col-6 mt-5">
+      <span>
+        <h3><b>Hokuriku麺は北陸の</br>
+        ラーメンをユーザーでレビューをし、</br>
+        共有できるサイトです!</br>
+        興味があれば北陸でラーメンを食べに来てください！</b></h3>
+      </span>
+      <div class="mt-5">
+        <span class="sign_up col-3">
+          <%= link_to new_user_registration_path do %>
+            <button type="button" class="btn btn-success">新規登録</button>
+          <% end %>
+        </span>
+        <span class="sign_in col-3">
+          <%= link_to new_user_session_path do %>
+            <button type="button" class="btn btn-warning">ログイン</button>
+          <% end %>
+        </span>
+        <span class="gess_sign_in col-3">
+          <%= link_to users_guest_sign_in_path,method: :post do %>
+          <button type="button" class="btn btn-info mr-4">ゲストログイン</button>
+          <% end %>
+        </div>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

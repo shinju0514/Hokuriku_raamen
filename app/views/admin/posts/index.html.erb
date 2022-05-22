@@ -1,2 +1,49 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h4 class="admin_post_index mt-5 mb-5">レビュー一覧</h4>
+      <div class="sort_index">
+        <h4>
+        <%= link_to "新着順",admin_posts_path(created_at: "true") %>
+        <%= link_to "評価順",admin_posts_path(rate: "true") %>
+        </h4>
+      </div>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>投稿者名</th>
+            <th>タイトル</th>
+            <th>店舗</th>
+            <th>エリア</th>
+            <th>評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.user.user_name %></td>
+            <th><%= link_to admin_post_path(post.id) do %>
+                <%= post.menu %></th>
+                <% end %>
+            <th><%= post.shop.shop_name %></th>
+            <th><%= post.area.prefecture %></th>
+            <th><div id="star-rate-<%= post.id %>"></div>
+                <script>
+                $('#star-rate-<%= post.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn :  '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= post.rate %>,
+                });
+                </script></th>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>

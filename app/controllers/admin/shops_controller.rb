@@ -1,22 +1,54 @@
 class Admin::ShopsController < ApplicationController
   def index
+    if params[(:created_at)]
+      @shops = Shop.latest.page(params[:page]).per(10)
+    else
+      @shops = Shop.page(params[:page]).per(10)
+    end
   end
 
   def show
+    @shop = Shop.find(params[:id])
+    @posts = @shop.posts
   end
 
   def edit
+    @shop = Shop.find(params[:id])
   end
 
   def update
+    @shop = Shop.find(params[:id])
+    if @shop.update(shop_params)
+      redirect_to admin_shop_path(@shop.id),flash: {success: "店舗情報を更新しました" }
+    else
+      render :edit
+    end
   end
 
   def new
+    @shop = Shop.new
+    @areas = Area.all
   end
 
   def create
+    @shop = Shop.new(shop_params)
+    if @shop.save
+      redirect_to admin_shops_path
+    else
+      @areas = Area.all
+      render :new
+    end
   end
 
   def destroy
+    @shop = Shop.find(params[:id])
+    @shop.destroy
+    redirect_to admin_shops_path,flash: {danger: "店舗情報を削除しました" }
+  end
+
+  private
+
+  def shop_params
+    params.require(:shop).permit(:shop_name, :address, :bussiness_hour, :shop_image,:shop_status, :area_id)
   end
 end

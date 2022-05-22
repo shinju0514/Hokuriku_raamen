@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7">
+      <div class="google_map">
+        <%= render 'user/posts/map_index', maps: @maps %>
+      </div>
+    </div>
+    <div class="col-5">
+      <% @maps.each do |post| %>
+      <div class="my_post mb-5 pt-3 pb-3">
+        <div class="address">
+          <h5>住所 :<%= post.address %></h5>
+        </div>
+        <div class="mypost_title"><h4>
+            <%= link_to post_path(post.id) do %>
+            <%= post.menu %></h4>
+            <% end %>
+        </div>
+        <div class="mypost_image">
+          <%= image_tag post.post_get_image(300,200) %>
+        </div>
+        <div class="rate_star">
+          <div id="star-rate-<%= post.id %>"></div>
+          <script>
+          $('#star-rate-<%= post.id %>').empty();
+          $('#star-rate-<%= post.id %>').raty({
+            size: 20,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn :  '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= post.rate %>,
+          });
+          </script>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

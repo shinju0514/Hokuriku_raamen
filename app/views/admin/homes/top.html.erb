@@ -1,1 +1,30 @@
-topページです
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h5 class="user_index">ユーザー一覧</h5>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <th><%= link_to user.id %></th>
+            <th><%= link_to admin_user_path(user.id) do %>
+                <%= user.user_name %></th>
+                <% end %>
+            <th><%= user.email %></th>
+            <th><%= user.user_status %></th>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <%= paginate @users %>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,76 @@
-<h1>User::Shops#show</h1>
-<p>Find me in app/views/user/shops/show.html.erb</p>
+<div class="container">
+  <div class="row" style = "margin-top: 50px">
+    <div class="shop_show col-5">
+      <h4 class="shop mt-3">店舗 : <%= @shop.shop_name %></h4>
+      <div class="shop_show_image">
+        <%= image_tag @shop.get_shop_image(300,200) %>
+      </div>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>営業時間</th>
+            <td><%= @shop.bussiness_hour %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= @shop.address %></td>
+          </tr>
+          <tr>
+            <th>エリア</th>
+            <td><%= @shop.area.prefecture %></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><%= @shop.shop_status %></td>
+          </tr>
+          <tr>
+            <th>投稿数</th>
+            <td><%= @posts.count %>件</td>
+          </tr>
+        </thead>
+      </table>
+      <div class="row mx-auto">
+        <div class="edit_botton d-block mx-auto mb-5">
+          <%= link_to edit_shop_path(@shop.id) do %>
+            <button type="button" class="btn btn-outline-primary">編集する</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-2">
+    </div>
+    <div class="col-4">
+      <h4>店舗の投稿一覧</h4>
+      <% @posts.each do |post| %>
+      <div class="my_post mb-5 pt-3 pb-3">
+        <div class="mypost_title"><h4>
+            <%= link_to post_path(post.id) do %>
+            <%= post.menu %></h4>
+            <% end %>
+        </div>
+        <div class="mypost_image">
+          <%= image_tag post.post_get_image(200,150) %>
+        </div>
+        <div class="rate_star">
+          <div id="star-rate-<%= post.id %>"></div>
+          <script>
+          $('#star-rate-<%= post.id %>').empty();
+          $('#star-rate-<%= post.id %>').raty({
+            size: 20,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn :  '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= post.rate %>,
+          });
+          </script>
+        </div>
+        <div class="area_mypost">
+          <%= post.area.prefecture %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
