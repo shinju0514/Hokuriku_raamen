@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
   end
 
    private
-
+   
+   
   def after_sign_in_path_for(resource)
     # if resource_or_scope.is_a?(Admin)
     #   admin_root_path
