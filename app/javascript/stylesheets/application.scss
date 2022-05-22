@@ -17,6 +17,19 @@ body {
   margin-bottom: 20px;
   padding-top: 20px;
   background-color: #FFFFFF;
+  width: 30%;
+}
+
+.post_index_image {
+  width: 100%;
+  object-fit: cover;
+  height: 185px;
+}
+
+.post_search_image {
+  width: 100%;
+  object-fit: cover;
+  height: 185px;
 }
 
 .shop_index {
@@ -26,12 +39,36 @@ body {
   padding-top: 20px;
   background-color: #FFFFFF;
   text-align: center;
+  width: 30%;
+}
+
+.search_shop_index {
+  border: 5px solid #6091d3;;
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  text-align: center;
+  width: 30%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.shop_image {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
 }
 
 .index_icon {
   display:block;
   display:flex;
   justify-content: right;
+}
+
+
+.post_wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .search_shop {
@@ -49,11 +86,15 @@ body {
 .post_index_search {
   border: 5px solid #6091d3;;
   border-radius: 20px;
-  text-align : center;
   margin-bottom: 20px;
-  margin-right : 10px;
   padding-top: 20px;
   background-color: #FFFFFF;
+  text-align: center;
+  width: 30%;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .index_mypage {
@@ -166,12 +207,14 @@ section.typeA input:checked + .tabLabel + .content {
 }
 
 .search_index {
-	border: 5px solid #6091d3;;
-  border-radius: 20px;
   text-align : center;
   margin-bottom: 20px;
   padding-top: 20px;
-  margin-bottom: 20px;
+}
+
+.search_post {
+  border: 5px solid #6091d3;
+  border-radius: 20px;
 }
 
 .button_shop {

@@ -23,7 +23,7 @@
     <%= link_to "評価順",posts_path(rate: "true") %>
     </h4>
   </div>
-  <div class="row" style = "margin-top: 50px">
+  <div class="post_wrapper" style = "margin-top: 50px">
     <%= render 'user/posts/index', posts: @posts %>
   </div>
   <%= paginate @posts %>

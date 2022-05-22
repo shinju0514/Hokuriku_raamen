@@ -5,20 +5,27 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
-          <li>
-            <%= link_to "ユーザー一覧", admin_users_path %>
+          <li class="mr-4">
+            <%= link_to admin_users_path,class: "btn btn-warning" do %>
+            <i class="fas fa-user-friends"></i>ユーザー一覧
+            <% end %>
           </li>
-          <li>
-            <%= link_to "投稿一覧", admin_posts_path %>
+          <li class="mr-4">
+            <%= link_to admin_posts_path,class: "btn btn-info" do %>
+            <i class="fas fa-star"></i>投稿一覧
+            <% end %>
           </li>
-          <li>
-            <%= link_to "店舗一覧", admin_shops_path %>
+          <li class="mr-4">
+            <%= link_to admin_shops_path,class: "btn btn-primary" do %>
+            <i class="fas fa-store-alt"></i>店舗一覧
+            <% end %>
           </li>
-          <li>
-            <%= link_to "ログアウト", destroy_admin_session_path %>
+          <li class="mr-4">
+            <%= link_to destroy_admin_session_path do %>
+            <button type="button" class="btn btn-danger mr-4">ログアウト</button>
+            <% end %>
           </li>
-        <% end %>
-        <% if user_signed_in? %>
+        <% elsif user_signed_in? %>
         <h5 class="header_name mr-5"><%= current_user.user_name %>さんようこそ</h5>
           <li>
             <%= link_to user_path(current_user) do %>
