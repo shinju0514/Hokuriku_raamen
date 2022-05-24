@@ -41,57 +41,15 @@
       <% end %>
     </div>
   </div>
-    <div class="row" style="margin-top: 50px">
-      <div class="col-6">
-        <h4 style="margin-left :150px"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
-      <% @posts.each do |post| %>
-        <div class="post_index">
-          <div class="index_details">
-            <div class="post_title">
-              <h5>タイトル:
-                <%= link_to post_path(post.id) do %>
-                <%= post.menu %></h5>
-                <% end %>
-            </div>
-            <div class="post_index_image">
-              <%= image_tag post.post_get_image(300,200) %>
-            </div>
-            <table class="table table-borderless">
-              <thead>
-                <tr>
-                  <th>店名</th>
-                  <td><%= post.shop.shop_name %></td>
-                </tr>
-                <tr>
-                  <th>本文</th>
-                  <td><%= post.body %></td>
-                </tr>
-              </thead>
-              <tbody>
-                <div class="rate col-5">
-                  <tr>
-                    <th>評価</th>
-                    <td><div id="star-rate-<%= post.id %>"></div>
-                        <script>
-                        $('#star-rate-<%= post.id %>').empty();
-                        $('#star-rate-<%= post.id %>').raty({
-                          size: 20,
-                          starOff:  '<%= asset_path('star-off.png') %>',
-                          starOn :  '<%= asset_path('star-on.png') %>',
-                          starHalf: '<%= asset_path('star-half.png') %>',
-                          half: true,
-                          readOnly: true,
-                          score: <%= post.rate %>,
-                        });
-                        </script></td>
-                  </tr>
-                </div>
-              </tbody>
-              </table>
-            </div>
-          </div>
-      <% end %>
-      <%= paginate @posts %>
-      </div>
-    </div>
+  <div class="sort_index">
+    <h4 class="mt-3 mb-5"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
+    <h4>
+    <%= link_to "新着順",user_path(created_at: "true") %>
+    <%= link_to "評価順",user_path(rate: "true") %>
+    </h4>
+  </div>
+  <div class="post_wrapper" style="margin-top: 50px">
+    <%= render 'admin/posts/index',posts: @posts %>
+  </div>
+  <%= paginate @posts %>
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 mx-auto">
-      <h4 class="admin_post_index mt-5 mb-5">レビュー一覧</h4>
+      <h4 class="admin_post_index mt-2 mb-2">レビュー一覧</h4>
       <div class="sort_index">
         <h4>
         <%= link_to "新着順",admin_posts_path(created_at: "true") %>
@@ -16,6 +16,7 @@
             <th>店舗</th>
             <th>エリア</th>
             <th>評価</th>
+            <th>投稿日</th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
             <th><%= post.area.prefecture %></th>
             <th><div id="star-rate-<%= post.id %>"></div>
                 <script>
+                $('#star-rate-<%= post.id %>').empty();
                 $('#star-rate-<%= post.id %>').raty({
                   size: 20,
                   starOff:  '<%= asset_path('star-off.png') %>',
@@ -39,6 +41,7 @@
                   score: <%= post.rate %>,
                 });
                 </script></th>
+            <th><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></th>
           </tr>
         </tbody>
         <% end %>

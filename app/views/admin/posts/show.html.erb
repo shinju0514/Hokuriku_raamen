@@ -7,7 +7,7 @@
         </h4>
       </div>
       <div class="post_image">
-        <%= image_tag @post.post_image, size: "400x300" %>
+        <%= image_tag @post.post_get_image(400,300),class: "post_show_image" %>
       </div>
       <table class="table table-borderless">
         <thead>
@@ -43,8 +43,7 @@
         </div>
           <tr>
             <th style=white-space: nowrap>いいね</th>
-            <td id="favorite_buttons_<%= @post.id %>">
-              <%= render 'user/favorites/favorite', post: @post %></td>
+            <td><%= @post.favorites.count %></td>
           </tr>
           <tr>
             <th>エリア</th>
@@ -57,6 +56,10 @@
                 <%= tag.tag_name %>
               <% end %>
             </td>
+          </tr>
+          <tr>
+            <th>投稿日</th>
+            <td><%= @post.created_at.strftime("%Y-%m-%d") %></td>
           </tr>
         </tbody>
       </table>
@@ -82,11 +85,11 @@
     <div class="col-8 ml-5 mt-4">
       <h3 class="post_user"><b>投稿ユーザー</b></h3>
       <div class="user_name">
-        <h4>
-        <%= link_to user_path(@user.id) do %>
+        <!--<h4>-->
+        <!--<%= link_to user_path(@user.id) do %>-->
         <%= @post.user.user_name %>
-        <% end %>
-        </h4>
+        <!--<% end %>-->
+        <!--</h4>-->
         </div>
       <div class="user_image">
         <%= image_tag @post.user.get_profile_image(150,150) %>

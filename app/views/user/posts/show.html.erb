@@ -7,7 +7,7 @@
         </h4>
       </div>
       <div class="post_image">
-        <%= image_tag @post.post_get_image(400,300) %>
+        <%= image_tag @post.post_get_image(400,300),class: "post_show_image" %>
       </div>
       <table class="table table-borderless">
         <thead>
@@ -57,6 +57,10 @@
                 <%= tag.tag_name %>
               <% end %>
             </td>
+          </tr>
+          <tr>
+            <th>投稿日</th>
+            <td><%= @post.created_at.strftime("%Y-%m-%d") %></td>
           </tr>
         </tbody>
       </table>

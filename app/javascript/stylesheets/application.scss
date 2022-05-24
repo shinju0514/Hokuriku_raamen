@@ -7,12 +7,13 @@ body {
 }
 
 .post_show {
-  border: 10px solid #6091d3;;
+  border: 10px solid #6091d3;
   border-radius: 20px;
+  background-color: #FFFFFF;
 }
 
 .post_index {
-  border: 5px solid #6091d3;;
+  border: 5px solid #6091d3;
   border-radius: 20px;
   margin-bottom: 20px;
   padding-top: 20px;
@@ -32,8 +33,21 @@ body {
   height: 185px;
 }
 
+.post_show_image {
+  width: 100%;
+  object-fit: cover;
+  height: 300px;
+}
+
+.shop_show_images {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+  width: 300px;
+}
+
 .shop_index {
-  border: 5px solid #6091d3;;
+  border: 5px solid #6091d3;
   border-radius: 20px;
   margin-bottom: 20px;
   padding-top: 20px;
@@ -43,7 +57,7 @@ body {
 }
 
 .search_shop_index {
-  border: 5px solid #6091d3;;
+  border: 5px solid #6091d3;
   border-radius: 20px;
   background-color: #FFFFFF;
   text-align: center;
@@ -64,6 +78,26 @@ body {
   justify-content: right;
 }
 
+.admin_shop_index {
+  text-align : center;
+  margin-bottom: 20px;
+  margin-right : 10px;
+  padding-top: 20px;
+}
+
+.user_index {
+  text-align : center;
+  margin-bottom: 20px;
+  margin-right : 10px;
+  padding-top: 20px;
+}
+
+.home_image {
+  width: 100%;
+  object-fit: cover;
+  height: 100px;
+  width: 150px;
+}
 
 .post_wrapper {
   display: flex;
@@ -84,7 +118,7 @@ body {
 }
 
 .post_index_search {
-  border: 5px solid #6091d3;;
+  border: 5px solid #6091d3;
   border-radius: 20px;
   margin-bottom: 20px;
   padding-top: 20px;
@@ -103,7 +137,7 @@ body {
 }
 
 .post_index {
-  border: 5px solid #6091d3;;
+  border: 5px solid #6091d3;
   border-radius: 20px;
   text-align : center;
   margin-bottom: 20px;
@@ -130,9 +164,10 @@ body {
   color: #ffffff;
 }
 
-.shop_show {
-  border: 10px solid #6091d3;;
+.shop_show_area {
+  border: 10px solid #6091d3;
   border-radius: 20px;
+  background-color: #FFFFFF;
 }
 
 .post_body {
@@ -145,7 +180,7 @@ body {
 }
 
 .my_post {
-  border: 5px solid #6091d3;;
+  border: 5px solid #6091d3;
   border-radius: 20px;
   text-align : center;
 }

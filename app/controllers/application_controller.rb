@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :search_post
   add_flash_types :success, :info, :warning, :danger
-  before_action :authenticate_user!, except: [:top, :about]
 
 
   def search_post
@@ -17,8 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
    private
-   
-   
+
+
   def after_sign_in_path_for(resource)
     # if resource_or_scope.is_a?(Admin)
     #   admin_root_path

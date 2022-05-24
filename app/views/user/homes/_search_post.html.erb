@@ -3,15 +3,15 @@
       <h5>レビュー検索欄</h5><br>
       <%= search_form_for @search, url:search_posts_path do |f| %>
       <div class="search-group">
-        <div class="menu-gruop">
+        <div class="menu-gruop col-12">
           <%= f.label :menu_cont, 'レビュータイトル' %><br>
           <%= f.search_field :menu_cont , placeholder: "らーめん", class: "form-control" %><br>
         </div>
-        <div class="body-group">
+        <div class="body-group col-12">
           <%= f.label :"本文" %><br>
           <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
         </div>
-        <div class="area-group">
+        <div class="area-group col-12">
           <%= f.label :area_prefecture_cont, "エリア" %><br>
           <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
         </div>

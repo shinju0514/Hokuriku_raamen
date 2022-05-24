@@ -2,11 +2,11 @@
   <h5>店舗検索欄</h5>
   <%= search_form_for @search_shop, url:search_shops_path do |f| %>
   <div class="search-group">
-    <div class="shop_name-gruop">
+    <div class="shop_name-gruop col-12">
       <%= f.label :shop_name_cont, '店舗名' %><br>
       <%= f.search_field :shop_name_cont ,placeholder: "8番らーめん", class: "form-control" %><br>
     </div>
-    <div class="area-group">
+    <div class="area-group col-12">
       <%= f.label :area_prefecture_cont, "エリア" %><br>
       <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
     </div>
