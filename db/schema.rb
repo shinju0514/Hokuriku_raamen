@@ -110,7 +110,9 @@ ActiveRecord::Schema.define(version: 2022_05_14_072106) do
   create_table "shops", force: :cascade do |t|
     t.integer "area_id"
     t.string "shop_name", null: false
-    t.string "address", null: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.string "bussiness_hour", null: false
     t.boolean "shop_status", default: false, null: false
     t.datetime "created_at", precision: 6, null: false

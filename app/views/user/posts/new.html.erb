@@ -20,12 +20,7 @@
       </div>
 
       <div class="form_group">
-        <%= f.label :address, "住所" %>
-        <%= f.text_field :address, class: "form-control" %>
-      </div>
-
-      <div class="form_group">
-        <%= f.label :shop_id, "店舗選択" %></br>
+        <%= f.label :shop_id, "店舗選択（店舗がなければ指定なしで登録）" %></br>
         <%= f.collection_select :shop_id, @shops, :id, :shop_name,include_blank: '指定なし' %>
       </div>
 

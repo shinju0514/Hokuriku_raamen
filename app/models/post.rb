@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   scope :rated, -> {order("rate DESC")}
 
   # バリデーション
-  validates :menu, :body, :rate, :address, presence: true
+  validates :menu, :body, :rate, presence: true
 
   # Google map api
   geocoded_by :address

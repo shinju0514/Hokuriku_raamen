@@ -11,7 +11,13 @@ class User::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    @posts = @shop.posts
+    if params[(:created_at)||(:rate)]
+      @posts = @shop.posts.latest.page(params[:page]).per(6)
+    elsif
+      @posts = @shop.posts.rated.page(params[:page]).per(6)
+    else
+      @posts = @shop.posts.page(params[:page]).per(6)
+    end
   end
 
   def edit
@@ -49,6 +55,10 @@ class User::ShopsController < ApplicationController
     else
       @result_shops = @search_shop.result.where(shop_status: false).page(params[:page]).per(6)
     end
+  end
+
+  def map
+    @maps = Shop.page(params[:page]).per(12)
   end
 
   private

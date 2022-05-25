@@ -6,7 +6,7 @@ class User::HomesController < ApplicationController
     @search.result.page(params[:page]).per(6)
     @search_shop = Shop.ransack(params[:q])
     @result_shops = @search_shop.result
-    @maps = Post.all
+    @maps = Shop.all
   end
 
   def about

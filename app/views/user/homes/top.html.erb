@@ -16,8 +16,8 @@
           <% end %>
         </span>
         <span class="ml-3">
-          <%= link_to map_posts_path,class: "btn btn-secondary" do %>
-            <i class="fas fa-map-marker-alt"></i>マップから投稿を見る
+          <%= link_to map_shops_path,class: "btn btn-secondary" do %>
+            <i class="fas fa-map-marker-alt"></i>マップからラーメン店を探す
           <% end %>
         </span>
         <span class="ml-3">
@@ -31,7 +31,7 @@
             <%= render 'user/homes/post_index',posts: @posts %>
           </div>
           <%= paginate @posts %>
-          <%= render 'user/posts/map_index',maps: @maps %>
+          <%= render 'user/shops/map_index',maps: @maps %>
         </div>
       </div>
     </div>

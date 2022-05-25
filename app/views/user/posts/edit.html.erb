@@ -20,13 +20,13 @@
       </div>
 
       <div class="form_group col-9">
-        <%= f.label :address, "住所" %>
-        <%= f.text_field :address, class: "form-control" %>
+        <%= f.label :area_id, "エリア" %></br>
+        <%= f.collection_select :area_id, Area.all, :id, :prefecture %>
       </div>
 
        <div class="form_group col-9">
         <%= f.label :shop_id, "店舗選択" %></br>
-        <%= f.collection_select :shop_id, Shop.all, :id, :shop_name %>
+        <%= f.collection_select :shop_id, Shop.all, :id, :shop_name,include_blank: '指定なし' %>
       </div>
 
       <div class="d-grid gap-2 col-6 mx-auto mt-4">

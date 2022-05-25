@@ -5,40 +5,20 @@
         <%= render 'user/shops/shop_show', shop: @shop,posts: @posts %>
       </div>
     </div>
-    <div class="col-2">
+    <div class="col-1">
     </div>
-    <div class="col-4">
-      <h4>店舗の投稿一覧</h4>
-      <% @posts.each do |post| %>
-      <div class="my_post mb-5 pt-3 pb-3">
-        <div class="mypost_title"><h4>
-            <%= link_to post_path(post.id) do %>
-            <%= post.menu %></h4>
-            <% end %>
-        </div>
-        <div class="mypost_image">
-          <%= image_tag post.post_get_image(200,150) %>
-        </div>
-        <div class="rate_star">
-          <div id="star-rate-<%= post.id %>"></div>
-          <script>
-          $('#star-rate-<%= post.id %>').empty();
-          $('#star-rate-<%= post.id %>').raty({
-            size: 20,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn :  '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= post.rate %>,
-          });
-          </script>
-        </div>
-        <div class="area_mypost">
-          <%= post.area.prefecture %>
-        </div>
-      </div>
-      <% end %>
+    <div class="col-6">
+      <%= render 'user/shops/map_show', shop: @shop %>
     </div>
   </div>
+  <div class="sort_index mt-5">
+    <h4>
+    <%= link_to "新着順",shop_path(created_at: "true") %>
+    <%= link_to "評価順",shop_path(rate: "true") %>
+    </h4>
+  </div>
+  <div class="post_wrapper" style = "margin-top: 50px">
+    <%= render 'user/posts/index', posts: @posts %>
+  </div>
+  <% paginate @posts %>
 </div>

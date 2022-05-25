@@ -15,7 +15,7 @@
             <th>店名</th>
             <td>
               <% if @post.shop == nil %>
-                不明
+                未登録
               <% else %>
               <%= link_to shop_path(@shop.id) do %>
                 <%= @post.shop.shop_name %>
@@ -87,11 +87,6 @@
       </div>
     </div>
     <div class="google_map col-5 pr-4">
-      <%= render 'user/posts/map_show', post: @post %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8 ml-5 mt-4">
       <h3 class="post_user"><b>投稿ユーザー</b></h3>
       <div class="user_name">
         <h4>

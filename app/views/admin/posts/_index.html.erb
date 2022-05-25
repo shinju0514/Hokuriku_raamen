@@ -14,7 +14,13 @@
           <thead>
             <tr>
               <th>店名</th>
-              <td><%= post.shop.shop_name %></td>
+              <td>
+                <% if post.shop == nil %>
+                  未登録
+                <% else %>
+                <%= post.shop.shop_name %>
+                <% end %>
+              </td>
             </tr>
             <tr>
               <th>本文</th>

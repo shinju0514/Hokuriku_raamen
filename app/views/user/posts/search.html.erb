@@ -18,7 +18,7 @@
         </div>
         <div class="area-group col-3">
           <%= f.label :tags_tag_name_eq, "タグ検索" %><br>
-          <%= f.select :tags_tag_name_eq, options_from_collection_for_select(Tag.all, :id, :tag_name),include_blank: '指定なし' %>
+          <%= f.select :tags_tag_name_eq, options_from_collection_for_select(Tag.all, :tag_name, :tag_name),include_blank: '指定なし' %>
           <!--<%= f.search_field :tags_tag_name_cont, placeholder: "豚骨味噌",class: "form-control" %>-->
         </div>
         <div class="rate-group col-6">
@@ -60,7 +60,13 @@
           <thead>
             <tr>
               <th>店名</th>
-              <td><%= result.shop.shop_name %></td>
+              <td>
+                <% if result.shop == nil %>
+                  未登録
+                <% else %>
+                <%= result.shop.shop_name %>
+                <% end %>
+              </td>
             </tr>
             <tr>
               <th>本文</th>

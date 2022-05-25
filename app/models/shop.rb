@@ -8,8 +8,13 @@ class Shop < ApplicationRecord
   validates :shop_name, :address, :bussiness_hour, presence: true
   enum shop_status: { 閉店: true, 開店: false }
 
+  # Google map api
+  geocoded_by :address
+  after_validation :geocode
+
   # スコープ
   scope :latest, -> {order("created_at DESC")}
+  scope :rated, -> {order("rate DESC")}
 
   def get_shop_image(width, height)
     unless shop_image.attached?

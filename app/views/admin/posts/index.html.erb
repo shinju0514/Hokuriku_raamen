@@ -26,7 +26,13 @@
             <th><%= link_to admin_post_path(post.id) do %>
                 <%= post.menu %></th>
                 <% end %>
-            <th><%= post.shop.shop_name %></th>
+            <th>
+              <% if post.shop == nil %>
+                未登録
+              <% else %>
+              <%= post.shop.shop_name %>
+              <% end %>
+            </th>
             <th><%= post.area.prefecture %></th>
             <th><div id="star-rate-<%= post.id %>"></div>
                 <script>
