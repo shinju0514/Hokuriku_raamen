@@ -13,9 +13,15 @@
         <thead>
           <tr>
             <th>店名</th>
-            <td><%= link_to shop_path(@shop.id) do %>
+            <td>
+              <% if @post.shop == nil %>
+                不明
+              <% else %>
+              <%= link_to shop_path(@shop.id) do %>
                 <%= @post.shop.shop_name %>
-                <% end %></td>
+              <% end %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <th>本文</th>

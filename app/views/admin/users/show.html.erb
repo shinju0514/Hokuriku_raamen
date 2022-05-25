@@ -18,6 +18,10 @@
             <th><b>自己紹介文</b></th>
             <td><%= @user.introduction %></td>
           </tr>
+          <tr>
+            <th><b>ステータス</b></th>
+            <td><%= @user.user_status %></td>
+          </tr>
         </thead>
       </table>
     </div>
@@ -44,8 +48,8 @@
   <div class="sort_index">
     <h4 class="mt-3 mb-5"><b><%= @user.user_name %>が投稿した投稿一覧</b></h4>
     <h4>
-    <%= link_to "新着順",user_path(created_at: "true") %>
-    <%= link_to "評価順",user_path(rate: "true") %>
+    <%= link_to "新着順",admin_user_path(created_at: "true") %>
+    <%= link_to "評価順",admin_user_path(rate: "true") %>
     </h4>
   </div>
   <div class="post_wrapper" style="margin-top: 50px">

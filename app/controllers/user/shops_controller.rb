@@ -1,4 +1,5 @@
 class User::ShopsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     if params[(:created_at)]
@@ -34,7 +35,7 @@ class User::ShopsController < ApplicationController
   def create
     @shop = Shop.new(shop_params)
     if @shop.save
-    redirect_to shops_path,flash: {success: "店舗を新規作成しました"}
+    redirect_to shop_path(@shop.id),flash: {success: "店舗を新規作成しました"}
     else
       @areas = Area.all
       render :new

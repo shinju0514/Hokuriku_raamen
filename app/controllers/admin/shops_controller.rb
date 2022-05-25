@@ -1,4 +1,5 @@
 class Admin::ShopsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     if params[(:created_at)]
       @shops = Shop.latest.page(params[:page]).per(10)
@@ -33,7 +34,7 @@ class Admin::ShopsController < ApplicationController
   def create
     @shop = Shop.new(shop_params)
     if @shop.save
-      redirect_to admin_shops_path
+      redirect_to admin_shops_path,flash: {success: "店舗を新規投稿しました" }
     else
       @areas = Area.all
       render :new

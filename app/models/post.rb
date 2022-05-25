@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :shop
+  belongs_to :shop,optional: true
   belongs_to :area
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy

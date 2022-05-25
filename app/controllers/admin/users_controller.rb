@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @users = User.page(params[:page]).per(10)
@@ -6,7 +7,13 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(5)
+    if params[(:created_at)||(:rate)]
+      @posts = @user.posts.latest.page(params[:page]).per(6)
+    elsif
+      @posts = @user.posts.rated.page(params[:page]).per(6)
+    else
+      @posts = @user.posts.page(params[:page]).per(6)
+    end
   end
 
   def edit

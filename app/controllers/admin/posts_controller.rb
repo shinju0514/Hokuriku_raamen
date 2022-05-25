@@ -1,4 +1,5 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     if params[(:created_at)||(:rate)]
       @posts = Post.latest.page(params[:page]).per(10)

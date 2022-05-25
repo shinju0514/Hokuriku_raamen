@@ -1,6 +1,6 @@
 class User::PostsController < ApplicationController
-  before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
+  before_action :authenticate_user!
 
   def index
     if params[(:created_at)||(:rate)]
@@ -51,7 +51,7 @@ class User::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_path,flash: {success: "レビューを投稿しました"}
+      redirect_to post_path(@post.id),flash: {success: "レビューを投稿しました"}
     else
       @shops = Shop.all
       @areas = Area.all
@@ -62,7 +62,7 @@ class User::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path,flash: {danger: "レビューを削除しました" }
   end
 
   def map

@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :search_post
   add_flash_types :success, :info, :warning, :danger
 
-
   def search_post
     @search = Post.ransack(params[:q])
     @results = @search.result

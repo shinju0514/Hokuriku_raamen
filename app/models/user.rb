@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
    # スコープ
   scope :latest, -> {order("created_at DESC")}
   scope :rated, -> {order("rate DESC")}
@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(user_name: 'guestuser' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(user_name: 'guestuser' ,email: 'guest@guest.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.user_name = "guestuser"
     end

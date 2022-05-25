@@ -13,7 +13,7 @@
         <thead>
           <tr>
             <th>店名</th>
-            <td><%= link_to shop_path(@shop.id) do %>
+            <td><%= link_to admin_shop_path(@shop.id) do %>
                 <%= @post.shop.shop_name %>
                 <% end %></td>
           </tr>
@@ -85,11 +85,11 @@
     <div class="col-8 ml-5 mt-4">
       <h3 class="post_user"><b>投稿ユーザー</b></h3>
       <div class="user_name">
-        <!--<h4>-->
-        <!--<%= link_to user_path(@user.id) do %>-->
+        <h4>
+        <%= link_to admin_user_path(@user.id) do %>
         <%= @post.user.user_name %>
-        <!--<% end %>-->
-        <!--</h4>-->
+        <% end %>
+        </h4>
         </div>
       <div class="user_image">
         <%= image_tag @post.user.get_profile_image(150,150) %>
