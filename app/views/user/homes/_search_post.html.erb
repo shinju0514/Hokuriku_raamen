@@ -11,9 +11,14 @@
           <%= f.label :"本文" %><br>
           <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
         </div>
-        <div class="area-group col-12">
-          <%= f.label :area_prefecture_cont, "エリア" %><br>
-          <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
+        <div class="area-group mx-auto">
+          <%= f.label :area_id_eq, "エリア" %><br>
+          <%= f.select :area_id_eq, options_from_collection_for_select(Area.all, :id, :prefecture),include_blank: '指定なし' %>
+        </div>
+        <div class="area-group mx-auto">
+          <%= f.label :tags_tag_name_eq, "タグ検索" %><br>
+          <%= f.select :tags_tag_name_eq, options_from_collection_for_select(Tag.all, :id, :tag_name),include_blank: '指定なし' %>
+          <!--<%= f.search_field :tags_tag_name_cont, placeholder: "豚骨味噌",class: "form-control" %>-->
         </div>
         <div class="rate-group">
           <%= f.label :rate,"5段階評価" %><br>

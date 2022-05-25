@@ -13,8 +13,13 @@
           <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
         </div>
         <div class="area-group col-3">
-          <%= f.label :area_prefecture_cont, "エリア" %><br>
-          <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
+          <%= f.label :area_id_eq, "エリア" %><br>
+          <%= f.select :area_id_eq, options_from_collection_for_select(Area.all, :id, :prefecture),include_blank: '指定なし' %>
+        </div>
+        <div class="area-group col-3">
+          <%= f.label :tags_tag_name_eq, "タグ検索" %><br>
+          <%= f.select :tags_tag_name_eq, options_from_collection_for_select(Tag.all, :id, :tag_name),include_blank: '指定なし' %>
+          <!--<%= f.search_field :tags_tag_name_cont, placeholder: "豚骨味噌",class: "form-control" %>-->
         </div>
         <div class="rate-group col-6">
           <%= f.label :rate,"5段階評価" %><br>
@@ -24,6 +29,9 @@
           <%= f.radio_button :rate_gteq, 3 %>🌟 3〜
           <%= f.radio_button :rate_gteq, 4 %>🌟 4〜
           <%= f.radio_button :rate_eq, 5 %>🌟 5
+        </div>
+        <div class="submit_search col-3 mt-4 mb-4">
+          <%= f.submit "検索",class: "button_post" %>
         </div>
       </div>
       <% end %>
@@ -78,10 +86,22 @@
                     </script></td>
               </tr>
               <tr>
+                <th>いいね</th>
+                <td><%= result.favorites.count %></td>
+              </tr>
+              <tr>
+                <th>エリア</th>
+                <td><%= result.area.prefecture %></td>
+              </tr>
+              <tr>
                 <th>タグ</th>
                 <td><% result.tags.each do |tag| %>
                     <%= tag.tag_name %>
                     <% end %></td>
+              </tr>
+               <tr>
+                <th>投稿日</th>
+                <td><%= result.created_at.strftime("%Y-%m-%d") %></td>
               </tr>
             </div>
           </tbody>

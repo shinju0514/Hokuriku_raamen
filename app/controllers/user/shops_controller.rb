@@ -44,7 +44,7 @@ class User::ShopsController < ApplicationController
   def search
     @search_shop = Shop.ransack(params[:q])
     if params[(:created_at)]
-      @result_shops = @search_shop.result.latest..where(shop_status: false).page(params[:page]).per(6)
+      @result_shops = @search_shop.result.latest.where(shop_status: false).page(params[:page]).per(6)
     else
       @result_shops = @search_shop.result.where(shop_status: false).page(params[:page]).per(6)
     end

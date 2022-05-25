@@ -7,9 +7,9 @@
         <%= f.label :shop_name_cont, '店舗名' %><br>
         <%= f.search_field :shop_name_cont ,class: "form-control" %><br>
       </div>
-      <div class="area-group col-4">
-        <%= f.label :area_prefecture_cont, "エリア" %><br>
-        <%= f.search_field :area_prefecture_cont, placeholder: "石川県or富山県or福井県", class: "form-control" %>
+      <div class="area-group col-3">
+        <%= f.label :area_id_eq, "エリア" %><br>
+        <%= f.select :area_id_eq, options_from_collection_for_select(Area.all, :id, :prefecture),include_blank: '指定なし' %>
       </div>
     </div>
     <div class="search-button mt-3 ml-3">

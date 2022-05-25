@@ -26,12 +26,12 @@
 
       <div class="form_group">
         <%= f.label :shop_id, "店舗選択" %></br>
-        <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
+        <%= f.collection_select :shop_id, @shops, :id, :shop_name,include_blank: '指定なし' %>
       </div>
 
       <div class="form_group">
         <%= f.label :area_id, "エリア選択" %></br>
-        <%= f.collection_select :area_id, @areas, :id, :prefecture %>
+        <%= f.collection_select :area_id, @areas, :id, :prefecture,include_blank: '指定なし' %>
       </div>
 
       <div class="form_group" style="margin-right :20px">
