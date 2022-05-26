@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   # スコープ
   scope :latest, -> {order("created_at DESC")}
   scope :rated, -> {order("rate DESC")}
+  scope :get_posts_sort_of_CreateDate, -> (number_of_display) {order("created_at": :desc).limit(number_of_display)}
 
   # バリデーション
   validates :menu, :body, :rate, presence: true

@@ -21,6 +21,11 @@
             <% end %>
           </li>
           <li class="mr-4">
+            <%= link_to admin_areas_path,class: "btn btn-dark" do %>
+            <i class="fas fa-map"></i>エリア一覧
+            <% end %>
+          </li>
+          <li class="mr-4">
             <%= link_to destroy_admin_session_path do %>
             <button type="button" class="btn btn-danger mr-4">ログアウト</button>
             <% end %>

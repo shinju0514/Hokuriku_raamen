@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row" style="margin-top: 50px">
-    <div class="col-8">
+    <div class="col-10 mx-auto">
       <h4>エリア管理画面</h4>
       <% @areas.each do |area| %>
       <table>
@@ -12,13 +12,14 @@
         </thead>
       </table>
       <% end %>
-      <%= form_with model:@area_new do |f| %>
-      <div class="row col-8">
-        <div class="row form_group col-10">
+      <%= form_with model:@area,url:admin_areas_path do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="row">
+        <div class="form_group col-3">
           <%= f.label :prefecture,"エリア追加" %>
           <%= f.text_field :prefecture, class: "form-control" %>
         </div>
-        <div class="row form-button col-8" style="margin-top :20px">
+        <div class="row form-button col-5" style="margin-top :20px">
           <%= f.submit "追加する" %>
         </div>
       </div>

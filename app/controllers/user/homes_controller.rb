@@ -1,7 +1,7 @@
 class User::HomesController < ApplicationController
 
   def top
-    @posts = Post.order(created_at: :DESC).page(params[:page]).per(3)
+    @posts = Post.get_posts_sort_of_CreateDate(3)
     @search = Post.ransack(params[:q])
     @search.result.page(params[:page]).per(6)
     @search_shop = Shop.ransack(params[:q])
