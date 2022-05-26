@@ -37,12 +37,12 @@
       <% end %>
     </div>
   </div>
-    <div class="sort_index">
-      <h4>
-      <%= link_to "新着順",search_posts_path(created_at: "true") %>
-      <%= link_to "評価順",search_posts_path(rate: "true") %>
-      </h4>
-    </div>
+  <div class="sort_index">
+    <h4>
+    <%= link_to "新着順",search_posts_path(created_at: "true") %>
+    <%= link_to "評価順",search_posts_path(rate: "true") %>
+    </h4>
+  </div>
   <div class="row">
   <% @results.each do |result| %>
     <div class="post_index_search">

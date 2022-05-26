@@ -61,11 +61,11 @@ class User::ShopsController < ApplicationController
 
   def map
     if params[(:created_at)||(:updated_at)]
-    @maps = Shop.latest.page(params[:page]).per(12)
+      @maps = Shop.latest.page(params[:page]).per(12)
     elsif
-    @maps = Shop.updated.page(params[:page]).per(12)
+      @maps = Shop.updated.page(params[:page]).per(12)
     else
-    @maps = Shop.page(params[:page]).per(12)
+      @maps = Shop.page(params[:page]).per(12)
     end
   end
 
@@ -73,18 +73,6 @@ class User::ShopsController < ApplicationController
 
   def set_q
     @q = Shop.ransack(params[:q])
-  end
-
-  def open_closed
-    @shop = Shop.find_by(params[:id])
-    @shop.open_closed! unless @shop.open_closed?
-    redirect_to edit_ship_path(@shop.id)
-  end
-
-  def nonopen_closed
-    @shop = Shop.find_by(params[:id])
-    @shop.nonopen_closed! unless @shop.nonopen_closed?
-    redirect_to edit_ship_path(@shop.id)
   end
 
   def shop_params

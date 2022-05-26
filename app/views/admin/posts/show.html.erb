@@ -14,6 +14,7 @@
           <tr>
             <th>店名</th>
             <td>
+              <!--店名がnilなら未登録と表示させる-->
               <% if @post.shop == nil %>
                 未登録
               <% else %>
@@ -91,7 +92,7 @@
         <%= @post.user.user_name %>
         <% end %>
         </h4>
-        </div>
+      </div>
       <div class="user_image">
         <%= image_tag @post.user.get_profile_image(150,150) %>
       </div>

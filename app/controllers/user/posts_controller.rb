@@ -2,6 +2,8 @@ class User::PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :authenticate_user!
 
+  # 評価順と投稿順に並べる記述
+  # モデルに定義したスコープを使用している
   def index
     if params[(:created_at)||(:rate)]
       @posts = Post.latest.page(params[:page]).per(6)
@@ -69,6 +71,8 @@ class User::PostsController < ApplicationController
     @maps = Post.page(params[:page]).per(6)
   end
 
+  # 評価順と投稿順に並べる記述
+  # モデルに定義したスコープを使用している
   def search
     @search = Post.ransack(params[:q])
     if params[(:created_at)||(:rate)]
@@ -89,6 +93,8 @@ class User::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:menu, :body, :rate, :post_image, :area_id,:shop_id, :address, :latitude, :longitude, tag_ids:[])
   end
+
+  # 他人の編集画面へ遷移できない記述
 
   def correct_user
     @post = Post.find(params[:id])

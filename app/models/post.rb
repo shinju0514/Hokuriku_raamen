@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
+  # レビューを投稿する際にお店がないと投稿できないのは使いにくいので、
+  # nilでも保存できるようにし、投稿編集画面で店舗を選び直せるようにした。
   belongs_to :shop,optional: true
   belongs_to :area
   has_many :favorites, dependent: :destroy
@@ -16,12 +18,13 @@ class Post < ApplicationRecord
   validates :menu, :body, :rate, presence: true
 
   # Google map api
+  # addressカラムに住所を入力することで、
   geocoded_by :address
   after_validation :geocode
 
   has_one_attached :post_image
 
-
+# 投稿画像の設定
   def post_get_image(width, height)
     unless post_image.attached?
     file_path = Rails.root.join('app/assets/images/no_image.jpeg')

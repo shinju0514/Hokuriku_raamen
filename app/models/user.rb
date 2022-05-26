@@ -22,6 +22,7 @@ class User < ApplicationRecord
   scope :latest, -> {order("created_at DESC")}
   scope :rated, -> {order("rate DESC")}
 
+  # ユーザーの退会ステータス
   enum user_status: { 有効: false, 退会: true }
 
   # バリデーション
@@ -36,6 +37,7 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+# ゲストログインの設定
   def self.guest
     find_or_create_by!(user_name: 'guestuser' ,email: 'guest@guest.com') do |user|
       user.password = SecureRandom.urlsafe_base64

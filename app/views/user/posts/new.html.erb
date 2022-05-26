@@ -35,20 +35,20 @@
               prompt:'タグで絞り込み検索'}%>
       </div>
 
-      <div class="form-group row" id="star"><!--id="star"でセレクタを指定している-->
+      <div class="form-group row" id="star">
         <%= f.label :rate,'評価:', class:'col-md-3 col-form-label' %>
         <%= f.hidden_field :rate, id: :review_star %>
       </div>
-      <!-- 評価javascript -->
+
       <div class="rate-group">
         <script>
-        $('#star').raty({ //#starは11行目で指定したクラス名を入れ、.ratyはjqueryで使用できる星評価機能のプラグインを使っています。
+        $('#star').raty({ //.ratyはjqueryで使用できる星評価機能のプラグインを使っています。
           size     : 20,
           starOff:  '<%= asset_path('star-off.png') %>',//asset_pathでassets/imagesに入っているファイルを指定しています。
           starOn : '<%= asset_path('star-on.png') %>',
           starHalf: '<%= asset_path('star-half.png') %>',
           scoreName: 'post[rate]',//rateカラムに値を保存しています。
-          half: true,//★の半分の入力を行なっています。(0.5間隔の値になる)
+          half: true,//★の半分の入力を行っている(0.5間隔の値になる)
         });
         </script>
       </div>

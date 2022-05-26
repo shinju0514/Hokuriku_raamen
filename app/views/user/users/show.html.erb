@@ -7,10 +7,11 @@
       <table class="table table-borderless">
         <thead>
           <tr>
-            <th><b>ユーザー名</b></th>
+            <th><b>ユーザーネーム</b></th>
             <td><%= @user.user_name %></td>
           </tr>
           <tr>
+            <!--他人のメールアドレスが見えないように-->
           <% if current_user.id == @user.id %>
             <th><b>メールアドレス</b></th>
             <td><%= @user.email %></td>
@@ -35,22 +36,25 @@
         </tr>
         <tr>
           <td><%= link_to user_followings_path(@user.id) do %>
-              フォロー数: <%= @user.followings.count %>
+                フォロー数: <%= @user.followings.count %>
               <% end %></td>
+
           <td><%= link_to user_followers_path(@user.id) do %>
-              フォロワー数: <%= @user.followers.count %>
+                フォロワー数: <%= @user.followers.count %>
               <% end %></td>
+
               <% unless @user == current_user %>
               <% if current_user.following?(@user) %>
           <td><%= link_to user_relationships_path(@user.id), method: :delete do %>
               <i class="fas fa-user-minus"></i> フォローを外す
               <% end %></td>
-               <% else %>
+
+              <% else %>
           <td><%= link_to user_relationships_path(@user.id), method: :post do %>
               <i class="fas fa-user-plus"></i> フォローする
-               <% end %></td>
-               <% end %>
-               <% end %>
+              <% end %>
+              <% end %>
+              <% end %></td>
         </tr>
       </table>
     </div>

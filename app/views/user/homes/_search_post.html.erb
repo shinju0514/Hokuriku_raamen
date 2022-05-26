@@ -4,6 +4,7 @@
       <%= search_form_for @search, url:search_posts_path do |f| %>
       <div class="search-group">
         <div class="menu-gruop col-12">
+          <!--_contによって部分一致検索をしている-->
           <%= f.label :menu_cont, 'レビュータイトル' %><br>
           <%= f.search_field :menu_cont , placeholder: "らーめん", class: "form-control" %><br>
         </div>
@@ -11,14 +12,15 @@
           <%= f.label :"本文" %><br>
           <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
         </div>
+        <!--_eqによって完全一致検索をしている-->
         <div class="area-group mx-auto">
           <%= f.label :area_id_eq, "エリア" %><br>
           <%= f.select :area_id_eq, options_from_collection_for_select(Area.all, :id, :prefecture),include_blank: '指定なし' %>
         </div>
+        <!--tagsテーブルのtag_nameカラムを検索している-->
         <div class="area-group mx-auto">
           <%= f.label :tags_tag_name_eq, "タグ検索" %><br>
           <%= f.select :tags_tag_name_eq, options_from_collection_for_select(Tag.all, :tag_name, :tag_name),include_blank: '指定なし' %>
-          <!--<%= f.search_field :tags_tag_name_cont, placeholder: "豚骨味噌",class: "form-control" %>-->
         </div>
         <div class="rate-group">
           <%= f.label :rate,"5段階評価" %><br>

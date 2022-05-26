@@ -16,6 +16,7 @@ class Shop < ApplicationRecord
   scope :latest, -> {order("created_at DESC")}
   scope :updated, -> {order("updated_at DESC")}
 
+  # 店舗画像の設定
   def get_shop_image(width, height)
     unless shop_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpeg')

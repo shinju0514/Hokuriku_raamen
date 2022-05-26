@@ -14,6 +14,7 @@
           <tr>
             <th>店名</th>
             <td>
+              <!--店名がnilなら未登録を表示-->
               <% if @post.shop == nil %>
                 未登録
               <% else %>

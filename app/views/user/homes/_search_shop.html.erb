@@ -3,13 +3,15 @@
   <%= search_form_for @search_shop, url:search_shops_path do |f| %>
   <div class="search-group">
     <div class="shop_name-gruop col-12">
+      <!--_contによって部分一致検索をしている-->
       <%= f.label :shop_name_cont, '店舗名' %><br>
       <%= f.search_field :shop_name_cont ,placeholder: "8番らーめん", class: "form-control" %><br>
     </div>
+    <!--_eqによって完全一致検索をしている-->
     <div class="area-group mx-auto">
-        <%= f.label :area_id_eq, "エリア" %><br>
-          <%= f.select :area_id_eq, options_from_collection_for_select(Area.all, :id, :prefecture),include_blank: '指定なし' %>
-        </div>
+      <%= f.label :area_id_eq, "エリア" %><br>
+      <%= f.select :area_id_eq, options_from_collection_for_select(Area.all, :id, :prefecture),include_blank: '指定なし' %>
+    </div>
   </div>
   <div class="search-button mb-5">
     <%=f.submit "検索",class: "button_shop mt-5" %>

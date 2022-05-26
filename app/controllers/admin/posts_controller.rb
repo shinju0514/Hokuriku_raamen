@@ -1,5 +1,8 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
+
+  # 評価順と投稿順に並べる記述
+  # モデルに定義したスコープを使用している
   def index
     if params[(:created_at)||(:rate)]
       @posts = Post.latest.page(params[:page]).per(10)

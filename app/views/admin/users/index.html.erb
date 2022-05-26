@@ -2,28 +2,28 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
       <h4 class="user_index mt-2 mb-4">ユーザー一覧</h4>
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <tr class="table-light">
-              <th>ID</th>
-              <th>名前</th>
-              <th>メールアドレス</th>
-              <th>ステータス</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <th><%= user.id %></th>
-              <th><%= link_to admin_user_path(user.id) do %>
-                  <%= user.user_name %></th>
-                  <% end %>
-              <th><%= user.email %></th>
-              <th><%= user.user_status %></th>
-            </tr>
-          </tbody>
-          <% end %>
-        </table>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr class="table-light">
+            <th>ID</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <th><%= user.id %></th>
+            <th><%= link_to admin_user_path(user.id) do %>
+                <%= user.user_name %></th>
+                <% end %>
+            <th><%= user.email %></th>
+            <th><%= user.user_status %></th>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

@@ -1,5 +1,8 @@
 class Admin::ShopsController < ApplicationController
   before_action :authenticate_admin!
+
+  # 新着順と更新順に並べ替える記述
+  # モデルに定義したスコープを使用
   def index
     if params[(:created_at)||(:updated_at)]
       @shops = Shop.latest.page(params[:page]).per(10)

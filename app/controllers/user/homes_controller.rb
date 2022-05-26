@@ -1,5 +1,6 @@
 class User::HomesController < ApplicationController
 
+# get_posts_sort_of_CreateDateはモデルで定義した記述
   def top
     @posts = Post.get_posts_sort_of_CreateDate(3)
     @search = Post.ransack(params[:q])

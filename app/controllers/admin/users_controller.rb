@@ -5,6 +5,8 @@ class Admin::UsersController < ApplicationController
     @users = User.page(params[:page]).per(10)
   end
 
+  # 新着順と更新順に並べ替える記述
+  # モデルに定義したスコープを使用
   def show
     @user = User.find(params[:id])
     if params[(:created_at)||(:rate)]

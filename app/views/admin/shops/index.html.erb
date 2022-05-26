@@ -22,8 +22,8 @@
             <th>開店ステータス</th>
           </tr>
         </thead>
+        <% @shops.each do |shop| %>
         <tbody>
-          <% @shops.each do |shop| %>
           <tr>
             <th><%= shop.created_at.strftime("%Y-%m-%d %H:%M") %></th>
             <th><%= link_to admin_shop_path(shop.id) do %>

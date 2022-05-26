@@ -1,73 +1,73 @@
 <% posts.each do |post| %>
-    <div class="post_index">
-      <div class="index_details">
-        <div class="post_title">
-          <h5>タイトル:
-            <%= link_to admin_post_path(post.id) do %>
-            <%= post.menu %></h5>
-            <% end %>
-        </div>
-        <div>
-          <%= image_tag post.post_get_image(300,200),class: "post_search_image" %>
-        </div>
-        <table class="table table-borderless">
-          <thead>
-            <tr>
-              <th>店名</th>
-              <td>
-                <% if post.shop == nil %>
-                  未登録
-                <% else %>
-                <%= post.shop.shop_name %>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <th>本文</th>
-              <td class="post_body"><%= post.body %></td>
-            </tr>
-          </thead>
-          <tbody>
-            <div class="rate col-5">
-              <tr>
-                <th>評価</th>
-                <td><div id="star-rate-<%= post.id %>"></div>
-                    <script>
-                    $('#star-rate-<%= post.id %>').empty();
-                    $('#star-rate-<%= post.id %>').raty({
-                      size: 20,
-                      starOff:  '<%= asset_path('star-off.png') %>',
-                      starOn :  '<%= asset_path('star-on.png') %>',
-                      starHalf: '<%= asset_path('star-half.png') %>',
-                      half: true,
-                      readOnly: true,
-                      score: <%= post.rate %>,
-                    });
-                    </script></td>
-              </tr>
-            </div>
-              <tr>
-                <th style=white-space: nowrap>いいね</th>
-                <td><%= post.favorites.count %></td>
-              </tr>
-              <tr>
-                <th>エリア</th>
-                <td><%= post.area.prefecture %></td>
-              </tr>
-              <tr>
-                <th>タグ</th>
-                <td class="tags_name">
-                  <% post.tags.each do |tag| %>
-                    <%= tag.tag_name %>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <th>投稿日</th>
-                <td><%= post.created_at.strftime("%Y-%m-%d") %></td>
-              </tr>
-            </tbody>
-        </table>
-      </div>
+<div class="post_index">
+  <div class="index_details">
+    <div class="post_title">
+      <h5>タイトル:
+        <%= link_to admin_post_path(post.id) do %>
+        <%= post.menu %></h5>
+        <% end %>
     </div>
-    <% end %>
+    <div>
+      <%= image_tag post.post_get_image(300,200),class: "post_search_image" %>
+    </div>
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>店名</th>
+          <td>
+            <% if post.shop == nil %>
+              未登録
+            <% else %>
+            <%= post.shop.shop_name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>本文</th>
+          <td class="post_body"><%= post.body %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <div class="rate col-5">
+          <tr>
+            <th>評価</th>
+            <td><div id="star-rate-<%= post.id %>"></div>
+                <script>
+                $('#star-rate-<%= post.id %>').empty();
+                $('#star-rate-<%= post.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn :  '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= post.rate %>,
+                });
+                </script></td>
+          </tr>
+        </div>
+          <tr>
+            <th style=white-space: nowrap>いいね</th>
+            <td><%= post.favorites.count %></td>
+          </tr>
+          <tr>
+            <th>エリア</th>
+            <td><%= post.area.prefecture %></td>
+          </tr>
+          <tr>
+            <th>タグ</th>
+            <td class="tags_name">
+              <% post.tags.each do |tag| %>
+                <%= tag.tag_name %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>投稿日</th>
+            <td><%= post.created_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

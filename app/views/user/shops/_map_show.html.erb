@@ -2,7 +2,7 @@
 <p><%= shop.address %></p>
 <input id="address" type="textbox">
 <input type="button" value="検索する" onclick="codeAddress()">
-<!-- 下の1行を追加 -->
+
 <div id="display"></div>
 
 <div id='map',class='map'></div>
@@ -18,9 +18,9 @@
 var infoWindow;
 let map
 let geocoder
-// 下の1行を追加
-const display = document.getElementById('display')
 
+const display = document.getElementById('display')
+// マップに表示するセンターポジションの設定を記述している
 function initMap(){
       geocoder = new google.maps.Geocoder()
 
@@ -28,6 +28,7 @@ function initMap(){
           center: {lat: parseFloat("<%= shop.latitude %>"), lng: parseFloat("<%= shop.longitude %>")},
           zoom: 14,
       });
+      // addressカラムに入っている住所にピンを刺すための記述
           var contentString = "<%= @shop.address %>";
           var marker = new google.maps.Marker({
               position:{lat: parseFloat("<%= shop.latitude %>"), lng: parseFloat("<%= shop.longitude %>")},
@@ -42,21 +43,7 @@ function initMap(){
           });
 }
 
-function markerEvent(i){
-		var map;
-		var marker = [];
-		var data = [];
-		var windows = [];
-		var currentInfoWindow = null;
-		marker[i].addListener('click', function() { // マーカーをクリックしたとき
-		if (currentInfoWindow) {
-		currentInfoWindow.close();
-		}
-		windows[i].open(map, marker[i]); // 吹き出しの表示
-		currentInfoWindow = windows[i];
-		});
-}
-
+// 検索した際にピンが刺される記述
 function codeAddress(){
   let inputAddress = document.getElementById('address').value;
 
@@ -67,7 +54,7 @@ function codeAddress(){
           map: map,
           position: results[0].geometry.location
       });
-      // 下の1行を追加
+
       display.textContent = "検索結果：" + results[ 0 ].geometry.location
     } else {
       alert('該当する結果がありませんでした：' + status);

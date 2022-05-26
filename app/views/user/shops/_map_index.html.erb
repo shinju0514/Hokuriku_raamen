@@ -2,7 +2,7 @@
 
 <input id="address" type="textbox" value="">
 <input type="button" value="検索する" onclick="codeAddress()">
-<!-- 下の1行を追加 -->
+
 <div id="display"></div>
 
 <div id='map',class="map"></div>
@@ -18,14 +18,16 @@
 var infoWindow;
 let map
 let geocoder
-// 下の1行を追加
+
 const display = document.getElementById('display')
+// マップに表示するセンターポジションの設定を記述している
 function initMap(){
       geocoder = new google.maps.Geocoder()
       map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 36.57849231757152, lng:136.64787099262296},
           zoom: 8,
       });
+      // each文でaddressカラムに入っている住所から緯度と経度を特定し、マップにピンを刺している
       <% maps.each do |m| %>
           var contentString = "<%= m.address %>";
           function markerObj(latitude, longitude, contentString) {
@@ -35,7 +37,7 @@ function initMap(){
               title: contentString
             });
           }
-
+      // マップに刺してあるピンをクリックした際の吹き出しの内容を記述するための内容
             function infoWindow(shop_name, address, latitude, longitude, contentString) {
             return new google.maps.InfoWindow({ // 吹き出しの追加
                   content: "<div class='sample'>" + shop_name + "," + address + "</div>" // 吹き出しに表示する内容
@@ -53,6 +55,7 @@ function setEvent(marker,info){
   });
 }
 
+// 検索した際にピンが刺される記述
 function codeAddress(){
   let inputAddress = document.getElementById('address').value;
 
@@ -63,15 +66,12 @@ function codeAddress(){
           map: map,
           position: results[0].geometry.location
       });
-      // 下の1行を追加
+
       display.textContent = "検索結果：" + results[ 0 ].geometry.location
     } else {
       alert('該当する結果がありませんでした：' + status);
     }
   });
 }
-
-
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
