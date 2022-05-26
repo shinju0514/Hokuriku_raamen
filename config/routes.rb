@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :user do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   get 'favorites/create'
   get 'favorites/destroy'
 # 管理者用
@@ -27,6 +31,10 @@ Rails.application.routes.draw do
     get "homes/about" => "homes#about", as: "about"
     devise_for :users,skip: [:passwords], controllers: {registrations: "user/registrations",sessions: 'user/sessions'}
     resources :users, only: [:show, :edit, :update] do
+      # フォローフォロワーの記述
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
       patch :defection, on: :collection
     end
     resources :posts, only: [:index, :show, :edit, :update, :new, :create, :destroy] do

@@ -1,0 +1,7 @@
+<div class="container">
+  <h2 class="post-index mb-3 mt-4">フォロワー一覧</h2>
+  <div class="post_wrapper" style = "margin-top: 50px">
+    <%= render 'user/relationships/follow_index',users: @users %>
+  </div>
+  <%= paginate @users %>
+</div>

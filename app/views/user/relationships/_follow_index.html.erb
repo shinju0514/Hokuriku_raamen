@@ -1,0 +1,31 @@
+<% if users.exists? %>
+  <% users.each do |user| %>
+  <div class="follow_list">
+    <div class="follow_index">
+    <table>
+      <thead>
+        <tr>
+          <th><h5>ユーザー名</h5></th>
+          <td><%= link_to user_path(user.id) do %>
+              <%= user.user_name %>
+              <% end %></td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= image_tag user.get_profile_image(150,150),class: "follow_user_image" %></td>
+        </tr>
+        <tr>
+          <th>フォロー数:</th>
+          <td><%= user.followings.count %></td>
+        </tr>
+        <tr>
+          <th>フォロワー数:</th>
+          <td><%= user.followers.count %></td>
+        </tr>
+      </thead>
+    </table>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+  <h3 class="follow-user mx-auto">ユーザーはいません</h3>
+<% end %>

@@ -35,6 +35,14 @@
           <th><b>投稿数</b></th>
           <td><%= @posts.count %></td>
         </tr>
+        <tr>
+          <th> </th>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>フォロー数:<%= @user.followings.count %></td>
+          <td>フォロワー数:<%= @user.followers.count %></td>
+        </tr>
       </table>
     </div>
   </div>

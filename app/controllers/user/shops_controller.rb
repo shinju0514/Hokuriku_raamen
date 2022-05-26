@@ -2,10 +2,12 @@ class User::ShopsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[(:created_at)]
-      @shops = Shop.latest.where(shop_status: false).page(params[:page]).per(6)
+    if params[(:created_at)||(:updated_at)]
+    @shops = Shop.latest.where(shop_status: false).page(params[:page]).per(6)
+    elsif
+    @shops = Shop.updated.where(shop_status: false).page(params[:page]).per(6)
     else
-      @shops = Shop.where(shop_status: false).page(params[:page]).per(6)
+    @shops = Shop.page(params[:page]).per(6)
     end
   end
 
@@ -58,7 +60,13 @@ class User::ShopsController < ApplicationController
   end
 
   def map
+    if params[(:created_at)||(:updated_at)]
+    @maps = Shop.latest.page(params[:page]).per(12)
+    elsif
+    @maps = Shop.updated.page(params[:page]).per(12)
+    else
     @maps = Shop.page(params[:page]).per(12)
+    end
   end
 
   private

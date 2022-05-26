@@ -5,6 +5,7 @@
       <div class="sort_index">
         <h4>
         <%= link_to "新着順",admin_shops_path(created_at: "true") %>
+        <%= link_to "更新順",admin_shops_path(updated_at: "true") %>
         <span class="ml-3">
           <%= link_to new_admin_shop_path,class: "btn btn-warning" do %>
           <i class="fas fa-store"></i>店舗を新規登録する

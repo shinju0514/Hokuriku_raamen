@@ -21,6 +21,29 @@ body {
   width: 30%;
 }
 
+.follow_list {
+  border: 5px solid #6091d3;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  background-color: #FFFFFF;
+  width: 30%;
+}
+
+.follow_index {
+  display:block;
+  display:flex;
+  justify-content: center;
+}
+
+.follow_user_image {
+  width: 100%;
+  height: 150px;
+  display:block;
+  display:flex;
+  justify-content: center;
+}
+
 .post_index_image {
   width: 100%;
   object-fit: cover;

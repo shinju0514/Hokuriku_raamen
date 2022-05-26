@@ -14,7 +14,7 @@ class Shop < ApplicationRecord
 
   # スコープ
   scope :latest, -> {order("created_at DESC")}
-  scope :rated, -> {order("rate DESC")}
+  scope :updated, -> {order("updated_at DESC")}
 
   def get_shop_image(width, height)
     unless shop_image.attached?

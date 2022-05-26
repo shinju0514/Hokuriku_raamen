@@ -1,8 +1,10 @@
 class Admin::ShopsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    if params[(:created_at)]
+    if params[(:created_at)||(:updated_at)]
       @shops = Shop.latest.page(params[:page]).per(10)
+    elsif
+      @shops = Shop.updated.page(params[:page]).per(10)
     else
       @shops = Shop.page(params[:page]).per(10)
     end

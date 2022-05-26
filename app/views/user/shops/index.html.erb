@@ -13,7 +13,7 @@
     </span>
     <span class="ml-3">
       <%= link_to map_shops_path,class: "btn btn-secondary" do %>
-      <i class="fas fa-map-marker-alt"></i>マップからラーメン店を探す
+      <i class="fas fa-map-marker-alt"></i>ラーメンマップ
       <% end %>
     </span>
     <span class="ml-3">
@@ -25,6 +25,7 @@
   <div class="sort_index">
     <h4>
     <%= link_to "新着順",shops_path(created_at: "true") %>
+    <%= link_to "更新順",shops_path(updated_at: "true") %>
     </h4>
   </div>
   <div class="row" style = "margin-top: 50px">
