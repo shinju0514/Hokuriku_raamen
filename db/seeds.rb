@@ -37,7 +37,7 @@ User.create([
     ])
 
 # Post.create([
-    # { user_id: '1',area_id: '1',shop_id: '1',menu: '塩ラーメン',body: 'あっさりしていてとても美味しいらーめんでした。',rate: '4.5',tag_ids: '豚骨'},
+    # { user_id: '1',area_id: '1',shop_id: '1',menu: '塩ラーメン',body: 'あっさりしていてとても美味しいらーめんでした。',rate: '4.5',tag_ids: '塩'},
     # { user_id: '1',area_id: '1',shop_id: '1',menu: 'チャーシューメン',body: 'チャーシューが濃厚で美味しかったです',rate: '5',tag_ids: '豚骨'},
     # { user_id: '2',area_id: '1',shop_id: '2',menu: '濃厚豚骨',body: '濃厚でめっちゃ美味しかったです。',rate: '4.5',tag_ids: '豚骨醤油'},
     # { user_id: '3',area_id: '2',shop_id: '6',menu: '二郎系らーめん',body: '二郎系でとても量が多く、満足感がありました',rate: '4',tag_ids: '二郎系'},
