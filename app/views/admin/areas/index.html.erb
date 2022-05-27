@@ -7,7 +7,7 @@
         <thead>
           <tr>
             <th><%= area.prefecture %></th>
-            <th><%= link_to "削除する", admin_area_path(area.id), method: :delete, data: {confirm: "削除しますか？"} %></th>
+            <th><%= link_to "削除する", admin_area_path(area.id), method: :delete, data: {confirm: "削除するとエリアに紐づいている投稿と店舗が削除されます。本当に削除しますか？"} %></th>
           </tr>
         </thead>
       </table>
