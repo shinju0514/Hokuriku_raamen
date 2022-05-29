@@ -8,6 +8,11 @@ class User::HomesController < ApplicationController
     @search_shop = Shop.ransack(params[:q])
     @result_shops = @search_shop.result
     @maps = Shop.all
+    if Rails.env.development?
+      @random_posts = Post.order("RANDOM()").limit(3)
+    else
+      @random_posts = Post.order("RAND()").limit(3)
+    end
   end
 
   def about
