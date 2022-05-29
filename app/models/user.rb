@@ -26,7 +26,9 @@ class User < ApplicationRecord
   enum user_status: { 有効: false, 退会: true }
 
   # バリデーション
-  validates :email, :encrypted_password, :user_name, presence: true
+  validates :email, presence: true
+  validates :password, presence: true
+  validates :user_name, length: { minimum: 2, maximum: 20 },uniqueness: true, presence: true
 
   # プロフィール画像の設定
   def get_profile_image(width, height)

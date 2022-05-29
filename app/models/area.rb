@@ -3,5 +3,5 @@ class Area < ApplicationRecord
   has_many :shops, dependent: :destroy
 
   # バリデーション
-  validates :prefecture, presence: true
+  validates :prefecture,length: { minimum: 2, maximum: 10 },presence: true
 end

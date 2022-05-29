@@ -18,6 +18,11 @@
       </div>
 
       <div class="form_group col-9">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form_group col-9">
         <%= f.label :profile_image, "プロフィール画像" %></br>
         <%= f.file_field :profile_image, accept: 'image/*' %>
       </div>

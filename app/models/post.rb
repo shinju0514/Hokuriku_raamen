@@ -15,7 +15,9 @@ class Post < ApplicationRecord
   scope :get_posts_sort_of_CreateDate, -> (number_of_display) {order("created_at": :desc).limit(number_of_display)}
 
   # バリデーション
-  validates :menu, :body, :rate, presence: true
+  validates :menu, length: { maximum: 20 },presence: true
+  validates :body, length: { maximum: 200 },presence: true
+  validates :rate, presence: true
 
   # Google map api
   # addressカラムに住所を入力することで、
