@@ -27,7 +27,6 @@ class User < ApplicationRecord
 
   # バリデーション
   validates :email, presence: true
-  validates :password, presence: true
   validates :user_name, length: { minimum: 2, maximum: 20 },uniqueness: true, presence: true
 
   # プロフィール画像の設定
