@@ -6,7 +6,7 @@ class Shop < ApplicationRecord
 
   # バリデーション
   validates :shop_name, length: { maximum: 20 },presence: true
-  validates :address, presence: true
+  validates :address, presence: true,uniqueness: true
   validates :bussiness_hour, presence: true
   enum shop_status: { 閉店: true, 開店: false }
 
