@@ -68,8 +68,8 @@ gem "gmaps4rails"
 gem "gmaps4rails"
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-
 gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+
+# group :production do
+# gem 'mysql2'
+# end
