@@ -1,6 +1,6 @@
 <header class="Header">
   <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color:#000000;" >
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand d-grid mx-auto" href="/"><%= image_tag('header.png', size: "220x100") %></a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
@@ -32,6 +32,33 @@
           </li>
         <% elsif user_signed_in? %>
         <h5 class="header_name mr-5"><%= current_user.user_name %>さんようこそ</h5>
+          <div class="dropdown mr-4">
+            <button type="button" id="dropdown1"
+                class="btn btn-primary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+              一覧メニュー
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown1">
+              <a class="dropdown-item" href="#"><%= link_to "投稿一覧",posts_path %></a>
+              <a class="dropdown-item" href="#"><%= link_to "店舗一覧",shops_path %></a>
+              <a class="dropdown-item" href="#"><%= link_to "ラーメンマップ",map_shops_path %></a>
+            </div>
+          </div>
+          <div class="dropdown mr-4">
+            <button type="button" id="dropdown1"
+                class="btn btn-success dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+              投稿メニュー
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown1">
+              <a class="dropdown-item" href="#"><%= link_to "投稿する!", new_post_path %></a>
+              <a class="dropdown-item" href="#"><%= link_to "店舗新規登録", new_shop_path %></a>
+            </div>
+          </div>
           <li>
             <%= link_to user_path(current_user) do %>
             <button type="button" class="btn btn-info mr-4">マイページ</button>
@@ -40,11 +67,6 @@
           <li>
             <%= link_to destroy_user_session_path do %>
             <button type="button" class="btn btn-danger mr-4">ログアウト</button>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_post_path do %>
-            <button type="button" class="btn btn-success">投稿する!</button>
             <% end %>
           </li>
         <% else %>
@@ -61,6 +83,11 @@
           <li>
             <%= link_to new_user_registration_path do %>
             <button type="button" class="btn btn-success mr-4">新規登録</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_guest_sign_in_path,method: :post do %>
+            <button type="button" class="btn btn-primary">ゲストログイン</button>
             <% end %>
           </li>
         <% end %>
