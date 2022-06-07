@@ -13,6 +13,7 @@ class User::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    impressionist(@shop, nil, unique: [:ip_address])
     if params[(:created_at)||(:rate)]
       @posts = @shop.posts.latest.page(params[:page]).per(6)
     elsif

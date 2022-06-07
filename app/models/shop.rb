@@ -14,6 +14,9 @@ class Shop < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  # 閲覧数
+  is_impressionable counter_cache: true
+
   # スコープ
   scope :latest, -> {order("created_at DESC")}
   scope :updated, -> {order("updated_at DESC")}

@@ -24,7 +24,11 @@ class Post < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  # 投稿画像の指定
   has_one_attached :post_image
+
+  # 閲覧数
+  is_impressionable counter_cache: true
 
 # 投稿画像の設定
   def post_get_image(width, height)

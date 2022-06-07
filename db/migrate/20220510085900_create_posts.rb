@@ -10,6 +10,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :menu, null: false
       t.text :body, null: false
       t.float :rate
+      t.integer :impressions_count, default: 0
       t.timestamps
     end
   end

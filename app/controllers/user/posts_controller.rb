@@ -16,6 +16,7 @@ class User::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    impressionist(@post, nil, unique: [:user_id])
     @user = @post.user
     @shop = @post.shop
     @post_comment = PostComment.new

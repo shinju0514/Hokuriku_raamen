@@ -8,6 +8,7 @@ class CreateShops < ActiveRecord::Migration[6.1]
       t.float :longitude
       t.string :bussiness_hour, null: false
       t.boolean :shop_status, null: false, default: false
+      t.integer :impressions_count, default: 0
       t.timestamps
     end
   end
