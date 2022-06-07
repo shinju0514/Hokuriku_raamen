@@ -6,25 +6,25 @@
         <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
           <li class="mr-4">
-            <%= link_to admin_users_path,class: "btn btn-warning" do %>
-            <i class="fas fa-user-friends"></i>ユーザー一覧
+            <%= link_to new_admin_shop_path,class: "btn btn-warning" do %>
+            <i class="fas fa-store"></i>店舗を新規登録する
             <% end %>
           </li>
-          <li class="mr-4">
-            <%= link_to admin_posts_path,class: "btn btn-info" do %>
-            <i class="fas fa-star"></i>投稿一覧
-            <% end %>
-          </li>
-          <li class="mr-4">
-            <%= link_to admin_shops_path,class: "btn btn-primary" do %>
-            <i class="fas fa-store-alt"></i>店舗一覧
-            <% end %>
-          </li>
-          <li class="mr-4">
-            <%= link_to admin_areas_path,class: "btn btn-dark" do %>
-            <i class="fas fa-map"></i>エリア一覧
-            <% end %>
-          </li>
+          <div class="dropdown mr-4">
+            <button type="button" id="dropdown1"
+                class="btn btn-primary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+              一覧メニュー
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown1">
+              <a class="dropdown-item" href="#"><%= link_to "ユーザー一覧",admin_users_path %></a>
+              <a class="dropdown-item" href="#"><%= link_to "投稿一覧",admin_posts_path %></a>
+              <a class="dropdown-item" href="#"><%= link_to "店舗一覧",admin_shops_path %></a>
+              <a class="dropdown-item" href="#"><%= link_to "エリア一覧",admin_areas_path %></a>
+            </div>
+          </div>
           <li class="mr-4">
             <%= link_to destroy_admin_session_path do %>
             <button type="button" class="btn btn-danger mr-4">ログアウト</button>
