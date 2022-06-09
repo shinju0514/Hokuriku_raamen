@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   scope :latest, -> {order("created_at DESC")}
   scope :rated, -> {order("rate DESC")}
   scope :get_posts_sort_of_CreateDate, -> (number_of_display) {order("created_at": :desc).limit(number_of_display)}
+  scope :views, -> {order("impressions_count DESC")}
 
   # バリデーション
   validates :menu, length: { maximum: 20 },presence: true
@@ -44,4 +45,9 @@ class Post < ApplicationRecord
     # exists?メソッドでuser_idが存在しているかを判定している。
     favorites.exists?(user_id: user.id)
   end
+  
+  def posts_favorites
+    Post.includes(:favorites).sort{|a,b| b.favorites.count <=> a.favorites.count}
+  end
+    
 end

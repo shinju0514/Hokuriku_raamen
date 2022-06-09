@@ -4,6 +4,7 @@
     <h4>
     <%= link_to "新着順",posts_path(created_at: "true") %>
     <%= link_to "評価順",posts_path(rate: "true") %>
+    <%= link_to "閲覧数順",posts_path(impressions_count: "true") %>
     </h4>
   </div>
   <div class="post_wrapper" style = "margin-top: 50px">

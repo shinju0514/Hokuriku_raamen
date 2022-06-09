@@ -5,12 +5,12 @@ class User::PostsController < ApplicationController
   # 評価順と投稿順に並べる記述
   # モデルに定義したスコープを使用している
   def index
-    if params[(:created_at)||(:rate)]
+    if params[:latest]
       @posts = Post.latest.page(params[:page]).per(6)
-    elsif
+    elsif params[:rated]
       @posts = Post.rated.page(params[:page]).per(6)
-    else
-      @posts = Post.page(params[:page]).per(6)
+    elsif params[:favorites]
+      @posts = Post.favorites.page(params[:page]).per(6)
     end
   end
 
