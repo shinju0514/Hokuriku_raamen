@@ -1,6 +1,6 @@
 # Hokuriku麺
 
-![Uploading スクリーンショット 2022-06-11 13.00.17.png…]()
+<img width="1440" alt="スクリーンショット 2022-06-11 13 00 17" src="https://user-images.githubusercontent.com/99737371/173171742-5d539eeb-57ce-4f9f-a0d5-16d90a4aaae2.png">
 
 ## サイト概要
 
