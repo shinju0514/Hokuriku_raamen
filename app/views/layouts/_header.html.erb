@@ -83,12 +83,14 @@
             <% end %>
           </li>
           <li>
-            <%= link_to notifications_path,class: 'nav-link text-light' do %>
-              <% if unchecked_notifications.any? %>
-                <i class="far fa-bell" style="color: tomato;"></i>通知
-              <% else %>
-              <i class="fas fa-check" style="color: white;"></i>通知
-              <% end %>
+            <%= link_to notifications_path do %>
+              <button type="button" class="btn btn-secondary mr-4">
+                <% if unchecked_notifications.any? %>
+                <i class="far fa-bell" style="color:  #F79800;"></i>通知
+                <% else %>
+                <i class="fas fa-check" style="color: #FFFFFF;"></i>通知
+                <% end %>
+              </button>
             <% end %>
           </li>
           <li>
@@ -99,22 +101,22 @@
         <% else %>
           <li>
             <%= link_to about_path do %>
-              <button type="button" class="btn btn-info mr-4">初めての方へ</button>
+              <button type="button" class="btn btn-info mr-4"><i class="far fa-hand-point-right"></i>初めての方へ</button>
             <% end %>
           </li>
           <li>
             <%= link_to new_user_session_path do %>
-              <button type="button" class="btn btn-warning mr-4">ログイン</button>
+              <button type="button" class="btn btn-warning mr-4"><i class="fas fa-key"></i>ログイン</button>
             <% end %>
           </li>
           <li>
             <%= link_to new_user_registration_path do %>
-              <button type="button" class="btn btn-success mr-4">新規登録</button>
+              <button type="button" class="btn btn-success mr-4"><i class="fas fa-user-check"></i>新規登録</button>
             <% end %>
           </li>
           <li>
             <%= link_to users_guest_sign_in_path,method: :post do %>
-              <button type="button" class="btn btn-primary">ゲストログイン</button>
+              <button type="button" class="btn btn-primary"><i class="far fa-user-circle"></i>ゲストログイン</button>
             <% end %>
           </li>
         <% end %>
