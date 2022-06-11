@@ -1,0 +1,26 @@
+<% visitor = User.find(notification.visitor_id) %>
+<% visited = User.find(notification.visited_id) %>
+<li class="list-unstyled mt-4">
+  <%= link_to user_path(visitor) do %>
+    <%= image_tag visitor.get_profile_image(50,50), style: "obfect-fit: contain;",class: 'rounded-circle' %>
+    <strong><%= visitor.user_name %></strong>
+  <% end %>さんが
+
+  <% case notification.action when 'follow' then %>
+      あなたをフォローしました
+
+  <% when 'favorite' then %>
+    <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+    をいいねしました
+  <% when 'post_comment' then %>
+    <% if notification.post.user_id == notification.visited.id %>
+     <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
+    <% else %>
+      <%= link_to post_path(notification.post) do %>
+        <strong><%= notification.post.user.user_name + 'さんの投稿' %></strong>
+      <% end %>
+    <% end %>
+    にコメントしました
+  <% end %>
+</li>
+  <div class="mx-auto"><%= time_ago_in_words(notification.created_at).upcase %>前</div>

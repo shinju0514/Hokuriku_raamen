@@ -1,0 +1,11 @@
+<div class="text-center">
+  <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+  <!--自分の投稿に対するいいね、コメントは通知に表示しない-->
+  <p class="text-right"><i class="fas fa-trash"></i><%= link_to "通知を全削除",notification_path(@notifications), method: :delete,class:"btn btn-light" %></p>
+  <% if notifications.exists? %>
+    <%= render notifications %>
+    <%= paginate notifications %>
+  <% else %>
+   <p>通知はありません</p>
+  <% end %>
+</div>

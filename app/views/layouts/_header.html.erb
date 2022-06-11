@@ -83,7 +83,13 @@
             <% end %>
           </li>
           <li>
-            <%= link_to notifications_path %>
+            <%= link_to notifications_path,class: 'nav-link text-light' do %>
+              <% if unchecked_notifications.any? %>
+                <i class="far fa-bell" style="color: tomato;"></i>通知
+              <% else %>
+              <i class="fas fa-check" style="color: white;"></i>通知
+              <% end %>
+            <% end %>
           </li>
           <li>
             <%= link_to destroy_user_session_path do %>
