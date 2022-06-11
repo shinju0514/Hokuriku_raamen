@@ -52,5 +52,6 @@ Rails.application.routes.draw do
         get 'map'
       end
     end
+    resources :notifications, only: [:index]
   end
 end

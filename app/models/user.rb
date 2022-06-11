@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  # 通知機能
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
    # スコープ
   scope :latest, -> {order("created_at DESC")}
   scope :rated, -> {order("rate DESC")}
@@ -43,6 +47,18 @@ class User < ApplicationRecord
     find_or_create_by!(user_name: 'guestuser' ,email: 'guest@guest.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.user_name = "guestuser"
+    end
+  end
+
+# 通知機能
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
     end
   end
 
