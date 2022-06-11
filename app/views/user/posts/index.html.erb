@@ -2,9 +2,11 @@
   <h2 class="post-index mb-3 mt-4">レビュー一覧</h2>
   <div class="sort_index">
     <h4>
-    <%= link_to "新着順",posts_path(created_at: "true") %>
-    <%= link_to "評価順",posts_path(rate: "true") %>
-    <%= link_to "閲覧数順",posts_path(impressions_count: "true") %>
+      <%= link_to "新着順",posts_path(create: "true") %>
+      <%= link_to "評価順",posts_path(rate: "true") %>
+      <%= link_to "閲覧数順",posts_path(impressions_count: "true") %>
+      <%= link_to "いいね順",posts_path(favorite: "true") %>
+      <%= link_to "コメント順",posts_path(post_comment: "true") %>
     </h4>
   </div>
   <div class="post_wrapper" style = "margin-top: 50px">

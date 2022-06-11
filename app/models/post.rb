@@ -47,8 +47,12 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def posts_favorites
-    Post.includes(:favorites).sort{|a,b| b.favorites.count <=> a.favorites.count}
+  def self.post_favorites
+    Post.includes(:favorites).sort{|a,b| b.favorites.size <=> a.favorites.size}
+  end
+
+  def self.post_comments
+    Post.includes(:post_comments).sort{|a,b| b.post_comments.size <=> a.post_comments.size}
   end
 
   # 通知機能

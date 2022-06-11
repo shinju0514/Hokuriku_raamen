@@ -5,13 +5,24 @@ class User::PostsController < ApplicationController
   # 評価順と投稿順に並べる記述
   # モデルに定義したスコープを使用している
   def index
-    if params[:latest]
-      @posts = Post.latest.page(params[:page]).per(6)
-    elsif params[:rated]
-      @posts = Post.rated.page(params[:page]).per(6)
-    elsif params[:favorites]
-      @posts = Post.favorites.page(params[:page]).per(6)
-    end
+    @posts = if params[:create]
+              # 新着順に並べる
+                 Post.latest.page(params[:page]).per(6)
+               elsif params[:rate]
+              # 評価順に並べる
+                 Post.rated.page(params[:page]).per(6)
+               elsif params[:impressions_count]
+              # 閲覧数順に並べる
+                 Post.views.page(params[:page]).per(6)
+               elsif params[:favorite]
+              # いいね順に並べる
+                 Kaminari.paginate_array(Post.post_favorites).page(params[:page]).per(6)
+               elsif params[:post_comment]
+              # コメント数順に並べる
+                 Kaminari.paginate_array(Post.post_comments).page(params[:page]).per(6)
+               else
+                 Post.page(params[:page]).per(6)
+               end
   end
 
   def show
