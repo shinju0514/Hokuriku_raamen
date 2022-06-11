@@ -35,7 +35,7 @@
           </div>
           <li class="mr-4">
             <%= link_to destroy_admin_session_path do %>
-            <button type="button" class="btn btn-danger mr-4">ログアウト</button>
+            <button type="button" class="btn btn-danger mr-4"><i class="fa-solid fa-ban"></i>ログアウト</button>
             <% end %>
           </li>
         <% elsif user_signed_in? %>
@@ -79,7 +79,7 @@
           </div>
           <li>
             <%= link_to user_path(current_user) do %>
-              <button type="button" class="btn btn-info mr-4">マイページ</button>
+              <button type="button" class="btn btn-info mr-4"><i class="fa-solid fa-file-lines"></i>マイページ</button>
             <% end %>
           </li>
           <li>
@@ -95,13 +95,13 @@
           </li>
           <li>
             <%= link_to destroy_user_session_path do %>
-              <button type="button" class="btn btn-danger mr-4">ログアウト</button>
+              <button type="button" class="btn btn-danger mr-4"><i class="fa-solid fa-ban"></i>ログアウト</button>
             <% end %>
           </li>
         <% else %>
           <li>
             <%= link_to about_path do %>
-              <button type="button" class="btn btn-info mr-4"><i class="far fa-hand-point-right"></i>初めての方へ</button>
+              <button type="button" class="btn btn-info mr-4"><i class="fa-solid fa-arrow-right"></i>初めての方へ</button>
             <% end %>
           </li>
           <li>
