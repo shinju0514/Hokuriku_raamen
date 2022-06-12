@@ -2,13 +2,18 @@ class User::ShopsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[(:created_at)||(:updated_at)]
-    @shops = Shop.latest.where(shop_status: false).page(params[:page]).per(6)
-    elsif
-    @shops = Shop.updated.where(shop_status: false).page(params[:page]).per(6)
-    else
-    @shops = Shop.page(params[:page]).per(6)
-    end
+    @shops = if params[:create]
+              # 新着順に並べる
+                 Shop.latest.where(shop_status: false).page(params[:page]).per(6)
+               elsif params[:update]
+              # 更新順に並べる
+                 Shop.updated.where(shop_status: false).page(params[:page]).per(6)
+               elsif params[:popular]
+              # レビューが多い順に並べる
+                 Kaminari.paginate_array(Shop.shop_popular).page(params[:page]).per(6)
+               else
+                 Shop.where(shop_status: false).page(params[:page]).per(6)
+               end
   end
 
   def show

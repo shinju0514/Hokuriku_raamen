@@ -21,6 +21,7 @@ class Shop < ApplicationRecord
   scope :latest, -> {order("created_at DESC")}
   scope :updated, -> {order("updated_at DESC")}
 
+
   # 店舗画像の設定
   def get_shop_image(width, height)
     unless shop_image.attached?
@@ -28,5 +29,9 @@ class Shop < ApplicationRecord
       shop_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     shop_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def self.shop_popular
+    Shop.includes(:posts).sort{|a,b| b.posts.size <=> a.posts.size }
   end
 end
