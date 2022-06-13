@@ -29,57 +29,11 @@
       </div>
       <div class="mt-4">
         <div class="index_top">
-          <h4>ラーメンピックアップ</h4>
-          <div class="row top-button mb-4">
-            <div class="sort_area mr-3">
-              <%= link_to "新着順", rank_path(status: "new"), remote: true %>
+          <h4>レビュー一覧 new!!</h4>
+          <%= render 'user/homes/post_index',posts: @posts %>
+            <div class="text-right">
+              <h5><%= link_to "<<ランキングはこちら>>",rank_path %></h5>
             </div>
-            <div class="sort_area mr-3">
-              <%= link_to "評価順", rank_path(status: "rate"), remote: true %>
-            </div>
-            <div class="sort_area">
-              <%= link_to "いいね順", rank_path(status: "favorite"), remote: true %>
-            </div>
-          </div>
-
-          <% if @posts.present? %>
-            <div class="top_area">
-              <%= render "user/homes/post_index", posts: @posts %>
-            </div>
-          <% elsif @rank.present? %>
-            <div class="top_area">
-              <%= render "user/homes/post_rank" , posts: @rank %>
-            </div>
-          <% else @favorites.present? %>
-            <div class="top_area">
-              <%= render "user/homes/post_favorite" , posts: @favorites %>
-            </div>
-          <% end %>
-
-          <!--<ul class="nav nav-tabs" id="myTab"> 　<!--タブ-->
-          <!--  <li class="active nav-home"><a href="#home" data-toggle="tab">レビュー新着</a></li>-->
-          <!--  <li class="nav-home"><a href="#profile" data-toggle="tab">いいね順</a></li>-->
-          <!--  <li class="nav-home"><a href="#messages" data-toggle="tab">人気順</a></li>-->
-          <!--  <li class="nav-home"><a href="#about" data-toggle="tab">コメント順</a></li>-->
-          <!--</ul>-->
-          <!--<div class="top_post tab-content col-4 mt-4">-->
-          <!--  <div class="tab-pane active" id="home">-->
-          <!--    <h4>レビュー新着! New!</h4>-->
-          <!--    -->
-          <!--  </div>-->
-          <!--  <div class="tab-pane" id="profile">-->
-          <!--    <h4>いいねが多いレビュー</h4>-->
-          <!--    -->
-          <!--  </div>-->
-          <!--  <div class="tab-pane" id="messages">-->
-          <!--    <h4>評価が高いレビュー</h4>-->
-          <!--    -->
-          <!--  </div>-->
-          <!--  <div class="tab-pane" id="about">-->
-          <!--    <h4>コメント数が多いレビュー</h4>-->
-          <!--    -->
-          <!--  </div>-->
-          <!--</div>-->
           <%= render 'user/shops/map_index',maps: @maps %>
         </div>
       </div>
