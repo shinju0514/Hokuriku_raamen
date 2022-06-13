@@ -40,7 +40,8 @@ function initMap(){
       // マップに刺してあるピンをクリックした際の吹き出しの内容を記述するための内容
             function infoWindow(shop_name, address, latitude, longitude, contentString) {
             return new google.maps.InfoWindow({ // 吹き出しの追加
-                  content: "<div class='sample'>" + shop_name + "," + address + "</div>" // 吹き出しに表示する内容
+                  // content: "<div class='sample'>" + shop_name + "," + address + "</div>" // 吹き出しに表示する内容
+                  content: "<a href=/shops/<%= m.id %>>" + shop_name + "," + address + "</a>" // 吹き出しに表示する内容
             })// 吹き出しの表示
           }
           var marker = markerObj(<%= m.latitude %>, <%= m.longitude %>, contentString)
