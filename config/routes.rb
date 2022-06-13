@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   scope module: :user do
     root :to => 'homes#top'
     get "homes/about" => "homes#about", as: "about"
+    get "homes/rank" => "homes#rank" , as: "rank"
     devise_for :users,skip: [:passwords], controllers: {registrations: "user/registrations",sessions: 'user/sessions'}
     resources :users, only: [:show, :edit, :update] do
       # フォローフォロワーの記述

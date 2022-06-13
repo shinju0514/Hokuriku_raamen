@@ -27,25 +27,27 @@ function initMap(){
           center: {lat: 36.57849231757152, lng:136.64787099262296},
           zoom: 8,
       });
+
+      // それぞれ必要なメソッドを定義する
+      function markerObj(latitude, longitude, contentString) {
+        return new google.maps.Marker({
+          position:{lat: parseFloat(latitude), lng: parseFloat(longitude)},
+          map: map,
+          title: contentString
+        });
+      }
+      // 吹き出し表示のためのメソッドを定義する
+      function infoWindow(shop_name, address, latitude, longitude, contentString, shop_id) {
+        return new google.maps.InfoWindow({ // 吹き出しの追加
+              content: "<a href=/shops/" + shop_id + ">" + shop_name + "," + address + "</a>" // 吹き出しに表示する内容
+        })// 吹き出しの表示
+      }
+
       // each文でaddressカラムに入っている住所から緯度と経度を特定し、マップにピンを刺している
       <% maps.each do |m| %>
           var contentString = "<%= m.address %>";
-          function markerObj(latitude, longitude, contentString) {
-            return new google.maps.Marker({
-              position:{lat: parseFloat(latitude), lng: parseFloat(longitude)},
-              map: map,
-              title: contentString
-            });
-          }
-      // マップに刺してあるピンをクリックした際の吹き出しの内容を記述するための内容
-            function infoWindow(shop_name, address, latitude, longitude, contentString) {
-            return new google.maps.InfoWindow({ // 吹き出しの追加
-                  // content: "<div class='sample'>" + shop_name + "," + address + "</div>" // 吹き出しに表示する内容
-                  content: "<a href=/shops/<%= m.id %>>" + shop_name + "," + address + "</a>" // 吹き出しに表示する内容
-            })// 吹き出しの表示
-          }
           var marker = markerObj(<%= m.latitude %>, <%= m.longitude %>, contentString)
-          var info =  infoWindow("<%= m.shop_name %>", "<%= m.address %>", "<%= m.latitude %>", "<%= m.longitude %>", contentString)
+          var info =  infoWindow("<%= m.shop_name %>", "<%= m.address %>", "<%= m.latitude %>", "<%= m.longitude %>", contentString, "<%= m.id %>")
           setEvent(marker,info)
       <% end %>
 }
