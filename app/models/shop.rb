@@ -8,7 +8,6 @@ class Shop < ApplicationRecord
   validates :shop_name, length: { maximum: 20 },presence: true
   validates :address, presence: true,uniqueness: true
   validates :bussiness_hour, presence: true
-  validate :shop_image_content_type
   enum shop_status: { 閉店: true, 開店: false }
 
   # Google map api
@@ -34,10 +33,5 @@ class Shop < ApplicationRecord
 
   def self.shop_popular
     Shop.includes(:posts).sort{|a,b| b.posts.size <=> a.posts.size }
-  end
-
-  def shop_image_content_type
-    extension = ['image/png', 'image/jpg', 'image/jpeg']
-    errors.add(:shop_image, "の拡張子が間違っています") unless shop_image.content_type.in?(extension)
   end
 end

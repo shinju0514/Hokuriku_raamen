@@ -10,7 +10,7 @@ class User::ShopsController < ApplicationController
                  Shop.updated.where(shop_status: false).page(params[:page]).per(6)
                elsif params[:popular]
               # レビューが多い順に並べる
-                 Kaminari.paginate_array(Shop.shop_popular).page(params[:page]).per(6)
+                 Kaminari.paginate_array(Shop.where(shop_status: false).shop_popular).page(params[:page]).per(6)
                else
                  Shop.where(shop_status: false).page(params[:page]).per(6)
                end
