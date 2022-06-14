@@ -71,6 +71,6 @@ gem 'devise-i18n-views'
 gem 'dotenv-rails'
 gem 'impressionist'
 
-# group :production do
-# gem 'mysql2'
-# end
+group :production do
+gem 'mysql2'
+end
