@@ -32,7 +32,6 @@ class User < ApplicationRecord
   # バリデーション
   validates :email, presence: true
   validates :user_name, length: { minimum: 2, maximum: 20 },uniqueness: true, presence: true
-  validate :profile_image_content_type
 
   # プロフィール画像の設定
   def get_profile_image(width, height)
@@ -74,12 +73,6 @@ class User < ApplicationRecord
   # フォローしているかどうか
   def following?(user)
     followings.include?(user)
-  end
-
-  # 画像のバリデーション
-  def profile_image_content_type
-    extension = ['image/png', 'image/jpg', 'image/jpeg']
-    errors.add(:profile_image, "の拡張子が間違っています") unless profile_image.content_type.in?(extension)
   end
 
   def was_attached?
