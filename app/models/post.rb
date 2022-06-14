@@ -20,6 +20,8 @@ class Post < ApplicationRecord
   validates :menu, length: { maximum: 20 },presence: true
   validates :body, length: { maximum: 200 },presence: true
   validates :rate, presence: true
+  validate :post_image_content_type
+
 
   # Google map api
   # addressカラムに住所を入力することで、
@@ -39,6 +41,11 @@ class Post < ApplicationRecord
     post_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg/HEIC')
     end
     post_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def post_image_content_type
+    extension = ['image/png', 'image/jpg', 'image/jpeg']
+    errors.add(:post_image, "の拡張子が間違っています") unless post_image.content_type.in?(extension)
   end
 
 # ユーザーいいねをしているかを判定するメソッド
