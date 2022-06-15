@@ -2,6 +2,8 @@
 
 <img width="1437" alt="スクリーンショット 2022-06-15 22 41 44" src="https://user-images.githubusercontent.com/99737371/173842019-9f40a69b-d02c-405f-8862-0f96913ed252.png">
 
+### 動作デモ
+
 ## サイト概要
 
 ### サイトテーマ
@@ -25,6 +27,8 @@ google mapを実装しており、mapからもラーメン店を探せるよう�
 
 ## 設計書
 ### ER図 : https://app.diagrams.net/#G1Gq7hb4o-6RwwTx3gWBdOGmjDXTxb8vXV
+
+<img width="467" alt="スクリーンショット 2022-06-15 23 25 57" src="https://user-images.githubusercontent.com/99737371/173852017-88e2c9a7-02c1-4d19-bd65-df2f5110bd9d.png">
 
 ### 詳細設計
 
