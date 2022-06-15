@@ -19,8 +19,9 @@
     <% end %>
   <div class="sort_index mt-5 mb-3">
     <h4>
-    <%= link_to "新着順",search_shops_path(created_at: "true") %>
-    <%= link_to "更新順",search_shops_path(updated_at: "true") %>
+    <%= link_to "新着順",search_shops_path(created_at: "true"),class: "btn btn--red btn--cubic" %>
+    <%= link_to "更新順",search_shops_path(updated_at: "true"),class: "btn btn--yellow btn--cubic" %>
+    <%= link_to "投稿数が多い店舗",search_shops_path(popular: "true"),class: "btn btn--water btn--cubic" %>
     </h4>
   </div>
   <div class="post_wrapper">

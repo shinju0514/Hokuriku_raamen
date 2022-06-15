@@ -4,8 +4,9 @@
       <h4 class="admin_post_index mt-2 mb-2">レビュー一覧</h4>
       <div class="sort_index">
         <h4>
-        <%= link_to "新着順",admin_posts_path(created_at: "true") %>
-        <%= link_to "評価順",admin_posts_path(rate: "true") %>
+          <%= link_to "新着順",admin_posts_path(create: "true"),class: "btn btn--red btn--cubic" %>
+          <%= link_to "評価順",admin_posts_path(rate: "true"),class: "btn btn--yellow btn--cubic" %>
+          <%= link_to "更新順",admin_posts_path(update: "true"),class: "btn btn--water btn--cubic" %>
         </h4>
       </div>
       <table class="table table-hover">
@@ -17,6 +18,7 @@
             <th>エリア</th>
             <th>評価</th>
             <th>投稿日</th>
+            <th>更新日</th>
           </tr>
         </thead>
         <% @posts.each do |post| %>
@@ -48,6 +50,7 @@
                 });
                 </script></th>
             <th><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></th>
+            <th><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></th>
           </tr>
         </tbody>
         <% end %>

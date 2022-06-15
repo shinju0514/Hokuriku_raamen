@@ -2,9 +2,9 @@
   <h2 class="shop">店舗一覧</h2>
   <div class="sort_index">
     <h4>
-      <%= link_to "新着順",shops_path(create: "true") %>
-      <%= link_to "更新順",shops_path(update: "true") %>
-      <%= link_to "人気順",shops_path(popular: "true") %>
+      <%= link_to "新着順",shops_path(create: "true"),class: "btn btn--red btn--cubic" %>
+      <%= link_to "更新順",shops_path(update: "true"),class: "btn btn--yellow btn--cubic" %>
+      <%= link_to "投稿数が多い店舗",shops_path(popular: "true"),class: "btn btn--water btn--cubic" %>
     </h4>
   </div>
   <div class="row" style = "margin-top: 50px">

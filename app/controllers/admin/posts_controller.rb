@@ -4,13 +4,17 @@ class Admin::PostsController < ApplicationController
   # 評価順と投稿順に並べる記述
   # モデルに定義したスコープを使用している
   def index
-    if params[(:created_at)||(:rate)]
-      @posts = Post.latest.page(params[:page]).per(10)
-    elsif
-      @posts = Post.rated.page(params[:page]).per(10)
-    else
-      @posts = Post.page(params[:page]).per(10)
-    end
+        @posts = if params[:create]
+              # 新着順に並べる
+                Post.latest.page(params[:page]).per(10)
+                 elsif params[:rate]
+                # 評価順に並べる
+                Post.rated.page(params[:page]).per(10)
+                 elsif params[:update]
+                Post.updated.page(params[:page]).per(10)
+                 else
+                Post.page(params[:page]).per(10)
+              end
   end
 
   def show

@@ -6,6 +6,71 @@ body {
   font-family: 'Yusei Magic', sans-serif;
 }
 
+a.btn--yellow {
+  color: #000;
+  background-color: #fff100;
+  border-bottom: 5px solid #ccc100;
+}
+
+a.btn--yellow:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #fff20a;
+  border-bottom: 2px solid #ccc100;
+}
+
+a.btn--red {
+  color: #000;
+  background-color: #ff540a;
+  border-bottom: 5px solid #db650b;
+}
+
+a.btn--red:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #ff540a;
+  border-bottom: 2px solid #db650b;
+}
+
+a.btn--blue {
+  color: #000;
+  background-color: #0ba4db;
+  border-bottom: 5px solid #156c8c;
+}
+
+a.btn--blue:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #0ba4db;
+  border-bottom: 2px solid #156c8c;
+}
+
+a.btn--green {
+  color: #000;
+  background-color: #0ddb30;
+  border-bottom: 5px solid #169c2c;
+}
+
+a.btn--green:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #0ddb30;
+  border-bottom: 2px solid #169c2c;
+}
+
+a.btn--water {
+  color: #000;
+  background-color: #07ede9;
+  border-bottom: 5px solid #1ab0ad;
+}
+
+a.btn--water:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #07ede9;
+  border-bottom: 2px solid #1ab0ad;
+}
+
 .dropdown-item{
   text-decoration: none;
   color: #000000;

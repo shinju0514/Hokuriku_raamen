@@ -18,14 +18,19 @@ class User::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    impressionist(@shop, nil, unique: [:ip_address])
-    if params[(:created_at)||(:rate)]
-      @posts = @shop.posts.latest.page(params[:page]).per(6)
-    elsif
-      @posts = @shop.posts.rated.page(params[:page]).per(6)
-    else
-      @posts = @shop.posts.page(params[:page]).per(6)
-    end
+    @posts = if params[:create]
+                @shop.posts.latest.page(params[:page]).per(6)
+              elsif params[:rate]
+                @shop.posts.rated.page(params[:page]).per(6)
+              elsif params[:impressions_count]
+                @shop.posts.views.page(params[:page]).per(6)
+              elsif params[:favorite]
+                Kaminari.paginate_array(@shop.posts.post_favorites).page(params[:page]).per(6)
+              elsif params[:post_comment]
+                Kaminari.paginate_array(@shop.posts.post_comments).page(params[:page]).per(6)
+              else
+                @shop.posts.page(params[:page]).per(6)
+            end
   end
 
   def edit
@@ -58,23 +63,19 @@ class User::ShopsController < ApplicationController
 
   def search
     @search_shop = Shop.ransack(params[:q])
-    if params[(:created_at)||(:updated_at)]
-      @result_shops = @search_shop.result.latest.where(shop_status: false).page(params[:page]).per(6)
-    elsif
-      @result_shops = @search_shop.result.updated.where(shop_status: false).page(params[:page]).per(6)
-    else
-      @result_shops = @search_shop.result.where(shop_status: false).page(params[:page]).per(6)
-    end
+    @result_shops = if params[:create]
+                      @search_shop.result.latest.where(shop_status: false).page(params[:page]).per(6)
+                    elsif params[:update]
+                      @search_shop.result.updated.where(shop_status: false).page(params[:page]).per(6)
+                    elsif params[:popular]
+                      Kaminari.paginate_array(@search_shop.result.where(shop_status: false).shop_popular).page(params[:page]).per(6)
+                    else
+                      @search_shop.result.where(shop_status: false).page(params[:page]).per(6)
+                    end
   end
 
   def map
-    if params[(:created_at)||(:updated_at)]
-      @maps = Shop.latest.page(params[:page]).per(12)
-    elsif
-      @maps = Shop.updated.page(params[:page]).per(12)
-    else
-      @maps = Shop.page(params[:page]).per(12)
-    end
+    @maps = Shop.all
   end
 
   private

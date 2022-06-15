@@ -37,18 +37,18 @@ User.create([
     ])
 
 # Post.create([
-    # { user_id: '1',area_id: '1',shop_id: '1',menu: '塩ラーメン',body: 'あっさりしていてとても美味しいらーめんでした。',rate: '4.5',tag_ids: '塩'},
-    # { user_id: '1',area_id: '1',shop_id: '1',menu: 'チャーシューメン',body: 'チャーシューが濃厚で美味しかったです',rate: '5',tag_ids: '豚骨'},
-    # { user_id: '2',area_id: '1',shop_id: '2',menu: '濃厚豚骨',body: '濃厚でめっちゃ美味しかったです。',rate: '4.5',tag_ids: '豚骨醤油'},
-    # { user_id: '3',area_id: '2',shop_id: '6',menu: '二郎系らーめん',body: '二郎系でとても量が多く、満足感がありました',rate: '4',tag_ids: '二郎系'},
-    # { user_id: '2',area_id: '2',shop_id: '7',menu: '魚介つけ麺',body: '魚介系のスタンダードなつけ麺で美味でした。',rate: '3',tag_ids: 'つけ麺'},
-    # { user_id: '3',area_id: '2',shop_id: '7',menu: '油そば',body: '油そばが濃厚で美味しいです。また行きたいな',rate: '5',tag_ids: '油そば'},
-    # { user_id: '5',area_id: '1',shop_id: '5',menu: 'さっぱり煮干し塩ラーメン',body: 'あっさりしていて煮干しの出汁がたまりませんでした。',rate: '2.5',tag_ids: '魚介スープ'},
-    # { user_id: '4',area_id: '1',shop_id: '5',menu: '豚骨バリカタ',body: '豚骨でバリカタが美味しかったです。',rate: '4.5',tag_ids: '豚骨'},
-    # { user_id: '6',area_id: '1',shop_id: '1',menu: 'チャーシュー味噌ラーメン',body: '濃厚で味噌好きなのでとても満足です。',rate: '4.5',tag_ids: '味噌'},
-    # { user_id: '3',area_id: '3',shop_id: '9',menu: '豚骨ラーメン',body: '豚骨好きにはたまらない美味しさでした。',rate: '1.5',tag_ids: '豚骨'},
-    # { user_id: '1',area_id: '3',shop_id: '9',menu: '醤油ラーメン',body: 'スタンダードな醤油ラーメンでめっちゃ美味かったです。',rate: '2',tag_ids: '醤油'},
-    # ])
+#     { user_id: '1',area_id: '1',shop_id: '1',menu: '塩ラーメン',body: 'あっさりしていてとても美味しいらーめんでした。',rate: '4.5'},post_image.attach(io: File.open(Rails.root.join("/db/image/tonkotsu_negi.jpeg")),file_name: "tonkotsu_negi.jpeg")
+#     # { user_id: '1',area_id: '1',shop_id: '1',menu: 'チャーシューメン',body: 'チャーシューが濃厚で美味しかったです',rate: '5',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '2',area_id: '1',shop_id: '2',menu: '濃厚豚骨',body: '濃厚でめっちゃ美味しかったです。',rate: '4.5',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '3',area_id: '2',shop_id: '6',menu: '二郎系らーめん',body: '二郎系でとても量が多く、満足感がありました',rate: '4',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '2',area_id: '2',shop_id: '7',menu: '魚介つけ麺',body: '魚介系のスタンダードなつけ麺で美味でした。',rate: '3',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '3',area_id: '2',shop_id: '7',menu: '油そば',body: '油そばが濃厚で美味しいです。また行きたいな',rate: '5',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '5',area_id: '1',shop_id: '5',menu: 'さっぱり煮干し塩ラーメン',body: 'あっさりしていて煮干しの出汁がたまりませんでした。',rate: '2.5',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '4',area_id: '1',shop_id: '5',menu: '豚骨バリカタ',body: '豚骨でバリカタが美味しかったです。',rate: '4.5',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '6',area_id: '1',shop_id: '1',menu: 'チャーシュー味噌ラーメン',body: '濃厚で味噌好きなのでとても満足です。',rate: '4.5',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '3',area_id: '3',shop_id: '9',menu: '豚骨ラーメン',body: '豚骨好きにはたまらない美味しさでした。',rate: '1.5',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     # { user_id: '1',area_id: '3',shop_id: '9',menu: '醤油ラーメン',body: 'スタンダードな醤油ラーメンでめっちゃ美味かったです。',rate: '2',post_image: File.open("/db/image/tonkotsu_negi.jpeg")},
+#     ])
 
 Area.create([
     { prefecture: '石川県'},

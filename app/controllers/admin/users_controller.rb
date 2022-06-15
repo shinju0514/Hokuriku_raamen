@@ -9,12 +9,18 @@ class Admin::UsersController < ApplicationController
   # モデルに定義したスコープを使用
   def show
     @user = User.find(params[:id])
-    if params[(:created_at)||(:rate)]
-      @posts = @user.posts.latest.page(params[:page]).per(6)
-    elsif
-      @posts = @user.posts.rated.page(params[:page]).per(6)
-    else
-      @posts = @user.posts.page(params[:page]).per(6)
+    @posts = if params[:create]
+                @user.posts.latest.page(params[:page]).per(6)
+              elsif params[:rate]
+                @user.posts.rated.page(params[:page]).per(6)
+              elsif params[:impressions_count]
+                @user.posts.views.page(params[:page]).per(6)
+              elsif params[:favorite]
+                Kaminari.paginate_array(@user.posts.post_favorites).page(params[:page]).per(6)
+              elsif params[:post_comment]
+                Kaminari.paginate_array(@user.posts.post_comments).page(params[:page]).per(6)
+              else
+                @user.posts.page(params[:page]).per(6)
     end
   end
 

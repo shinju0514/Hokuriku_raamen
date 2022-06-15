@@ -39,8 +39,11 @@
   </div>
   <div class="sort_index">
     <h4>
-    <%= link_to "新着順",search_posts_path(created_at: "true") %>
-    <%= link_to "評価順",search_posts_path(rate: "true") %>
+      <%= link_to "新着順",search_posts_path(create: "true"),class: "btn btn--red btn--cubic" %>
+      <%= link_to "評価順",search_posts_path(rate: "true"),class: "btn btn--yellow btn--cubic" %>
+      <%= link_to "閲覧数順",search_posts_path(impressions_count: "true"),class: "btn btn--green btn--cubic" %>
+      <%= link_to "いいね順",search_posts_path(favorite: "true"),class: "btn btn--water btn--cubic" %>
+      <%= link_to "コメント順",search_posts_path(post_comment: "true"),class: "btn btn--blue btn--cubic" %>
     </h4>
   </div>
   <div class="row">
@@ -100,6 +103,14 @@
                 <td><% result.tags.each do |tag| %>
                     <%= tag.tag_name %>
                     <% end %></td>
+              </tr>
+              <tr>
+                <th>PV数</th>
+                <td><%= result.impressions_count %></td>
+              </tr>
+              <tr>
+                <th>コメント数</th>
+                <td><%= result.post_comments.count %></td>
               </tr>
                <tr>
                 <th>投稿日</th>

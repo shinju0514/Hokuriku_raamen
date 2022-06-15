@@ -1,0 +1,80 @@
+<h2>ラーメンマップ</h2>
+
+<input id="address" type="textbox" placeholder="住所を入れて付近を見る">
+<input type="button" value="検索する" onclick="codeAddress()">
+
+<div id="display"></div>
+
+<div id='map',class="map"></div>
+
+<style>
+#map {
+  height: 800px;
+  width: 800px;
+}
+</style>
+
+<script>
+var infoWindow;
+let map
+let geocoder
+
+const display = document.getElementById('display')
+// マップに表示するセンターポジションの設定を記述している
+function initMap(){
+      geocoder = new google.maps.Geocoder()
+      map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 36.57849231757152, lng:136.64787099262296},
+          zoom: 8,
+      });
+
+      // それぞれ必要なメソッドを定義する
+      function markerObj(latitude, longitude, contentString) {
+        return new google.maps.Marker({
+          position:{lat: parseFloat(latitude), lng: parseFloat(longitude)},
+          map: map,
+          title: contentString
+        });
+      }
+      // 吹き出し表示のためのメソッドを定義する
+      function infoWindow(shop_name, address, latitude, longitude, contentString, shop_id) {
+        return new google.maps.InfoWindow({ // 吹き出しの追加
+              content: "<a href=/shops/" + shop_id + ">" + shop_name + "," + address + "</a>" // 吹き出しに表示する内容
+        })// 吹き出しの表示
+      }
+
+      // each文でaddressカラムに入っている住所から緯度と経度を特定し、マップにピンを刺している
+      <% maps.each do |m| %>
+          var contentString = "<%= m.address %>";
+          var marker = markerObj(<%= m.latitude %>, <%= m.longitude %>, contentString)
+          var info =  infoWindow("<%= m.shop_name %>", "<%= m.address %>", "<%= m.latitude %>", "<%= m.longitude %>", contentString, "<%= m.id %>")
+          setEvent(marker,info)
+      <% end %>
+}
+
+function setEvent(marker,info){
+  marker.addListener('click', function() { // マーカーをクリックしたとき
+          info.open(map,marker); // 吹き出しの表示
+  });
+}
+
+// 検索した際にピンが刺される記述
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+
+      display.textContent = "検索結果：" + results[ 0 ].geometry.location
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>

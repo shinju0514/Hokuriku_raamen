@@ -22,10 +22,6 @@
             <% end %>
           </td>
         </tr>
-        <tr>
-          <th>本文</th>
-          <td class="post_body"><%= post.body %></td>
-        </tr>
       </thead>
       <tbody>
         <div class="rate col-5">
@@ -61,6 +57,14 @@
                 <%= tag.tag_name %>
               <% end %>
             </td>
+          </tr>
+           <tr>
+            <th>PV数</th>
+            <td><%= post.impressions_count %></td>
+          </tr>
+          <tr>
+            <th>コメント数</th>
+            <td><%= post.post_comments.count %></td>
           </tr>
           <tr>
             <th>投稿日</th>

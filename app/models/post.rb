@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   scope :rated, -> {order("rate DESC")}
   scope :get_posts_sort_of_CreateDate, -> (number_of_display) {order("created_at": :desc).limit(number_of_display)}
   scope :views, -> {order("impressions_count DESC")}
+  scope :updated, -> {order("updated_at DESC")}
 
   # バリデーション
   validates :menu, length: { maximum: 20 },presence: true

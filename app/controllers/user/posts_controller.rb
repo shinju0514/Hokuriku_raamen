@@ -87,13 +87,19 @@ class User::PostsController < ApplicationController
   # モデルに定義したスコープを使用している
   def search
     @search = Post.ransack(params[:q])
-    if params[(:created_at)||(:rate)]
-      @results = @search.result.latest.page(params[:page]).per(6)
-    elsif
-      @results = @search.result.rated.page(params[:page]).per(6)
-    else
-      @results = @search.result.page(params[:page]).per(6)
-    end
+   @results = if params[:create]
+                  @search.result.latest.page(params[:page]).per(6)
+                elsif params[:rate]
+                  @search.result.rated.page(params[:page]).per(6)
+                elsif params[:impressions_count]
+                 @search.result.views.page(params[:page]).per(6)
+                elsif params[:favorite]
+                 Kaminari.paginate_array(@search.result.post_favorites).page(params[:page]).per(6)
+                elsif params[:post_comment]
+                 Kaminari.paginate_array(@search.result.post_comments).page(params[:page]).per(6)
+                else
+                 @search.result.page(params[:page]).per(6)
+                end
   end
 
   private

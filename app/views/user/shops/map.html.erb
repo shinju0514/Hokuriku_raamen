@@ -1,17 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="google_map mx-auto">
-      <%= render 'user/shops/map_index', maps: @maps %>
+      <%= render 'user/shops/map_raamen', maps: @maps %>
     </div>
   </div>
-  <div class="sort_index mt-4">
-    <h4>
-    <%= link_to "新着順",map_shops_path(created_at: "true") %>
-    <%= link_to "更新順",map_shops_path(updated_at: "true") %>
-    </h4>
-  </div>
-  <div class="post_wrapper" style = "margin-top: 50px">
-    <%= render 'user/shops/index', shops: @maps %>
-  </div>
-  <%= paginate @maps %>
 </div>

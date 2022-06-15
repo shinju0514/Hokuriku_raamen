@@ -28,6 +28,10 @@
             <th>投稿数</th>
             <td><%= shop.posts.count %>件</td>
           </tr>
+          <tr>
+            <th>作成日</th>
+            <td><%= shop.created_at.strftime("%Y-%m-%d") %></td>
+          </tr>
         </thead>
       </table>
   </div>

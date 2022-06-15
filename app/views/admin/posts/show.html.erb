@@ -64,6 +64,10 @@
               <% end %>
             </td>
           </tr>
+           <tr>
+            <th>PV数</th>
+            <td><%= @post.impressions_count %></td>
+          </tr>
           <tr>
             <th>投稿日</th>
             <td><%= @post.created_at.strftime("%Y-%m-%d") %></td>
