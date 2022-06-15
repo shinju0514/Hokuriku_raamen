@@ -1,6 +1,6 @@
 # Hokuriku麺
 
-<img width="1440" alt="スクリーンショット 2022-06-11 13 00 17" src="https://user-images.githubusercontent.com/99737371/173171742-5d539eeb-57ce-4f9f-a0d5-16d90a4aaae2.png">
+<img width="1437" alt="スクリーンショット 2022-06-15 22 41 44" src="https://user-images.githubusercontent.com/99737371/173842019-9f40a69b-d02c-405f-8862-0f96913ed252.png">
 
 ## サイト概要
 
@@ -24,9 +24,9 @@ google mapを実装しており、mapからもラーメン店を探せるよう�
 - 北陸にどういうラーメンがあるのか知りたい時。
 
 ## 設計書
-#ER図 : https://app.diagrams.net/#G1Gq7hb4o-6RwwTx3gWBdOGmjDXTxb8vXV
+# ER図 : https://app.diagrams.net/#G1Gq7hb4o-6RwwTx3gWBdOGmjDXTxb8vXV
 
-#詳細設計
+# 詳細設計
 
 <img width="1072" alt="スクリーンショット 2022-06-15 22 30 34" src="https://user-images.githubusercontent.com/99737371/173839958-ef84cde1-6f03-48db-9a98-3856b1904602.png">
 
@@ -35,7 +35,8 @@ google mapを実装しており、mapからもラーメン店を探せるよう�
 <img width="1068" alt="スクリーンショット 2022-06-15 22 30 23" src="https://user-images.githubusercontent.com/99737371/173840282-5a715207-dd67-4e10-9ab0-605fcfd909c8.png">
 
 <img width="991" alt="スクリーンショット 2022-06-15 22 38 33" src="https://user-images.githubusercontent.com/99737371/173841418-6dc747d2-2f5c-4fb8-ace1-44f309b3438e.png">
-テーブル定義書 : https://docs.google.com/spreadsheets/d/19yS2Ww2P0F3PFkGjifZiPzGw97MTqXUPeMnSubAeHwg/edit#gid=1634014813
+
+# テーブル定義書 : https://docs.google.com/spreadsheets/d/19yS2Ww2P0F3PFkGjifZiPzGw97MTqXUPeMnSubAeHwg/edit#gid=1634014813
 
 ## 開発環境
 - OS：Linux(CentOS)
