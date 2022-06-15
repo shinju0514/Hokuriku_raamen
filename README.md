@@ -28,7 +28,7 @@ google mapを実装しており、mapからもラーメン店を探せるよう�
 ## 設計書
 ### ER図 : https://app.diagrams.net/#G1Gq7hb4o-6RwwTx3gWBdOGmjDXTxb8vXV
 
-<img width="467" alt="スクリーンショット 2022-06-15 23 25 57" src="https://user-images.githubusercontent.com/99737371/173852017-88e2c9a7-02c1-4d19-bd65-df2f5110bd9d.png">
+<img width="444" alt="スクリーンショット 2022-06-15 23 30 18" src="https://user-images.githubusercontent.com/99737371/173852911-f2a3563f-5245-431e-9399-a6c63d85238a.png">
 
 ### 詳細設計
 
