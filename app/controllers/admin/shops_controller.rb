@@ -15,13 +15,19 @@ class Admin::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    if params[(:created_at)||(:rate)]
-      @posts = @shop.posts.latest.page(params[:page]).per(6)
-    elsif
-      @posts = @shop.posts.rated.page(params[:page]).per(6)
-    else
-      @posts = @shop.posts.page(params[:page]).per(6)
-    end
+    @posts = if params[:create]
+              @shop.posts.latest.page(params[:page]).per(6)
+              elsif params[:rate]
+                @shop.posts.rated.page(params[:page]).per(6)
+              elsif params[:impressions_count]
+                @shop.posts.views.page(params[:page]).per(6)
+              elsif params[:favorite]
+                Kaminari.paginate_array(@shop.posts.post_favorites).page(params[:page]).per(6)
+              elsif params[:post_comment]
+                Kaminari.paginate_array(@shop.posts.post_comments).page(params[:page]).per(6)
+              else
+                @shop.posts.page(params[:page]).per(6)
+            end
   end
 
   def edit
