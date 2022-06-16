@@ -92,25 +92,27 @@
       </div>
     </div>
     <div class="google_map col-5 pr-4">
-      <h3 class="post_user"><b>投稿ユーザー</b></h3>
-      <div class="user_name">
-        <h4>
-        <%= link_to user_path(@user.id) do %>
-        <%= @post.user.user_name %>
-        <% end %>
-        </h4>
+      <div class="form-comment">
+        <h3 class="post_user"><b>投稿ユーザー</b></h3>
+        <div class="user_name">
+          <h4>
+          <%= link_to user_path(@user.id) do %>
+          <%= @post.user.user_name %>
+          <% end %>
+          </h4>
+          </div>
+        <div class="user_image">
+          <%= image_tag @post.user.get_profile_image(150,150) %>
         </div>
-      <div class="user_image">
-        <%= image_tag @post.user.get_profile_image(150,150) %>
-      </div>
-      <div id="post_<%= @post.id %>">
-        <p class="comment-count">コメント数:<%= @post.post_comments.count %></p>
-        <h4 class="user_comment">コメント一覧</h4>
-        <div id="comment">
-          <%= render 'user/post_comments/comment', post: @post %>
-        </div>
-        <div class="comment_send">
-          <%= render 'user/post_comments/form',post: @post, post_comment: @post_comment %>
+        <div id="post_<%= @post.id %>">
+          <p class="comment-count">コメント数:<%= @post.post_comments.count %></p>
+          <h4 class="user_comment">コメント一覧</h4>
+          <div id="comment">
+            <%= render 'user/post_comments/comment', post: @post %>
+          </div>
+          <div class="comment_send">
+            <%= render 'user/post_comments/form',post: @post, post_comment: @post_comment %>
+          </div>
         </div>
       </div>
     </div>
