@@ -2,12 +2,6 @@
 
 <img width="1437" alt="スクリーンショット 2022-06-15 22 41 44" src="https://user-images.githubusercontent.com/99737371/173842019-9f40a69b-d02c-405f-8862-0f96913ed252.png">
 
-### 動作デモ
-
-https://user-images.githubusercontent.com/99737371/173864251-f9b10852-c458-4177-a0ad-f3d6c03d1183.mp4
-
-https://user-images.githubusercontent.com/99737371/173864539-e58a8709-139b-4bca-a70b-e88a87703f9e.mp4
-
 ## サイト概要
 
 ### サイトテーマ
@@ -28,6 +22,14 @@ google mapを実装しており、mapからもラーメン店を探せるよう�
 - どこのラーメンが美味しいかわからない時。
 - ラーメンを食べた時にレビューして誰かと共有したくなった時。
 - 北陸にどういうラーメンがあるのか知りたい時。
+
+
+### 動作デモ
+
+https://user-images.githubusercontent.com/99737371/173864251-f9b10852-c458-4177-a0ad-f3d6c03d1183.mp4
+
+https://user-images.githubusercontent.com/99737371/173864539-e58a8709-139b-4bca-a70b-e88a87703f9e.mp4
+
 
 ## 設計書
 ### ER図 : https://app.diagrams.net/#G1Gq7hb4o-6RwwTx3gWBdOGmjDXTxb8vXV
