@@ -2,8 +2,7 @@ class User::PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :authenticate_user!
 
-  # 評価順と投稿順に並べる記述
-  # モデルに定義したスコープを使用している
+  # モデルに定義した記述を使用している
   def index
     @posts = if params[:create]
               # 新着順に並べる
@@ -27,6 +26,7 @@ class User::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    # 閲覧数の記述　user_id1つにつき１回閲覧数が増える
     impressionist(@post, nil, unique: [:user_id])
     @user = @post.user
     @shop = @post.shop
@@ -88,14 +88,19 @@ class User::PostsController < ApplicationController
   def search
     @search = Post.ransack(params[:q])
    @results = if params[:create]
+                # 新着順に並べる
                   @search.result.latest.page(params[:page]).per(6)
                 elsif params[:rate]
+                # 評価順に並べる
                   @search.result.rated.page(params[:page]).per(6)
                 elsif params[:impressions_count]
+                # 閲覧数順に並べる
                  @search.result.views.page(params[:page]).per(6)
                 elsif params[:favorite]
+                # いいね順に並べる
                  Kaminari.paginate_array(@search.result.post_favorites).page(params[:page]).per(6)
                 elsif params[:post_comment]
+                # コメント順に並べる
                  Kaminari.paginate_array(@search.result.post_comments).page(params[:page]).per(6)
                 else
                  @search.result.page(params[:page]).per(6)

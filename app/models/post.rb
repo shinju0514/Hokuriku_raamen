@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   # スコープ
   scope :latest, -> {order("created_at DESC")}
   scope :rated, -> {order("rate DESC")}
+  # 新着順に並べ替えて、引数を指定することで何件表示するかを決めている
   scope :get_posts_sort_of_CreateDate, -> (number_of_display) {order("created_at": :desc).limit(number_of_display)}
   scope :views, -> {order("impressions_count DESC")}
   scope :updated, -> {order("updated_at DESC")}
@@ -24,7 +25,7 @@ class Post < ApplicationRecord
   validate :post_image_content_type
 
 
-  # Google map api
+  # Google Maps API
   # addressカラムに住所を入力することで、
   geocoded_by :address
   after_validation :geocode
@@ -35,7 +36,7 @@ class Post < ApplicationRecord
   # 閲覧数
   is_impressionable counter_cache: true
 
-# 投稿画像の設定
+  # 投稿画像の設定
   def post_get_image(width, height)
     unless post_image.attached?
     file_path = Rails.root.join('app/assets/images/no_image.jpeg')
@@ -44,28 +45,33 @@ class Post < ApplicationRecord
     post_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  # 投稿時の拡張子の指定
   def post_image_content_type
     extension = ['image/png', 'image/jpg', 'image/jpeg']
     errors.add(:post_image, "の拡張子が間違っています") unless post_image.content_type.in?(extension)
   end
 
-# ユーザーいいねをしているかを判定するメソッド
+  # ユーザーいいねをしているかを判定するメソッド
   def favorited_by?(user)
-    # exists?メソッドでuser_idが存在しているかを判定している。
+  # exists?メソッドでuser_idが存在しているかを判定している。
     favorites.exists?(user_id: user.id)
   end
 
+  # いいね順にソートする記述
+  # includesでfavoriteモデルを指定している
   def self.post_favorites
     Post.includes(:favorites).sort{|a,b| b.favorites.size <=> a.favorites.size}
   end
 
+  # コメント順にソートする記述
+  # includesでpost_commentモデルを指定している
   def self.post_comments
     Post.includes(:post_comments).sort{|a,b| b.post_comments.size <=> a.post_comments.size}
   end
 
   # 通知機能
   def create_notification_favorite!(current_user)
-    # すでに「いいね」されているか検索
+  # すでに「いいね」されているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?

@@ -5,8 +5,10 @@ class Admin::ShopsController < ApplicationController
   # モデルに定義したスコープを使用
   def index
     if params[(:created_at)||(:updated_at)]
+      # 新着順に並べる
       @shops = Shop.latest.page(params[:page]).per(10)
     elsif
+      # 更新順に並べる
       @shops = Shop.updated.page(params[:page]).per(10)
     else
       @shops = Shop.page(params[:page]).per(10)
@@ -16,14 +18,19 @@ class Admin::ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @posts = if params[:create]
+              # 新着順に並べる
               @shop.posts.latest.page(params[:page]).per(6)
               elsif params[:rate]
+              # 評価順に並べる
                 @shop.posts.rated.page(params[:page]).per(6)
               elsif params[:impressions_count]
+              # 閲覧数順に並べる
                 @shop.posts.views.page(params[:page]).per(6)
               elsif params[:favorite]
+              # いいね順に並べる
                 Kaminari.paginate_array(@shop.posts.post_favorites).page(params[:page]).per(6)
               elsif params[:post_comment]
+              # コメント数順に並べる
                 Kaminari.paginate_array(@shop.posts.post_comments).page(params[:page]).per(6)
               else
                 @shop.posts.page(params[:page]).per(6)

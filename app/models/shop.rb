@@ -8,6 +8,7 @@ class Shop < ApplicationRecord
   validates :shop_name, length: { maximum: 20 },presence: true
   validates :address, presence: true,uniqueness: true
   validates :bussiness_hour, presence: true
+  # 開店ステータス　デフォルトは'開店'で'閉店'に変更すると一覧画面で表示されなくなる
   enum shop_status: { 閉店: true, 開店: false }
 
   # Google map api
@@ -31,6 +32,8 @@ class Shop < ApplicationRecord
     shop_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  # 投稿数が多い店舗をソートする
+  # includesでpostモデルを指定している
   def self.shop_popular
     Shop.includes(:posts).sort{|a,b| b.posts.size <=> a.posts.size }
   end

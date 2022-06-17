@@ -8,9 +8,11 @@ class User::HomesController < ApplicationController
     @search_shop = Shop.ransack(params[:q])
     @result_shops = @search_shop.result
     @maps = Shop.all
+    # top画面にあるスライドショーをランダムで3つの画像を表示している
     if Rails.env.development?
       @random_posts = Post.order("RANDOM()").limit(3)
     else
+    # 本番環境用の記述
       @random_posts = Post.order("RAND()").limit(3)
     end
   end

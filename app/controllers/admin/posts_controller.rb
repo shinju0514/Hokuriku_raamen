@@ -11,6 +11,7 @@ class Admin::PostsController < ApplicationController
                 # 評価順に並べる
                 Post.rated.page(params[:page]).per(10)
                  elsif params[:update]
+                # 更新順に並べる
                 Post.updated.page(params[:page]).per(10)
                  else
                 Post.page(params[:page]).per(10)

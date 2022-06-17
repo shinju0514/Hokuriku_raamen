@@ -5,14 +5,19 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = if params[:create]
+              # 新着順に並べる
                 @user.posts.latest.page(params[:page]).per(6)
               elsif params[:rate]
+              # 評価順に並べる
                 @user.posts.rated.page(params[:page]).per(6)
               elsif params[:impressions_count]
+              # 閲覧数順に並べる
                 @user.posts.views.page(params[:page]).per(6)
               elsif params[:favorite]
+              # いいね順に並べる
                 Kaminari.paginate_array(@user.posts.post_favorites).page(params[:page]).per(6)
               elsif params[:post_comment]
+              # コメント数順に並べる
                 Kaminari.paginate_array(@user.posts.post_comments).page(params[:page]).per(6)
               else
                 @user.posts.page(params[:page]).per(6)
@@ -46,6 +51,7 @@ class User::UsersController < ApplicationController
 
   private
 
+  # ゲストログインした人はプロフィール編集ができない記述
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.user_name == "guestuser"

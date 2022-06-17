@@ -9,7 +9,7 @@ class User::ShopsController < ApplicationController
               # 更新順に並べる
                  Shop.updated.where(shop_status: false).page(params[:page]).per(6)
                elsif params[:popular]
-              # レビューが多い順に並べる
+              # 店舗の投稿が多い順に並べる
                  Kaminari.paginate_array(Shop.where(shop_status: false).shop_popular).page(params[:page]).per(6)
                else
                  Shop.where(shop_status: false).page(params[:page]).per(6)
@@ -19,14 +19,19 @@ class User::ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @posts = if params[:create]
+              # 新着順に並べる
                 @shop.posts.latest.page(params[:page]).per(6)
               elsif params[:rate]
+              # 評価順に並べる
                 @shop.posts.rated.page(params[:page]).per(6)
               elsif params[:impressions_count]
+              # 閲覧数順に並べる
                 @shop.posts.views.page(params[:page]).per(6)
               elsif params[:favorite]
+              # いいね順に並べる
                 Kaminari.paginate_array(@shop.posts.post_favorites).page(params[:page]).per(6)
               elsif params[:post_comment]
+              # コメント数順に並べる
                 Kaminari.paginate_array(@shop.posts.post_comments).page(params[:page]).per(6)
               else
                 @shop.posts.page(params[:page]).per(6)
@@ -64,10 +69,13 @@ class User::ShopsController < ApplicationController
   def search
     @search_shop = Shop.ransack(params[:q])
     @result_shops = if params[:create]
+                    # 新着順に並べる
                       @search_shop.result.latest.where(shop_status: false).page(params[:page]).per(6)
                     elsif params[:update]
+                    # 更新順に並べる
                       @search_shop.result.updated.where(shop_status: false).page(params[:page]).per(6)
                     elsif params[:popular]
+                    # 店舗の投稿が多い順に並べる
                       Kaminari.paginate_array(@search_shop.result.where(shop_status: false).shop_popular).page(params[:page]).per(6)
                     else
                       @search_shop.result.where(shop_status: false).page(params[:page]).per(6)
