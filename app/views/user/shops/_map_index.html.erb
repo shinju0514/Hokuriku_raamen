@@ -40,7 +40,7 @@ function initMap(){
       function infoWindow(shop_name, address, latitude, longitude, contentString, shop_id) {
         return new google.maps.InfoWindow({ // 吹き出しの追加
               content: "<a href=/shops/" + shop_id + ">" + shop_name + "," + address + "</a>" // 吹き出しに表示する内容
-        })// 吹き出しの表示
+        })
       }
 
       // each文でaddressカラムに入っている住所から緯度と経度を特定し、マップにピンを刺している

@@ -9,6 +9,7 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
           <div class="carousel-inner">
+            <!--ランダムで3件投稿を-->
             <% @random_posts.each_with_index do |post, i| %>
             <div class="carousel-item <%= "active"if i.zero? %>">
               <%= link_to post_path(post) do %>
