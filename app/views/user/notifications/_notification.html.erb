@@ -8,12 +8,14 @@
     <strong><%= visitor.user_name %></strong>
   <% end %>さんが
 
+<!--actionが'follow'なら以下の文を実行する-->
   <% case notification.action when 'follow' then %>
       あなたをフォローしました
-
+<!--actionが'favorite'なら以下の文を実行する-->
   <% when 'favorite' then %>
     <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
     をいいねしました
+<!--actionが'post_comment'なら以下の文を実行する-->
   <% when 'post_comment' then %>
     <% if notification.post.user_id == notification.visited.id %>
      <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
