@@ -8,12 +8,14 @@ class Shop < ApplicationRecord
   validates :shop_name, length: { maximum: 20 },presence: true
   validates :address, presence: true,uniqueness: true
   validates :bussiness_hour, presence: true
+
   # 開店ステータス　デフォルトは'開店'で'閉店'に変更すると一覧画面で表示されなくなる
   enum shop_status: { 閉店: true, 開店: false }
 
   # Google map api
   geocoded_by :address
   after_validation :geocode
+  after_validation :geocode_address
 
   # 閲覧数
   is_impressionable counter_cache: true
@@ -21,6 +23,13 @@ class Shop < ApplicationRecord
   # スコープ
   scope :latest, -> {order("created_at DESC")}
   scope :updated, -> {order("updated_at DESC")}
+
+
+# 住所のバリデーション
+  def geocode_address
+    return if geocoded?
+    self.errors.add(:address, 'を入力してください')
+  end
 
 
   # 店舗画像の設定
