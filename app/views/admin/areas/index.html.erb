@@ -2,27 +2,27 @@
   <div class="row" style="margin-top: 50px">
     <div class="col-10 mx-auto">
       <h4>エリア管理画面</h4>
-      <% @areas.each do |area| %>
-      <table>
-        <thead>
-          <tr>
-            <th><%= area.prefecture %></th>
-            <th><%= link_to "削除する", admin_area_path(area.id), method: :delete, data: {confirm: "削除するとエリアに紐づいている投稿と店舗が削除されます。本当に削除しますか？"} %></th>
-          </tr>
-        </thead>
-      </table>
-      <% end %>
+        <% @areas.each do |area| %>
+          <table>
+            <thead>
+              <tr>
+                <th><%= area.prefecture %></th>
+                <th><%= link_to "削除する", admin_area_path(area.id), method: :delete, data: {confirm: "削除するとエリアに紐づいている投稿と店舗が削除されます。本当に削除しますか？"} %></th>
+              </tr>
+            </thead>
+          </table>
+        <% end %>
       <%= form_with model:@area,url:admin_areas_path do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      <div class="row">
-        <div class="form_group col-3">
-          <%= f.label :prefecture,"エリア追加" %>
-          <%= f.text_field :prefecture, class: "form-control" %>
-        </div>
-        <div class="row form-button col-5" style="margin-top :20px">
-          <%= f.submit "追加する" %>
-        </div>
-      </div>
+        <%= render 'layouts/error_messages', model: f.object %>
+          <div class="row">
+            <div class="form_group col-3">
+              <%= f.label :prefecture,"エリア追加" %>
+              <%= f.text_field :prefecture, class: "form-control" %>
+            </div>
+            <div class="row form-button col-5" style="margin-top :20px">
+              <%= f.submit "追加する" %>
+            </div>
+          </div>
       <% end %>
     </div>
   </div>

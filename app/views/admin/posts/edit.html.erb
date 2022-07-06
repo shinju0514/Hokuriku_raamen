@@ -2,37 +2,32 @@
   <div class="row" style="margin-top: 50px">
     <div class="col-8 mx-auto">
       <h4 class="POST_edit">投稿編集</h4>
-      <%= form_with model:@post,url:admin_post_path do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      <div class="form_group col-9">
-        <%= f.label :menu, "タイトル"%>
-        <%= f.text_field :menu, class: "form-control" %>
-      </div>
-
-      <div class="form_group col-9">
-        <%= f.label :post_image, "投稿画像" %></br>
-        <%= f.file_field :post_image, accept: 'image/*' %>
-      </div>
-
-      <div class="form_group col-9">
-        <%= f.label :body, "本文" %>
-        <%= f.text_area :body, class: "form-control", size: "60x10" %>
-      </div>
-
-      <div class="form_group col-9">
-        <%= f.label :area_id, "エリア" %></br>
-        <%= f.collection_select :area_id, Area.all, :id, :prefecture %>
-      </div>
-
-       <div class="form_group col-9">
-        <%= f.label :shop_id, "店舗選択" %></br>
-        <%= f.collection_select :shop_id, Shop.all, :id, :shop_name,include_blank: '指定なし' %>
-      </div>
-
-      <div class="d-grid gap-2 col-6 mx-auto mt-4">
-        <%= f.submit "更新する", class: "btn btn-outline-secondary btn-lg" %>
-      </div>
-      <% end %>
+        <%= form_with model:@post,url:admin_post_path do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="form_group col-9">
+            <%= f.label :menu, "タイトル"%>
+            <%= f.text_field :menu, class: "form-control" %>
+          </div>
+          <div class="form_group col-9">
+            <%= f.label :post_image, "投稿画像" %></br>
+            <%= f.file_field :post_image, accept: 'image/*' %>
+          </div>
+          <div class="form_group col-9">
+            <%= f.label :body, "本文" %>
+            <%= f.text_area :body, class: "form-control", size: "60x10" %>
+          </div>
+          <div class="form_group col-9">
+            <%= f.label :area_id, "エリア" %></br>
+            <%= f.collection_select :area_id, Area.all, :id, :prefecture %>
+          </div>
+           <div class="form_group col-9">
+            <%= f.label :shop_id, "店舗選択" %></br>
+            <%= f.collection_select :shop_id, Shop.all, :id, :shop_name,include_blank: '指定なし' %>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto mt-4">
+            <%= f.submit "更新する", class: "btn btn-outline-secondary btn-lg" %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

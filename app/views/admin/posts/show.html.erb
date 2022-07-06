@@ -30,49 +30,49 @@
           </tr>
         </thead>
         <tbody>
-        <div class="rate col-5">
-          <tr>
-            <th>評価</th>
-            <td><div id="star-rate-<%= @post.id %>"></div>
-                <script>
-                $('#star-rate-<%= @post.id %>').empty();
-                $('#star-rate-<%= @post.id %>').raty({
-                  size: 20,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn :  '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  half: true,
-                  readOnly: true,
-                  score: <%= @post.rate %>,
-                });
-                </script></td>
-          </tr>
-        </div>
-          <tr>
-            <th style=white-space: nowrap>いいね</th>
-            <td><%= @post.favorites.count %></td>
-          </tr>
-          <tr>
-            <th>エリア</th>
-            <td><%= @post.area.prefecture %></td>
-          </tr>
-          <tr>
-            <th>タグ</th>
-            <td class="tags_name">
-              <% @post.tags.each do |tag| %>
-                <%= tag.tag_name %>
-              <% end %>
-            </td>
-          </tr>
-           <tr>
-            <th>PV数</th>
-            <td><%= @post.impressions_count %></td>
-          </tr>
-          <tr>
-            <th>投稿日</th>
-            <td><%= @post.created_at.strftime("%Y-%m-%d") %></td>
-          </tr>
-        </tbody>
+          <div class="rate col-5">
+            <tr>
+              <th>評価</th>
+              <td><div id="star-rate-<%= @post.id %>"></div>
+                  <script>
+                  $('#star-rate-<%= @post.id %>').empty();
+                  $('#star-rate-<%= @post.id %>').raty({
+                    size: 20,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn :  '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= @post.rate %>,
+                  });
+                  </script></td>
+            </tr>
+          </div>
+            <tr>
+              <th style=white-space: nowrap>いいね</th>
+              <td><%= @post.favorites.count %></td>
+            </tr>
+            <tr>
+              <th>エリア</th>
+              <td><%= @post.area.prefecture %></td>
+            </tr>
+            <tr>
+              <th>タグ</th>
+              <td class="tags_name">
+                <% @post.tags.each do |tag| %>
+                  <%= tag.tag_name %>
+                <% end %>
+              </td>
+            </tr>
+             <tr>
+              <th>PV数</th>
+              <td><%= @post.impressions_count %></td>
+            </tr>
+            <tr>
+              <th>投稿日</th>
+              <td><%= @post.created_at.strftime("%Y-%m-%d") %></td>
+            </tr>
+          </tbody>
       </table>
       <div class="row mx-auto.d-block">
         <!--他人の編集ページを表示させないようにする。-->
@@ -92,9 +92,9 @@
       <h3 class="post_user"><b>投稿ユーザー</b></h3>
       <div class="user_name">
         <h4>
-        <%= link_to admin_user_path(@user.id) do %>
-        <%= @post.user.user_name %>
-        <% end %>
+          <%= link_to admin_user_path(@user.id) do %>
+          <%= @post.user.user_name %>
+          <% end %>
         </h4>
       </div>
       <div class="user_image">
@@ -102,7 +102,7 @@
       </div>
       <div id="post_<%= @post.id %>">
         <p class="comment-count">コメント件数:<%= @post.post_comments.count %></p>
-        <h4 class="user_comment">コメント一覧</h4>
+          <h4 class="user_comment">コメント一覧</h4>
         <div id="comment">
           <%= render 'user/post_comments/comment', post: @post %>
         </div>
