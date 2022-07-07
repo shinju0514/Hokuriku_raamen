@@ -1,16 +1,16 @@
 <div class="container">
   <h2 class="post-index mb-3 mt-4">レビュー一覧</h2>
-  <div class="sort_index">
-    <h4>
-      <%= link_to "新着順",posts_path(create: "true"),class: "btn btn--red btn--cubic" %>
-      <%= link_to "評価順",posts_path(rate: "true"),class: "btn btn--yellow btn--cubic" %>
-      <%= link_to "閲覧数順",posts_path(impressions_count: "true"),class: "btn btn--green btn--cubic" %>
-      <%= link_to "いいね順",posts_path(favorite: "true"),class: "btn btn--water btn--cubic" %>
-      <%= link_to "コメント順",posts_path(post_comment: "true"),class: "btn btn--blue btn--cubic" %>
-    </h4>
-  </div>
-  <div class="post_wrapper" style = "margin-top: 50px">
-    <%= render 'user/posts/index', posts: @posts %>
-  </div>
+    <div class="sort_index">
+      <h4>
+        <%= link_to "新着順",posts_path(create: "true"),class: "btn btn--red btn--cubic" %>
+        <%= link_to "評価順",posts_path(rate: "true"),class: "btn btn--yellow btn--cubic" %>
+        <%= link_to "閲覧数順",posts_path(impressions_count: "true"),class: "btn btn--green btn--cubic" %>
+        <%= link_to "いいね順",posts_path(favorite: "true"),class: "btn btn--water btn--cubic" %>
+        <%= link_to "コメント順",posts_path(post_comment: "true"),class: "btn btn--blue btn--cubic" %>
+      </h4>
+    </div>
+    <div class="post_wrapper" style = "margin-top: 50px">
+      <%= render 'user/posts/index', posts: @posts %>
+    </div>
   <%= paginate @posts %>
 </div>

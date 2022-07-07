@@ -3,39 +3,39 @@
     <div class="col-12 mx-auto">
       <!--total_countで検索で絞った結果の投稿を全部取得する-->
       <h1>レビュー検索 全:<%= @results.total_count %>件</h1>
-      <%= search_form_for @search, url:search_posts_path do |f| %>
-      <div class="search-group">
-        <div class="menu-gruop col-4">
-          <%= f.label :menu_cont, 'レビュータイトル' %><br>
-          <%= f.search_field :menu_cont , placeholder: "らーめん", class: "form-control" %><br>
+        <%= search_form_for @search, url:search_posts_path do |f| %>
+        <div class="search-group">
+          <div class="menu-gruop col-4">
+            <%= f.label :menu_cont, 'レビュータイトル' %><br>
+            <%= f.search_field :menu_cont , placeholder: "らーめん", class: "form-control" %><br>
+          </div>
+          <div class="body-group col-6">
+            <%= f.label :"本文" %><br>
+            <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
+          </div>
+          <div class="area-group col-3">
+            <%= f.label :area_id_eq, "エリア" %><br>
+            <%= f.select :area_id_eq, options_from_collection_for_select(Area.all, :id, :prefecture),include_blank: '指定なし' %>
+          </div>
+          <div class="area-group col-3">
+            <%= f.label :tags_tag_name_eq, "タグ検索" %><br>
+            <%= f.select :tags_tag_name_eq, options_from_collection_for_select(Tag.all, :tag_name, :tag_name),include_blank: '指定なし' %>
+            <!--<%= f.search_field :tags_tag_name_cont, placeholder: "豚骨味噌",class: "form-control" %>-->
+          </div>
+          <div class="rate-group col-6">
+            <%= f.label :rate,"5段階評価" %><br>
+            <%= f.radio_button :rate_gteq, 0 %>🌟0〜
+            <%= f.radio_button :rate_gteq, 1 %>🌟 1〜
+            <%= f.radio_button :rate_gteq, 2 %>🌟 2〜
+            <%= f.radio_button :rate_gteq, 3 %>🌟 3〜
+            <%= f.radio_button :rate_gteq, 4 %>🌟 4〜
+            <%= f.radio_button :rate_gteq, 5 %>🌟 5
+          </div>
+          <div class="submit_search col-3 mt-4 mb-4">
+            <%= f.submit "検索",class: "button_post" %>
+          </div>
         </div>
-        <div class="body-group col-6">
-          <%= f.label :"本文" %><br>
-          <%= f.search_field :body_cont , placeholder: "美味しかったです", class: "form-control" %>
-        </div>
-        <div class="area-group col-3">
-          <%= f.label :area_id_eq, "エリア" %><br>
-          <%= f.select :area_id_eq, options_from_collection_for_select(Area.all, :id, :prefecture),include_blank: '指定なし' %>
-        </div>
-        <div class="area-group col-3">
-          <%= f.label :tags_tag_name_eq, "タグ検索" %><br>
-          <%= f.select :tags_tag_name_eq, options_from_collection_for_select(Tag.all, :tag_name, :tag_name),include_blank: '指定なし' %>
-          <!--<%= f.search_field :tags_tag_name_cont, placeholder: "豚骨味噌",class: "form-control" %>-->
-        </div>
-        <div class="rate-group col-6">
-          <%= f.label :rate,"5段階評価" %><br>
-          <%= f.radio_button :rate_gteq, 0 %>🌟0〜
-          <%= f.radio_button :rate_gteq, 1 %>🌟 1〜
-          <%= f.radio_button :rate_gteq, 2 %>🌟 2〜
-          <%= f.radio_button :rate_gteq, 3 %>🌟 3〜
-          <%= f.radio_button :rate_gteq, 4 %>🌟 4〜
-          <%= f.radio_button :rate_gteq, 5 %>🌟 5
-        </div>
-        <div class="submit_search col-3 mt-4 mb-4">
-          <%= f.submit "検索",class: "button_post" %>
-        </div>
-      </div>
-      <% end %>
+        <% end %>
     </div>
   </div>
   <div class="sort_index">
