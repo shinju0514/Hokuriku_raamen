@@ -26,6 +26,7 @@ class User::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  # ユーザーステータスが"退会"ならログインできないようにする。
   def user_state
     user = User.find_by_email(params[:user][:email])
     return if !user

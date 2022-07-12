@@ -5,7 +5,9 @@ class Shop < ApplicationRecord
   belongs_to :area
 
   # バリデーション
+  # 店名は２０文字まで
   validates :shop_name, length: { maximum: 20 },presence: true
+  # 同じ住所は登録できないようにする
   validates :address, presence: true,uniqueness: true
   validates :bussiness_hour, presence: true
 
