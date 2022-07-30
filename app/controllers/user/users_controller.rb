@@ -42,8 +42,10 @@ class User::UsersController < ApplicationController
     end
   end
 
+# 論理退会用のアクション
   def defection
     @user = current_user
+# ユーザーステータスをtrueにupdateする
     @user.update(user_status: true)
     reset_session
     redirect_to root_path,flash: {danger: "退会しました"}
