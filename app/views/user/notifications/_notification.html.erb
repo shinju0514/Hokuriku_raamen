@@ -7,7 +7,6 @@
     <%= image_tag visitor.get_profile_image(50,50), style: "obfect-fit: contain;",class: 'rounded-circle' %>
     <strong><%= visitor.user_name %></strong>
   <% end %>さんが
-
 <!--actionが'follow'なら以下の文を実行する-->
   <% case notification.action when 'follow' then %>
       あなたをフォローしました
@@ -27,4 +26,6 @@
     にコメントしました
   <% end %>
 </li>
-  <div class="mx-auto"><%= time_ago_in_words(notification.created_at).upcase %>前</div>
+  <div class="mx-auto">
+    <%= time_ago_in_words(notification.created_at).upcase %>前
+  </div>
