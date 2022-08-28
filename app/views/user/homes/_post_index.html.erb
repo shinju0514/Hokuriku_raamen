@@ -11,18 +11,18 @@
     </div>
     <div class="rate_star">
       <div id="star-rate-<%= post.id %>"></div>
-      <script>
-        $('#star-rate-<%= post.id %>').empty();
-        $('#star-rate-<%= post.id %>').raty({
-          size: 20,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn :  '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: <%= post.rate %>,
-        });
-      </script>
+        <script>
+          $('#star-rate-<%= post.id %>').empty();
+          $('#star-rate-<%= post.id %>').raty({
+            size: 20,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn :  '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= post.rate %>,
+          });
+        </script>
     </div>
     <div class="area_mypost">
       <%= post.area.prefecture %>

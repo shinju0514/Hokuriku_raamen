@@ -22,6 +22,7 @@
             <%= f.label :tags_tag_name_eq, "タグ検索" %><br>
             <%= f.select :tags_tag_name_eq, options_from_collection_for_select(Tag.all, :tag_name, :tag_name),include_blank: '指定なし' %>
           </div>
+          <!--gteqで~以上の検索をしている-->
           <div class="rate-group">
             <%= f.label :rate,"5段階評価" %><br>
             <%= f.radio_button :rate_gteq, 0 %>🌟0〜
