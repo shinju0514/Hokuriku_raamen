@@ -3,6 +3,7 @@ class User::HomesController < ApplicationController
 # get_posts_sort_of_CreateDateはモデルで定義した記述
   def top
     @posts = Post.get_posts_sort_of_CreateDate(3)
+    # ransackを使用した記述
     @search = Post.ransack(params[:q])
     @search.result.page(params[:page]).per(6)
     @search_shop = Shop.ransack(params[:q])
